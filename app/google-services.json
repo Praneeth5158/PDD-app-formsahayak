@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "196348160969",
+    "project_id": "form-sahayak",
+    "storage_bucket": "form-sahayak.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196348160969:android:9bef6aa834b7624e851618",
+        "android_client_info": {
+          "package_name": "com.simats.formsahayak"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiO71LHL9fZVJPdYnIWrZTKux0-_LIkAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
