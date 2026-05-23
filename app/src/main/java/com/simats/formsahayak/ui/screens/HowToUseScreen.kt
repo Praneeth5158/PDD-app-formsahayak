@@ -20,34 +20,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.simats.formsahayak.R
 import com.simats.formsahayak.ui.components.BottomNavigationBar
-
-private data class HowToUseStrings(
-    val title: String,
-    val welcomeText: String,
-    val subtitleText: String,
-    val videoTutorialTitle: String,
-    val videoTutorialDesc: String,
-    val videoTutorialTapText: String,
-    val step1Title: String,
-    val step1Desc: String,
-    val step2Title: String,
-    val step2Desc: String,
-    val step3Title: String,
-    val step3Desc: String,
-    val step4Title: String,
-    val step4Desc: String,
-    val needMoreHelpTitle: String,
-    val contactSupportText: String,
-    val shareExperienceTitle: String,
-    val shareExperienceDesc: String,
-    val giveFeedbackButtonText: String,
-    val gotItButtonText: String
-)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -63,75 +42,6 @@ fun HowToUseScreen(
     onVideoTutorialClick: () -> Unit,
     onGiveFeedbackClick: () -> Unit
 ) {
-    val labels = when (selectedLanguage?.code) {
-        "te" -> HowToUseStrings(
-            title = "ఎలా ఉపయోగించాలి",
-            welcomeText = "FormSahayak కి స్వాగతం!",
-            subtitleText = "మీ బ్యాంక్ ఫారమ్‌లను సులభంగా నింపడానికి ఈ సాధారణ దశలను అనుసరించండి",
-            videoTutorialTitle = "వీడియో ట్యుటోరియల్",
-            videoTutorialDesc = "ఫారమ్ సహాయక్ ఎలా ఉపయోగించాలో తెలుసుకోవడానికి ఈ ఉపయోగకరమైన వీడియో గైడ్‌ని చూడండి.",
-            videoTutorialTapText = "పూర్తి వీడియో ట్యుటోరియల్ చూడటానికి నొక్కండి",
-            step1Title = "ఫారమ్ చిత్రాన్ని అప్‌లోడ్ చేయండి",
-            step1Desc = "మీ బ్యాంక్ ఫారమ్ ఫోటో తీయండి లేదా గ్యాలరీ నుండి అప్‌లోడ్ చేయండి. చిత్రం స్పష్టంగా మరియు బాగా వెలిగి ఉండేలా చూసుకోండి.",
-            step2Title = "యాప్ ఫీల్డ్‌లను గుర్తిస్తుంది",
-            step2Desc = "ఫారమ్ సహాయక్ స్వయంచాలకంగా మీరు ఫారమ్‌లో పూరించాల్సిన అన్ని ఫీల్డ్‌లను గుర్తిస్తుంది మరియు హైలైట్ చేస్తుంది.",
-            step3Title = "వాయిస్ సూచనలను అనుసరించండి",
-            step3Desc = "ప్రతి ఫీల్డ్‌లో ఏమి రాయాలో వివరించే మీ భాషలోని వాయిస్ గైడెన్స్‌ని వినండి.",
-            step4Title = "ఫారమ్‌ను సరిగ్గా నింపండి",
-            step4Desc = "అన్ని ఫీల్డ్‌లను ఖచ్చితంగా పూరించడానికి మరియు మీ బ్యాంక్ ఫారమ్‌ను పూర్తి చేయడానికి యాప్ మార్గదర్శకత్వాన్ని ఉపయోగించండి.",
-            needMoreHelpTitle = "మరింత సహాయం కావాలా?",
-            contactSupportText = "సహాయం కోసం మా మద్దతు బృందాన్ని సంప్రదించండి",
-            shareExperienceTitle = "మీ అనుభవాన్ని పంచుకోండి",
-            shareExperienceDesc = "మీ విలువైన అభిప్రాయంతో ఫారమ్ సహాయక్ మెరుగుపరచడంలో మాకు సహాయపడండి.",
-            giveFeedbackButtonText = "అభిప్రాయాన్ని తెలియజేయండి",
-            gotItButtonText = "అర్థమైంది!"
-        )
-        "ta" -> HowToUseStrings(
-            title = "எப்படி பயன்படுத்துவது",
-            welcomeText = "FormSahayak-க்கு வரவேற்கிறோம்!",
-            subtitleText = "உங்கள் வங்கி படிவங்களை எளிதாக நிரப்ப இந்த எளிய வழிமுறைகளை பின்பற்றவும்",
-            videoTutorialTitle = "வீடியோ டுடோரியல்",
-            videoTutorialDesc = "FormSahayak ஐ எவ்வாறு பயன்படுத்துவது என்பதை அறிய இந்த பயனுள்ள வீடியோ வழிகாட்டியைப் பார்க்கவும்.",
-            videoTutorialTapText = "முழு வீடியோ டுடோரியலைப் பார்க்க தட்டவும்",
-            step1Title = "படிவப் படத்தைப் பதிவேற்றவும்",
-            step1Desc = "உங்கள் வங்கி படிவத்தின் புகைப்படத்தை எடுக்கவும் அல்லது கேலரியில் இருந்து பதிவேற்றவும். படம் தெளிவாகவும் வெளிச்சமாகவும் இருப்பதை உறுதி செய்யவும்.",
-            step2Title = "ஆப் புலங்களைக் கண்டறியும்",
-            step2Desc = "FormSahayak நீங்கள் படிவத்தில் நிரப்ப வேண்டிய அனைத்து புலங்களையும் தானாகவே கண்டறிந்து முன்னிலைப்படுத்தும்.",
-            step3Title = "குரல் வழிமுறைகளைப் பின்பற்றவும்",
-            step3Desc = "ஒவ்வொரு புலத்திலும் என்ன எழுத வேண்டும் என்பதை விளக்கும் உங்கள் மொழியில் குரல் வழிகாட்டுதலைக் கேளுங்கள்.",
-            step4Title = "படிவத்தை சரியாக நிரப்பவும்",
-            step4Desc = "அனைத்து புலங்களையும் துல்லியமாக நிரப்பவும் உங்கள் வங்கி படிவத்தை பூர்த்தி செய்யவும் பயன்பாட்டின் வழிகாட்டுதலைப் பயன்படுத்தவும்.",
-            needMoreHelpTitle = "மேலும் உதவி வேண்டுமா?",
-            contactSupportText = "உதவிக்கு எங்கள் ஆதரவு குழுவை தொடர்பு கொள்ளவும்",
-            shareExperienceTitle = "உங்கள் அனுபவத்தைப் பகிரவும்",
-            shareExperienceDesc = "உங்கள் மதிப்புமிக்க கருத்துக்களுடன் FormSahayak ஐ மேம்படுத்த எங்களுக்கு உதவுங்கள்.",
-            giveFeedbackButtonText = "கருத்து தெரிவிக்கவும்",
-            gotItButtonText = "புரிந்தது!"
-        )
-        else -> HowToUseStrings(
-            title = "How to Use",
-            welcomeText = "Welcome to FormSahayak!",
-            subtitleText = "Follow these simple steps to fill your bank forms easily",
-            videoTutorialTitle = "Video Tutorial",
-            videoTutorialDesc = "Watch this helpful video guide to learn how to use FormSahayak.",
-            videoTutorialTapText = "Tap to watch full video tutorial",
-            step1Title = "Upload Form Image",
-            step1Desc = "Take a photo of your bank form or upload from gallery. Make sure the image is clear and well-lit.",
-            step2Title = "App Detects Fields",
-            step2Desc = "FormSahayak automatically identifies and highlights all the fields you need to fill in the form.",
-            step3Title = "Follow Voice Instructions",
-            step3Desc = "Listen to voice guidance in your language that explains what to write in each field.",
-            step4Title = "Fill Form Correctly",
-            step4Desc = "Use the app's guidance to fill all fields accurately and complete your bank form.",
-            needMoreHelpTitle = "Need More Help?",
-            contactSupportText = "Contact our support team for assistance",
-            shareExperienceTitle = "Share Your Experience",
-            shareExperienceDesc = "Help us improve FormSahayak with your valuable feedback.",
-            giveFeedbackButtonText = "Give Feedback",
-            gotItButtonText = "Got It!"
-        )
-    }
-
     val backgroundColor = when {
         isHighContrast -> Color.Black
         isDarkMode -> Color(0xFF121212)
@@ -146,7 +56,7 @@ fun HowToUseScreen(
             CenterAlignedTopAppBar(
                 title = { 
                     Text(
-                        labels.title, 
+                        stringResource(R.string.how_to_use), 
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 20.sp,
                         color = actualTextColor
@@ -192,7 +102,7 @@ fun HowToUseScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = labels.welcomeText,
+                        text = stringResource(R.string.htu_welcome),
                         fontSize = 20.sp,
                         fontWeight = FontWeight.ExtraBold,
                         color = actualTextColor,
@@ -200,7 +110,7 @@ fun HowToUseScreen(
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = labels.subtitleText,
+                        text = stringResource(R.string.htu_subtitle),
                         fontSize = 14.sp,
                         fontWeight = if (isHighContrast) FontWeight.Bold else FontWeight.Normal,
                         color = secondaryTextColor,
@@ -231,7 +141,7 @@ fun HowToUseScreen(
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
-                            text = labels.videoTutorialTitle,
+                            text = stringResource(R.string.htu_video_title),
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold,
                             color = actualTextColor
@@ -239,7 +149,7 @@ fun HowToUseScreen(
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = labels.videoTutorialDesc,
+                        text = stringResource(R.string.htu_video_desc),
                         fontSize = 12.sp,
                         color = secondaryTextColor
                     )
@@ -263,7 +173,7 @@ fun HowToUseScreen(
                     
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = labels.videoTutorialTapText,
+                        text = stringResource(R.string.htu_video_tap),
                         fontSize = 11.sp,
                         color = secondaryTextColor,
                         modifier = Modifier.align(Alignment.CenterHorizontally),
@@ -277,8 +187,8 @@ fun HowToUseScreen(
             // Steps
             HowToUseStepItem(
                 number = 1,
-                title = labels.step1Title,
-                description = labels.step1Desc,
+                title = stringResource(R.string.htu_step1_title),
+                description = stringResource(R.string.htu_step1_desc),
                 icon = Icons.Default.PhotoCamera,
                 iconColor = if (isHighContrast) Color.White else Color(0xFF2196F3),
                 bgColor = if (isHighContrast) Color.Black else Color(0xFFE3F2FD),
@@ -289,8 +199,8 @@ fun HowToUseScreen(
 
             HowToUseStepItem(
                 number = 2,
-                title = labels.step2Title,
-                description = labels.step2Desc,
+                title = stringResource(R.string.htu_step2_title),
+                description = stringResource(R.string.htu_step2_desc),
                 icon = Icons.Default.Lightbulb,
                 iconColor = if (isHighContrast) Color.White else Color(0xFF4CAF50),
                 bgColor = if (isHighContrast) Color.Black else Color(0xFFE8F5E9),
@@ -302,8 +212,8 @@ fun HowToUseScreen(
 
             HowToUseStepItem(
                 number = 3,
-                title = labels.step3Title,
-                description = labels.step3Desc,
+                title = stringResource(R.string.htu_step3_title),
+                description = stringResource(R.string.htu_step3_desc),
                 icon = Icons.AutoMirrored.Filled.VolumeUp,
                 iconColor = if (isHighContrast) Color.White else Color(0xFF9C27B0),
                 bgColor = if (isHighContrast) Color.Black else Color(0xFFF3E5F5),
@@ -314,8 +224,8 @@ fun HowToUseScreen(
 
             HowToUseStepItem(
                 number = 4,
-                title = labels.step4Title,
-                description = labels.step4Desc,
+                title = stringResource(R.string.htu_step4_title),
+                description = stringResource(R.string.htu_step4_desc),
                 icon = Icons.Default.CheckCircle,
                 iconColor = if (isHighContrast) Color.White else Color(0xFFFF9800),
                 bgColor = if (isHighContrast) Color.Black else Color(0xFFFFF3E0),
@@ -342,14 +252,14 @@ fun HowToUseScreen(
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text(
-                            text = labels.needMoreHelpTitle,
+                            text = stringResource(R.string.htu_need_help),
                             color = Color.White,
                             fontSize = 18.sp,
                             fontWeight = FontWeight.ExtraBold
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            text = labels.contactSupportText,
+                            text = stringResource(R.string.htu_contact_support),
                             color = Color.White.copy(alpha = 0.9f),
                             fontSize = 12.sp,
                             fontWeight = if (isHighContrast) FontWeight.Bold else FontWeight.Normal,
@@ -385,14 +295,14 @@ fun HowToUseScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = labels.shareExperienceTitle,
+                        text = stringResource(R.string.htu_share_exp),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         color = actualTextColor
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = labels.shareExperienceDesc,
+                        text = stringResource(R.string.htu_share_desc),
                         fontSize = 12.sp,
                         color = secondaryTextColor,
                         textAlign = TextAlign.Center
@@ -421,7 +331,7 @@ fun HowToUseScreen(
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Icon(Icons.Outlined.RateReview, contentDescription = null, tint = Color.White, modifier = Modifier.size(18.dp))
                                 Spacer(modifier = Modifier.width(8.dp))
-                                Text(labels.giveFeedbackButtonText, fontSize = 14.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                                Text(stringResource(R.string.htu_give_feedback), fontSize = 14.sp, fontWeight = FontWeight.Bold, color = Color.White)
                             }
                         }
                     }
@@ -440,7 +350,7 @@ fun HowToUseScreen(
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = if (isHighContrast) Color.Black else Color(0xFF2196F3))
             ) {
-                Text(labels.gotItButtonText, fontSize = 18.sp, fontWeight = FontWeight.ExtraBold, color = Color.White)
+                Text(stringResource(R.string.htu_got_it), fontSize = 18.sp, fontWeight = FontWeight.ExtraBold, color = Color.White)
             }
             
             Spacer(modifier = Modifier.height(16.dp))

@@ -1,6 +1,11 @@
 package com.simats.formsahayak.ui.screens
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -29,9 +34,12 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
+import com.simats.formsahayak.R
 import com.simats.formsahayak.ui.viewmodel.FormViewModel
 import kotlin.math.min
 
@@ -58,6 +66,20 @@ fun FormPreviewScreen(
     
     var currentFieldIndex by remember { mutableStateOf(0) }
     var showInitialAnimation by remember { mutableStateOf(true) }
+
+    val audioPermissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            if (detectedFields.isNotEmpty()) {
+                viewModel.speakFieldInstruction(detectedFields[currentFieldIndex], selectedLanguage?.code ?: "en")
+            } else if (viewModel.backendGuidance.isNotEmpty()) {
+                viewModel.speak(viewModel.backendGuidance, selectedLanguage?.code ?: "en")
+            }
+        } else {
+            Toast.makeText(context, context.getString(R.string.audio_denied), Toast.LENGTH_SHORT).show()
+        }
+    }
 
     // Animation for the "Scan" line
     val infiniteTransition = rememberInfiniteTransition(label = "scanLine")
@@ -95,28 +117,6 @@ fun FormPreviewScreen(
         showInitialAnimation = false
     }
 
-    // Translation logic
-    val title = when (selectedLanguage?.code) {
-        "te" -> "ఫారమ్ ప్రివ్యూ"
-        "ta" -> "படிவ முன்னோட்டம்"
-        else -> "Form Guide"
-    }
-    val nextText = when (selectedLanguage?.code) {
-        "te" -> "తదుపరి"
-        "ta" -> "அடுத்து"
-        else -> "Next"
-    }
-    val prevText = when (selectedLanguage?.code) {
-        "te" -> "మునుపటి"
-        "ta" -> "முந்தைய"
-        else -> "Previous"
-    }
-    val finishText = when (selectedLanguage?.code) {
-        "te" -> "పూర్తయింది"
-        "ta" -> "முடிந்தது"
-        else -> "Finish"
-    }
-
     Scaffold(
         topBar = {
             TopAppBar(
@@ -124,17 +124,17 @@ fun FormPreviewScreen(
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(Icons.Default.Stars, contentDescription = null, tint = Color(0xFFFFD600), modifier = Modifier.size(20.dp))
                         Spacer(Modifier.width(8.dp))
-                        Text(title, fontWeight = FontWeight.ExtraBold, color = textColor)
+                        Text(stringResource(R.string.form_guide), fontWeight = FontWeight.ExtraBold, color = textColor)
                     }
                 },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
-                        Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = textColor)
+                        Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.back), tint = textColor)
                     }
                 },
                 actions = {
                     IconButton(onClick = onHomeClick) {
-                        Icon(imageVector = Icons.Default.Home, contentDescription = "Home", tint = textColor)
+                        Icon(imageVector = Icons.Default.Home, contentDescription = stringResource(R.string.home), tint = textColor)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = backgroundColor)
@@ -178,7 +178,7 @@ fun FormPreviewScreen(
                     Spacer(Modifier.width(16.dp))
                     Column {
                         Text(
-                            text = if (selectedLanguage?.code == "te") "ఫీల్డ్ పేరు" else "Current Field",
+                            text = stringResource(R.string.current_field),
                             fontSize = 12.sp,
                             color = if (isDark) Color.LightGray else Color.Gray
                         )
@@ -223,17 +223,17 @@ fun FormPreviewScreen(
                                 val bitmapHeight = formImage.height.toFloat()
                                 val canvasWidth = size.width
                                 val canvasHeight = size.height
-
+ 
                                 val scale = min(canvasWidth / bitmapWidth, canvasHeight / bitmapHeight)
                                 val offsetX = (canvasWidth - bitmapWidth * scale) / 2f
                                 val offsetY = (canvasHeight - bitmapHeight * scale) / 2f
-
+ 
                                 // Draw the box for the CURRENT field
                                 val rectWidth = field.bounds.width() * scale
                                 val rectHeight = field.bounds.height() * scale
                                 val rectLeft = field.bounds.left * scale + offsetX
                                 val rectTop = field.bounds.top * scale + offsetY
-
+ 
                                 // Pulsing red box
                                 drawRect(
                                     color = Color.Red,
@@ -242,7 +242,7 @@ fun FormPreviewScreen(
                                     style = Stroke(width = 8f * boxPulseScale)
                                 )
                             }
-
+ 
                             // Scanning line animation (shown initially or always)
                             if (showInitialAnimation) {
                                 val lineY = size.height * scanLineY.value
@@ -270,7 +270,7 @@ fun FormPreviewScreen(
             // AI Guidance Card from Backend
             if (viewModel.isLoading) {
                 LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
-                Text("AI Analyzing...", fontSize = 12.sp, color = textColor)
+                Text(stringResource(R.string.ai_analyzing), fontSize = 12.sp, color = textColor)
             } else if (viewModel.backendGuidance.isNotEmpty()) {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
@@ -290,7 +290,7 @@ fun FormPreviewScreen(
                             )
                             Spacer(Modifier.width(8.dp))
                             Text(
-                                text = if (selectedLanguage?.code == "te") "AI మార్గదర్శకత్వం" else if (selectedLanguage?.code == "ta") "AI வழிகாட்டுதல்" else "AI Guidance",
+                                text = stringResource(R.string.ai_guidance),
                                 fontWeight = FontWeight.Bold,
                                 color = textColor,
                                 fontSize = 16.sp
@@ -322,7 +322,7 @@ fun FormPreviewScreen(
                 ) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, null)
                     Spacer(Modifier.width(4.dp))
-                    Text(prevText, fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.previous), fontWeight = FontWeight.Bold)
                 }
                 
                 Button(
@@ -336,12 +336,12 @@ fun FormPreviewScreen(
                     modifier = Modifier.weight(1f).height(56.dp),
                     shape = RoundedCornerShape(12.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = if (currentFieldIndex == detectedFields.size - 1) Color(0xFF4CAF50) else Color(0xFF2196F3)
+                        containerColor = if (currentFieldIndex == (detectedFields.size - 1).coerceAtLeast(0)) Color(0xFF4CAF50) else Color(0xFF2196F3)
                     )
                 ) {
-                    Text(if (currentFieldIndex == detectedFields.size - 1) finishText else nextText, fontWeight = FontWeight.Bold)
+                    Text(if (currentFieldIndex == (detectedFields.size - 1).coerceAtLeast(0)) stringResource(R.string.finish) else stringResource(R.string.next), fontWeight = FontWeight.Bold)
                     Spacer(Modifier.width(4.dp))
-                    Icon(if (currentFieldIndex == detectedFields.size - 1) Icons.Default.Check else Icons.AutoMirrored.Filled.ArrowForward, null)
+                    Icon(if (currentFieldIndex == (detectedFields.size - 1).coerceAtLeast(0)) Icons.Default.Check else Icons.AutoMirrored.Filled.ArrowForward, null)
                 }
             }
 
@@ -350,10 +350,14 @@ fun FormPreviewScreen(
             // Repeat Voice Instruction
             Button(
                 onClick = { 
-                    if (detectedFields.isNotEmpty()) {
-                        viewModel.speakFieldInstruction(detectedFields[currentFieldIndex], selectedLanguage?.code ?: "en")
-                    } else if (viewModel.backendGuidance.isNotEmpty()) {
-                        viewModel.speak(viewModel.backendGuidance, "en")
+                    if (ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+                        if (detectedFields.isNotEmpty()) {
+                            viewModel.speakFieldInstruction(detectedFields[currentFieldIndex], selectedLanguage?.code ?: "en")
+                        } else if (viewModel.backendGuidance.isNotEmpty()) {
+                            viewModel.speak(viewModel.backendGuidance, selectedLanguage?.code ?: "en")
+                        }
+                    } else {
+                        audioPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
                     }
                 },
                 modifier = Modifier.fillMaxWidth().height(48.dp),
@@ -362,7 +366,10 @@ fun FormPreviewScreen(
             ) {
                 Icon(Icons.AutoMirrored.Filled.VolumeUp, null)
                 Spacer(Modifier.width(8.dp))
-                Text(if (selectedLanguage?.code == "te") "సూచన మళ్ళీ వినండి" else "Listen Again", fontWeight = FontWeight.Medium)
+                Text(
+                    stringResource(R.string.listen_again),
+                    fontWeight = FontWeight.Medium
+                )
             }
         }
     }

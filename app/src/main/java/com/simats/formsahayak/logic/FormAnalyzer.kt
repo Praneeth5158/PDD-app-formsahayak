@@ -23,25 +23,25 @@ class FormAnalyzer(private val context: Context) {
 
     // Comprehensive Keyword Mapping for Field Categorization
     private val fieldCategoryMap = mapOf(
-        "Name" to listOf("name", "full name", "first name", "last name", "surname", "applicant name", "పేరు", "பெயர்"),
-        "Phone" to listOf("phone", "mobile", "ph", "ph no", "contact", "tel", "telephone", "cell", "ఫోన్", "தொலைபேசி"),
-        "Email" to listOf("email", "e-mail", "email address", "eml", "ఈమెయిల్", "மின்னஞ்சல்"),
-        "DOB" to listOf("dob", "date of birth", "birth date", "d.o.b", "పుట్టిన తేదీ", "பிறந்த தேதி"),
-        "Address" to listOf("address", "residence", "residential address", "addr", "permanent address", "చిరునామా", "முகவரி"),
-        "ID Type" to listOf("id type", "identification type", "identity", "document type"),
-        "ID Number" to listOf("id number", "id no", "identification no", "aadhar", "pan", "passport", "voter id"),
-        "Account Type" to listOf("account type", "savings", "checking", "current", "type of account", "a/c type"),
-        "Account Number" to listOf("account number", "account no", "acc no", "a/c no", "acct no", "ఖాతా సంఖ్య", "கணக்கு எண்"),
-        "Deposit" to listOf("initial deposit", "deposit", "deposit amount", "amount to deposit", "మొత్తం", "தொகை"),
-        "Loan Type" to listOf("loan type", "type of loan", "loan category"),
-        "Loan Amount" to listOf("loan amount", "requested amount", "loan sum", "principal"),
-        "Loan Purpose" to listOf("loan purpose", "purpose of loan", "reason for loan"),
-        "Employer" to listOf("employer", "company", "organization", "employer name"),
-        "Job Title" to listOf("job title", "occupation", "profession", "designation", "vocation", "వృత్తి", "தொழில்"),
-        "Income" to listOf("income", "monthly income", "annual income", "salary", "gross income"),
-        "Signature" to listOf("signature", "sign here", "applicant signature", "sign", "సంతకం", "கையெழுத்து"),
-        "Date" to listOf("date", "dated", "today's date", "తేదీ", "தேதி"),
-        "Branch" to listOf("branch", "branch name", "office", "bank branch", "శాఖ", "கிளை"),
+        "Name" to listOf("name", "full name", "first name", "last name", "surname", "applicant name", "పేరు", "பெயர்", "नाम"),
+        "Phone" to listOf("phone", "mobile", "ph", "ph no", "contact", "tel", "telephone", "cell", "ఫోన్", "தொலைபேசி", "फोन", "मोबाइल"),
+        "Email" to listOf("email", "e-mail", "email address", "eml", "ఈమెయిల్", "மின்னஞ்சல்", "ईमेल"),
+        "DOB" to listOf("dob", "date of birth", "birth date", "d.o.b", "పుట్టిన తేదీ", "பிறந்த தேதி", "जन्म तिथि"),
+        "Address" to listOf("address", "residence", "residential address", "addr", "permanent address", "చిరునామా", "முகவரி", "पता"),
+        "ID Type" to listOf("id type", "identification type", "identity", "document type", "पहचान प्रकार"),
+        "ID Number" to listOf("id number", "id no", "identification no", "aadhar", "pan", "passport", "voter id", "पहचान संख्या"),
+        "Account Type" to listOf("account type", "savings", "checking", "current", "type of account", "a/c type", "खाता प्रकार"),
+        "Account Number" to listOf("account number", "account no", "acc no", "a/c no", "acct no", "ఖాతా సంఖ్య", "கணக்கு எண்", "खाता संख्या"),
+        "Deposit" to listOf("initial deposit", "deposit", "deposit amount", "amount to deposit", "మొత్తం", "தொகை", "जमा राशि"),
+        "Loan Type" to listOf("loan type", "type of loan", "loan category", "ऋण प्रकार"),
+        "Loan Amount" to listOf("loan amount", "requested amount", "loan sum", "principal", "ऋण राशि"),
+        "Loan Purpose" to listOf("loan purpose", "purpose of loan", "reason for loan", "ऋण का उद्देश्य"),
+        "Employer" to listOf("employer", "company", "organization", "employer name", "नियोक्ता"),
+        "Job Title" to listOf("job title", "occupation", "profession", "designation", "vocation", "వృత్తి", "தொழில்", "व्यवसाय"),
+        "Income" to listOf("income", "monthly income", "annual income", "salary", "gross income", "आय"),
+        "Signature" to listOf("signature", "sign here", "applicant signature", "sign", "సంతకం", "கையெழுத்து", "हस्ताक्षर"),
+        "Date" to listOf("date", "dated", "today's date", "తేదీ", "தேதி", "तारीख", "दिनांक"),
+        "Branch" to listOf("branch", "branch name", "office", "bank branch", "శాఖ", "கிளை", "शाखा"),
         "IFSC" to listOf("ifsc", "ifsc code", "bank ifsc")
     )
 
@@ -74,6 +74,17 @@ class FormAnalyzer(private val context: Context) {
             "Job Title" to "தொழில்", "Income" to "வருமானம்",
             "Signature" to "கையெழுத்து", "Date" to "தேதி",
             "Branch" to "கிளை", "IFSC" to "IFSC குறியீடு"
+        ),
+        "hi" to mapOf(
+            "Name" to "नाम", "Phone" to "फ़ोन नंबर", "Email" to "ईमेल",
+            "DOB" to "जन्म तिथि", "Address" to "पता", "ID Type" to "पहचान प्रकार",
+            "ID Number" to "पहचान संख्या", "Account Type" to "खाता प्रकार",
+            "Account Number" to "खाता संख्या", "Deposit" to "जमा राशि",
+            "Loan Type" to "ऋण प्रकार", "Loan Amount" to "ऋण राशि",
+            "Loan Purpose" to "ऋण का उद्देश्य", "Employer" to "नियोक्ता",
+            "Job Title" to "व्यवसाय", "Income" to "आय",
+            "Signature" to "हस्ताक्षर", "Date" to "दिनांक",
+            "Branch" to "शाखा", "IFSC" to "IFSC कोड"
         )
     )
 
@@ -121,6 +132,7 @@ class FormAnalyzer(private val context: Context) {
                 val instruction = when (languageCode) {
                     "te" -> "దయచేసి ఇక్కడ మీ $displayName నింపండి."
                     "ta" -> "தயவுசெய்து உங்கள் $displayName-ஐ இங்கே நிரப்பவும்."
+                    "hi" -> "कृपया अपना $displayName यहाँ भरें।"
                     else -> "Please fill your $displayName here."
                 }
 

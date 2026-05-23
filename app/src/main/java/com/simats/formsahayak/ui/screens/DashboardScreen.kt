@@ -20,9 +20,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.simats.formsahayak.R
 import com.simats.formsahayak.ui.components.BottomNavigationBar
 
 @Composable
@@ -92,11 +94,6 @@ fun DashboardScreen(
 
 @Composable
 fun HeaderSection(isDarkMode: Boolean, isHighContrast: Boolean, textColor: Color, selectedLanguage: Language?) {
-    val welcomeText = when(selectedLanguage?.code) {
-        "te" -> "మళ్ళీ స్వాగతం!"
-        "ta" -> "மீண்டும் வருக!"
-        else -> "Welcome back!"
-    }
     Row(
         modifier = Modifier.fillMaxWidth().padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -115,8 +112,8 @@ fun HeaderSection(isDarkMode: Boolean, isHighContrast: Boolean, textColor: Color
             }
             Spacer(modifier = Modifier.width(10.dp))
             Column {
-                Text(text = "FormSahayak", fontSize = 16.sp, fontWeight = FontWeight.ExtraBold, color = if (isHighContrast) Color.White else if (isDarkMode) Color.White else Color(0xFF2196F3))
-                Text(text = welcomeText, fontSize = 10.sp, fontWeight = if (isHighContrast) FontWeight.Bold else FontWeight.Normal, color = if (isHighContrast) Color.White else if (isDarkMode) Color.LightGray else Color.Gray)
+                Text(text = stringResource(R.string.app_name), fontSize = 16.sp, fontWeight = FontWeight.ExtraBold, color = if (isHighContrast) Color.White else if (isDarkMode) Color.White else Color(0xFF2196F3))
+                Text(text = stringResource(R.string.welcome_back), fontSize = 10.sp, fontWeight = if (isHighContrast) FontWeight.Bold else FontWeight.Normal, color = if (isHighContrast) Color.White else if (isDarkMode) Color.LightGray else Color.Gray)
             }
         }
         Icon(imageVector = Icons.AutoMirrored.Filled.VolumeUp, contentDescription = null, tint = if (isHighContrast || isDarkMode) Color.White else Color(0xFF2196F3), modifier = Modifier.size(22.dp))
@@ -125,16 +122,6 @@ fun HeaderSection(isDarkMode: Boolean, isHighContrast: Boolean, textColor: Color
 
 @Composable
 fun LanguageSelectorRow(languageName: String, onChangeClick: () -> Unit, isDarkMode: Boolean, isHighContrast: Boolean, cardColor: Color, textColor: Color, selectedLanguage: Language?) {
-    val languageLabel = when(selectedLanguage?.code) {
-        "te" -> "భాష"
-        "ta" -> "மொழி"
-        else -> "Language"
-    }
-    val changeButtonText = when(selectedLanguage?.code) {
-        "te" -> "మార్చండి"
-        "ta" -> "மாற்றவும்"
-        else -> "Change"
-    }
     Surface(
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
         shape = RoundedCornerShape(20.dp),
@@ -156,7 +143,7 @@ fun LanguageSelectorRow(languageName: String, onChangeClick: () -> Unit, isDarkM
                 }
                 Spacer(modifier = Modifier.width(8.dp))
                 Column {
-                    Text(text = languageLabel, fontSize = 10.sp, fontWeight = if (isHighContrast) FontWeight.Bold else FontWeight.Normal, color = if (isHighContrast) Color.White else if (isDarkMode) Color.LightGray else Color.Gray)
+                    Text(text = stringResource(R.string.language), fontSize = 10.sp, fontWeight = if (isHighContrast) FontWeight.Bold else FontWeight.Normal, color = if (isHighContrast) Color.White else if (isDarkMode) Color.LightGray else Color.Gray)
                     Text(text = languageName, fontSize = 13.sp, fontWeight = FontWeight.Bold, color = textColor)
                 }
             }
@@ -166,7 +153,7 @@ fun LanguageSelectorRow(languageName: String, onChangeClick: () -> Unit, isDarkM
                 contentPadding = PaddingValues(horizontal = 10.dp, vertical = 0.dp), 
                 modifier = Modifier.height(28.dp).then(if (isHighContrast) Modifier.border(BorderStroke(2.dp, Color.White), RoundedCornerShape(10.dp)) else Modifier)
             ) {
-                Text(text = changeButtonText, color = if (isHighContrast) Color.White else Color(0xFF2196F3), fontSize = 10.sp, fontWeight = if (isHighContrast) FontWeight.ExtraBold else FontWeight.Normal)
+                Text(text = stringResource(R.string.change), color = if (isHighContrast) Color.White else Color(0xFF2196F3), fontSize = 10.sp, fontWeight = if (isHighContrast) FontWeight.ExtraBold else FontWeight.Normal)
             }
         }
     }
@@ -174,11 +161,6 @@ fun LanguageSelectorRow(languageName: String, onChangeClick: () -> Unit, isDarkM
 
 @Composable
 fun WelcomeBanner(selectedLanguage: Language?, isHighContrast: Boolean) {
-    val title = when(selectedLanguage?.code) {
-        "te" -> "🙏 ఫారమ్ సహాయక్ కు స్వాగతం"
-        "ta" -> "🙏 FormSahayak-కు வரவேற்கிறோம்"
-        else -> "🙏 Welcome to FormSahayak"
-    }
     val gradient = Brush.horizontalGradient(colors = listOf(Color(0xFF2196F3), Color(0xFF00E676)))
     Box(
         modifier = Modifier
@@ -193,22 +175,12 @@ fun WelcomeBanner(selectedLanguage: Language?, isHighContrast: Boolean) {
             .padding(16.dp), 
         contentAlignment = Alignment.CenterStart
     ) {
-        Text(text = title, color = Color.White, fontSize = 15.sp, fontWeight = FontWeight.Bold)
+        Text(text = stringResource(R.string.welcome_to_fs), color = Color.White, fontSize = 15.sp, fontWeight = FontWeight.Bold)
     }
 }
 
 @Composable
 fun UploadFormCard(onUploadClick: () -> Unit, isDarkMode: Boolean, isHighContrast: Boolean, cardColor: Color, textColor: Color, selectedLanguage: Language?) {
-    val title = when(selectedLanguage?.code) {
-        "te" -> "ఫారమ్‌ను అప్‌లోడ్ చేయండి"
-        "ta" -> "படிவத்தைப் பதிவேற்றவும்"
-        else -> "Upload a Form"
-    }
-    val getStartedText = when(selectedLanguage?.code) {
-        "te" -> "ప్రారంభించండి"
-        "ta" -> "தொடங்குங்கள்"
-        else -> "Get Started"
-    }
     Surface(
         modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp).clickable { onUploadClick() },
         shape = RoundedCornerShape(24.dp),
@@ -228,7 +200,7 @@ fun UploadFormCard(onUploadClick: () -> Unit, isDarkMode: Boolean, isHighContras
                 }
             }
             Spacer(modifier = Modifier.height(16.dp))
-            Text(text = title, fontSize = 20.sp, fontWeight = FontWeight.ExtraBold, color = textColor)
+            Text(text = stringResource(R.string.upload_form), fontSize = 20.sp, fontWeight = FontWeight.ExtraBold, color = textColor)
             Spacer(modifier = Modifier.height(24.dp))
             Button(
                 onClick = onUploadClick, 
@@ -236,7 +208,7 @@ fun UploadFormCard(onUploadClick: () -> Unit, isDarkMode: Boolean, isHighContras
                 shape = RoundedCornerShape(10.dp), 
                 colors = ButtonDefaults.buttonColors(containerColor = if (isHighContrast) Color.Black else Color(0xFF2196F3))
             ) {
-                Text(getStartedText, fontSize = 14.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                Text(stringResource(R.string.get_started), fontSize = 14.sp, fontWeight = FontWeight.Bold, color = Color.White)
             }
         }
     }
@@ -244,25 +216,10 @@ fun UploadFormCard(onUploadClick: () -> Unit, isDarkMode: Boolean, isHighContras
 
 @Composable
 fun QuickActionsRow(onHelpClick: () -> Unit, onFormsClick: () -> Unit, onSettingsClick: () -> Unit, isDarkMode: Boolean, isHighContrast: Boolean, textColor: Color, selectedLanguage: Language?) {
-    val helpLabel = when(selectedLanguage?.code) {
-        "te" -> "సహాయం"
-        "ta" -> "உதவி"
-        else -> "Help"
-    }
-    val formsLabel = when(selectedLanguage?.code) {
-        "te" -> "ఫారమ్‌లు"
-        "ta" -> "படிவங்கள்"
-        else -> "Forms"
-    }
-    val settingsLabel = when(selectedLanguage?.code) {
-        "te" -> "సెట్టింగ్‌లు"
-        "ta" -> "అமைப்புகள்"
-        else -> "Settings"
-    }
     Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp), horizontalArrangement = Arrangement.SpaceEvenly) {
-        QuickActionItem(helpLabel, Icons.Default.HeadsetMic, Color(0xFFFFE0B2), Color(0xFFFB8C00), isDarkMode, isHighContrast, onHelpClick)
-        QuickActionItem(formsLabel, Icons.Default.Description, Color(0xFFE8F5E9), Color(0xFF4CAF50), isDarkMode, isHighContrast, onFormsClick)
-        QuickActionItem(settingsLabel, Icons.Default.Translate, Color(0xFFF3E5F5), Color(0xFF9C27B0), isDarkMode, isHighContrast, onSettingsClick)
+        QuickActionItem(stringResource(R.string.help), Icons.Default.HeadsetMic, Color(0xFFFFE0B2), Color(0xFFFB8C00), isDarkMode, isHighContrast, onHelpClick)
+        QuickActionItem(stringResource(R.string.forms), Icons.Default.Description, Color(0xFFE8F5E9), Color(0xFF4CAF50), isDarkMode, isHighContrast, onFormsClick)
+        QuickActionItem(stringResource(R.string.settings), Icons.Default.Translate, Color(0xFFF3E5F5), Color(0xFF9C27B0), isDarkMode, isHighContrast, onSettingsClick)
     }
 }
 

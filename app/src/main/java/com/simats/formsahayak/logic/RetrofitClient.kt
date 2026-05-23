@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
-    private const val BASE_URL = "http://172.29.184.191:8000/"
+    const val BASE_URL = "https://formsahayak-backend.onrender.com/"
 
     private val logging = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
@@ -15,9 +15,9 @@ object RetrofitClient {
 
     private val httpClient = OkHttpClient.Builder()
         .addInterceptor(logging)
-        .connectTimeout(30, TimeUnit.SECONDS)
-        .readTimeout(30, TimeUnit.SECONDS)
-        .writeTimeout(30, TimeUnit.SECONDS)
+        .connectTimeout(15, TimeUnit.SECONDS)
+        .readTimeout(15, TimeUnit.SECONDS)
+        .writeTimeout(15, TimeUnit.SECONDS)
         .build()
 
     val apiService: ApiService by lazy {
@@ -29,3 +29,17 @@ object RetrofitClient {
             .create(ApiService::class.java)
     }
 }
+
+object UrlHelper {
+    fun cleanUrl(url: String?): String {
+        if (url.isNullOrEmpty()) return ""
+        var clean = url.trim().replace("\\", "/")
+        clean = clean.replace("%5C", "/", ignoreCase = true)
+        return if (clean.startsWith("http", ignoreCase = true)) {
+            clean
+        } else {
+            RetrofitClient.BASE_URL.removeSuffix("/") + "/" + clean.removePrefix("/")
+        }
+    }
+}
+

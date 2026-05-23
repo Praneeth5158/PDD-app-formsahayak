@@ -1,0 +1,237 @@
+<resources>
+    <string name="app_name">ఫారమ్ సహాయక్</string>
+    <string name="welcome_back">మళ్ళీ స్వాగతం!</string>
+    <string name="get_started">ప్రారంభించండి</string>
+    <string name="tap_to_get_started">ప్రారంభించడానికి నొక్కండి</string>
+    <string name="smart_guidance">అందరికీ స్మార్ట్ ఫారమ్ మార్గదర్శకత్వం</string>
+    <string name="select_language">భాషను ఎంచుకోండి</string>
+    <string name="continue_btn">కొనసాగండి</string>
+    <string name="skip">వదిలేయండి</string>
+    <string name="next">తదుపరి</string>
+    <string name="previous">మునుపటి</string>
+    <string name="finish">పూర్తయింది</string>
+    <string name="back">తిరిగి</string>
+    <string name="home">హోమ్</string>
+
+    <!-- Onboarding -->
+    <string name="ob_scan_title">బ్యాంక్ ఫారమ్‌లను స్కాన్ చేయండి</string>
+    <string name="ob_scan_desc">బ్యాంక్ ఫారమ్‌లను సులభంగా స్కాన్ చేయడానికి మీ ఫోన్ కెమెరాను ఉపయోగించండి</string>
+    <string name="ob_highlight_title">ముఖ్యాంశాలు</string>
+    <string name="ob_highlight_desc">మీరు నింపాల్సిన ముఖ్యమైన ఫీల్డ్‌లను యాప్ హైలైట్ చేస్తుంది</string>
+    <string name="ob_voice_title">వాయిస్ గైడెన్స్</string>
+    <string name="ob_voice_desc">మీ ప్రాంతీయ భాషలో వాయిస్ సూచనలను పొందండి</string>
+
+    <!-- Permissions -->
+    <string name="grant_permissions">అనుమతులు మంజూరు చేయండి</string>
+    <string name="perm_desc">ఫారమ్‌లను పూరించడంలో మీకు సహాయం చేయడానికి ఫారమ్ సహాయక్ కు ఈ అనుమతులు అవసరం</string>
+    <string name="privacy_first">గోప్యత మొదట: </string>
+    <string name="privacy_desc">మీ డేటా మీ పరికరంలోనే ఉంటుంది. మేము మీకు సహాయం చేయడానికి మాత్రమే ఈ అనుమతులను ఉపయోగిస్తాము.</string>
+    <string name="camera_access">కెమెరా యాక్సెస్</string>
+    <string name="camera_desc">పత్రాలను స్కాన్ చేయడానికి అవసరం</string>
+    <string name="storage_access">స్టోరేజ్ యాక్సెస్</string>
+    <string name="storage_desc">పత్రాలను సేవ్ చేయడానికి అవసరం</string>
+    <string name="mic_access">మైక్రోఫోన్ యాక్సెస్</string>
+    <string name="mic_desc">వాయిస్ గైడెన్స్ కోసం అవసరం</string>
+    <string name="perm_required_warning">యాప్ పని చేయడానికి అన్ని అనుమతులు అవసరం</string>
+    <string name="grant_all_perm">అన్ని అనుమతులను మంజూరు చేయండి</string>
+    <string name="open_settings">సెట్టింగ్స్ నుండి అనుమతించండి</string>
+    <string name="go_back">తిరిగి వెళ్ళండి</string>
+    <string name="perm_granted">అనుమతి ఇవ్వబడింది ✅</string>
+    <string name="grant_perm_btn">అనుమతి ఇవ్వండి</string>
+    <string name="perm_required_toast">కొనసాగడానికి అన్ని అనుమతులు అవసరం</string>
+    <string name="all_perm_set">అన్నీ సిద్ధం! 🎉</string>
+    <string name="all_perm_granted_desc">అనుమతులు విజయవంతంగా పొందబడ్డాయి</string>
+    <string name="continue_dashboard">డ్యాష్‌బోర్డ్‌కు కొనసాగండి</string>
+
+    <!-- Login/Signup -->
+    <string name="welcome_title">మళ్ళీ స్వాగతం</string>
+    <string name="login_sub">కొనసాగడానికి లాగిన్ చేయండి</string>
+    <string name="login">లాగిన్</string>
+    <string name="signup">సైన్ అప్</string>
+    <string name="email">ఈమెయిల్</string>
+    <string name="password">పాస్‌వర్డ్</string>
+    <string name="forgot_password">పాస్‌వర్డ్ మర్చిపోయారా?</string>
+    <string name="no_account">ఖాతా లేదా? </string>
+    <string name="create_account">ఖాతాను సృష్టించండి</string>
+    <string name="signup_sub">ప్రారంభించడానికి సైన్ అప్ చేయండి</string>
+    <string name="full_name">పూర్తి పేరు</string>
+    <string name="confirm_password">పాస్‌వర్డ్‌ను నిర్ధారించండి</string>
+    <string name="already_have_account">ఇప్పటికే ఖాతా ఉందా? </string>
+    <string name="enter_full_name">మీ పూర్తి పేరును నమోదు చేయండి</string>
+    <string name="enter_email">మీ ఈమెయిల్ నమోదు చేయండి</string>
+    <string name="create_password">పాస్‌వర్డ్‌ను సృష్టించండి</string>
+    <string name="register">రిజిస్టర్</string>
+    <string name="enter_email_phone">మీ ఈమెయిల్ లేదా ఫోన్ నంబర్ నమోదు చేయండి</string>
+    <string name="email_phone_label">ఈమెయిల్ లేదా ఫోన్ నంబర్</string>
+    <string name="send_otp">OTP పంపండి</string>
+    <string name="back_to_login">లాగిన్‌కు తిరిగి వెళ్ళండి</string>
+
+    <!-- OTP / Verification -->
+    <string name="verify_otp">OTPని ధృవీకరించండి</string>
+    <string name="code_sent_to">కోడ్ పంపబడింది: </string>
+    <string name="didnt_receive_code">కోడ్ రాలేదా? మళ్లీ పంపండి</string>
+
+    <!-- Reset Password -->
+    <string name="reset_password">పాస్‌వర్డ్ రీసెట్ చేయండి</string>
+    <string name="create_new_password">మీ ఖాతా కోసం కొత్త పాస్‌వర్డ్‌ను సృష్టించండి</string>
+    <string name="new_password">కొత్త పాస్‌వర్డ్</string>
+    <string name="enter_new_password">కొత్త పాస్‌వర్డ్‌ను నమోదు చేయండి</string>
+    <string name="confirm_new_password">కొత్త పాస్‌వర్డ్‌ను నిర్ధారించండి</string>
+    <string name="update_password">పాస్‌వర్డ్ మార్చండి</string>
+    <string name="back_to_profile">ప్రొఫైల్‌కు తిరిగి వెళ్ళండి</string>
+
+    <!-- Dashboard -->
+    <string name="language">భాష</string>
+    <string name="change">మార్చండి</string>
+    <string name="welcome_to_fs">🙏 ఫారమ్ సహాయక్ కు స్వాగతం</string>
+    <string name="upload_form">ఫారమ్‌ను అప్‌లోడ్ చేయండి</string>
+    <string name="help">సహాయం</string>
+    <string name="forms">ఫారమ్‌లు</string>
+    <string name="settings">సెట్టింగ్‌లు</string>
+    <string name="profile">ప్రొఫైల్</string>
+
+    <!-- Form Preview -->
+    <string name="form_guide">ఫారమ్ గైడ్</string>
+    <string name="current_field">ప్రస్తుత ఫీల్డ్</string>
+    <string name="ai_guidance">AI మార్గదర్శకత్వం</string>
+    <string name="listen_again">మళ్ళీ వినండి</string>
+    <string name="ai_analyzing">AI విశ్లేషిస్తోంది…</string>
+
+    <!-- Profile -->
+    <string name="premium_member">ప్రీమియం సభ్యుడు</string>
+    <string name="personal_info">వ్యక్తిగత సమాచారం</string>
+    <string name="phone_number">ఫోన్ నంబర్</string>
+    <string name="lang_pref">భాషా ప్రాధాన్యత</string>
+    <string name="edit_profile">ప్రొఫైల్ సవరించు</string>
+    <string name="change_password">పాస్‌వర్డ్ మార్చండి</string>
+    <string name="logout">లాగ్ అవుట్</string>
+    <string name="change_photo">ఫోటో మార్చండి</string>
+
+    <!-- Settings -->
+    <string name="voice_guidance">వాయిస్ గైడెన్స్</string>
+    <string name="voice_speed">వాయిస్ వేగం</string>
+    <string name="accessibility">ప్రాప్యత</string>
+    <string name="high_contrast">అధిక కాంట్రాస్ట్</string>
+    <string name="high_contrast_desc">టెక్స్ట్ మరియు బటన్ల కోసం మెరుగైన దృశ్యమానత</string>
+    <string name="display">ప్రదర్శన</string>
+    <string name="dark_mode">డార్క్ మోడ్</string>
+    <string name="dark_mode_desc">తక్కువ కాంతిలో కంటి ఒత్తిడిని తగ్గించండి</string>
+    <string name="speed_slow">నెమ్మదిగా (Slow)</string>
+    <string name="speed_normal">సాధారణం (Normal)</string>
+    <string name="speed_fast">వేగంగా (Fast)</string>
+
+    <!-- How To Use -->
+    <string name="how_to_use">ఎలా ఉపయోగించాలి</string>
+    <string name="htu_welcome">FormSahayak కి స్వాగతం!</string>
+    <string name="htu_subtitle">మీ బ్యాంక్ ఫారమ్‌లను సులభంగా నింపడానికి ఈ సాధారణ దశలను అనుసరించండి</string>
+    <string name="htu_video_title">వీడియో ట్యుటోరియల్</string>
+    <string name="htu_video_desc">ఫారమ్ సహాయక్ ఎలా ఉపయోగించాలో తెలుసుకోవడానికి ఈ ఉపయోగకరమైన వీడియో గైడ్‌ని చూడండి.</string>
+    <string name="htu_video_tap">పూర్తి వీడియో ట్యుటోరియల్ చూడటానికి నొక్కండి</string>
+    <string name="htu_step1_title">ఫారమ్ చిత్రాన్ని అప్‌లోడ్ చేయండి</string>
+    <string name="htu_step1_desc">మీ బ్యాంక్ ఫారమ్ ఫోటో తీయండి లేదా గ్యాలరీ నుండి అప్‌లోడ్ చేయండి. చిత్రం స్పష్టంగా మరియు బాగా వెలిగి ఉండేలా చూసుకోండి.</string>
+    <string name="htu_step2_title">యాప్ ఫీల్డ్‌లను గుర్తిస్తుంది</string>
+    <string name="htu_step2_desc">ఫారమ్ సహాయక్ స్వయంచాలకంగా మీరు ఫారమ్‌లో పూరించాల్సిన అన్ని ఫీల్డ్‌లను గుర్తిస్తుంది మరియు హైలైట్ చేస్తుంది.</string>
+    <string name="htu_step3_title">వాయిస్ సూచనలను అనుసరించండి</string>
+    <string name="htu_step3_desc">ప్రతి ఫీల్డ్‌లో ఏమి రాయాలో వివరించే మీ భాషలోని వాయిస్ గైడెన్స్‌ని వినండి.</string>
+    <string name="htu_step4_title">ఫారమ్‌ను సరిగ్గా నింపండి</string>
+    <string name="htu_step4_desc">అన్ని ఫీల్డ్‌లను ఖచ్చితంగా పూరించడానికి మరియు మీ బ్యాంక్ ఫారమ్‌ను పూర్తి చేయడానికి యాప్ మార్గదర్శకత్వాన్ని ఉపయోగించండి.</string>
+    <string name="htu_need_help">మరింత సహాయం కావాలా?</string>
+    <string name="htu_contact_support">సహాయం కోసం మా మద్దతు బృందాన్ని సంప్రదించండి</string>
+    <string name="htu_share_exp">మీ అనుభవాన్ని పంచుకోండి</string>
+    <string name="htu_share_desc">మీ విలువైన అభిప్రాయంతో ఫారమ్ సహాయక్ మెరుగుపరచడంలో మాకు సహాయపడండి.</string>
+    <string name="htu_give_feedback">అభిప్రాయాన్ని తెలియజేయండి</string>
+    <string name="htu_got_it">అర్థమైంది!</string>
+
+    <!-- Upload Form Screen -->
+    <string name="upload_subtitle">స్పష్టమైన ఫోటో తీయండి లేదా గ్యాలరీ నుండి అప్‌లోడ్ చేయండి</string>
+    <string name="camera">కెమెరా</string>
+    <string name="gallery">గ్యాలరీ</string>
+    <string name="tips_title">ఉత్తమ ఫలితాల కోసం చిట్కాలు</string>
+    <string name="tip_lighting">మంచి వెలుతురు ఉండేలా చూసుకోండి</string>
+    <string name="tip_flat">ఫారమ్‌ను సమానంగా మరియు స్పష్టంగా ఉంచండి</string>
+    <string name="tip_shadows">నీడలు మరియు కాంతి పరావర్తనాలను నివారించండి</string>
+    <string name="camera_denied_scan">ఫారమ్‌లను స్కాన్ చేయడానికి కెమెరా అనుమతి అవసరం</string>
+    <string name="storage_denied_select">ఫారమ్‌లను ఎంచుకోవడానికి స్టోరేజ్ అనుమతి అవసరం</string>
+
+    <!-- Forms History -->
+    <string name="my_forms">నా ఫారమ్‌లు</string>
+    <string name="search_forms">ఫారమ్‌ల కోసం వెతకండి...</string>
+    <string name="forms_history">ఫారమ్ చరిత్ర</string>
+    <string name="no_history">చరిత్ర లేదు</string>
+
+    <!-- Feedback -->
+    <string name="feedback_title">అభిప్రాయం</string>
+    <string name="question_label">ప్రశ్న</string>
+    <string name="of_label">/</string>
+    <string name="cancel">రద్దు చేయి</string>
+    <string name="next_q">తదుపరి ప్రశ్న →</string>
+    <string name="prev_q">మునుపటి ప్రశ్న</string>
+    <string name="submit_feedback">అభిప్రాయాన్ని పంపండి</string>
+    <string name="back_to_home">హోమ్ పేజీకి వెళ్ళండి</string>
+    <string name="q1_title">మీ మొత్తం అనుభవాన్ని ఎలా రేట్ చేస్తారు?</string>
+    <string name="q1_desc">దయచేసి మీ అనుభవానికి సరిపోయే నక్షత్రాల సంఖ్యను ఎంచుకోండి.</string>
+    <string name="q1_hint">రేట్ చేయడానికి నక్షత్రాలను నొక్కండి</string>
+    <string name="q2_title">యాప్‌ను ఉపయోగించడం ఎంత సులభం?</string>
+    <string name="q2_desc">మీ అనుభవాన్ని ఉత్తమంగా వివరించే ఎంపికను ఎంచుకోండి.</string>
+    <string name="q3_title">వాయిస్ గైడెన్స్ ఎంత సహాయకరంగా ఉంది?</string>
+    <string name="q3_desc">వాయిస్ గైడెన్స్ ఫీచర్‌తో మీ అనుభవాన్ని వివరించండి.</string>
+    <string name="q4_title">మీరు FormSahayakను ఇతరులకు సిఫార్సు చేస్తారా?</string>
+    <string name="q4_desc">మీ స్నేహితులు మరియు కుటుంబ సభ్యులకు ఈ యాప్‌ను సూచిస్తారో లేదో మాకు తెలియజేయండి.</string>
+    <string name="q5_title">అదనపు వ్యాఖ్యలు</string>
+    <string name="q5_desc">ఏవైనా అదనపు ఆలోచనలు లేదా సూచనలను పంచుకోండి (ఐచ్ఛికం).</string>
+    <string name="q5_hint">మీకు నచ్చినవి లేదా మేము మెరుగుపరచగలవి మాకు తెలియజేయండి...</string>
+    <string name="feedback_success">ధన్యవాదాలు!</string>
+    <string name="feedback_submitted">మీ అభిప్రాయం సమర్పించబడింది</string>
+    <string name="feedback_appreciation">మీ ఆలోచనలను పంచుకోవడానికి సమయం కేటాయించినందుకు మేము మిమ్మల్ని అభినందిస్తున్నాము. మీ అభిప్రాయం FormSahayakను అందరికీ మెరుగ్గా చేయడంలో సహాయపడుతుంది.</string>
+    <string name="submit_another">మరొక అభిప్రాయాన్ని సమర్పించండి</string>
+    <string name="rating_warning">కొనసాగడానికి దయచేసి రేటింగ్‌ను ఎంచుకోండి</string>
+    <string name="feedback_recorded">అభిప్రాయం విజయవంతంగా స్వీకరించబడింది మరియు రికార్డ్ చేయబడింది</string>
+
+    <!-- Feedback Options -->
+    <string name="ease_very_easy">చాలా సులభం</string>
+    <string name="ease_easy">సులభం</string>
+    <string name="ease_moderate">మధ్యస్థం</string>
+    <string name="ease_difficult">కష్టం</string>
+    <string name="voice_very_helpful">చాలా సహాయకరం</string>
+    <string name="voice_helpful">సహాయకరం</string>
+    <string name="voice_somewhat_helpful">కొంచెం సహాయకరం</string>
+    <string name="voice_not_helpful">సహాయకరం కాదు</string>
+    <string name="rec_yes">తప్పకుండా అవును</string>
+    <string name="rec_probably">బహుశా అవును</string>
+    <string name="rec_maybe">కావచ్చు</string>
+    <string name="rec_no">లేదు</string>
+
+    <!-- Image Enhancement -->
+    <string name="enhance_image">చిత్రాన్ని మెరుగుపరచండి</string>
+    <string name="reset">రీసెట్</string>
+    <string name="brightness">కాంతి స్థాయి (Brightness)</string>
+    <string name="contrast">కాంట్రాస్ట్ (Contrast)</string>
+    <string name="rotation">భ్రమణం (Rotation)</string>
+    <string name="rotate_90">90° తిప్పండి</string>
+    <string name="apply_continue">వర్తింపజేసి కొనసాగండి</string>
+
+    <!-- Form Detected -->
+    <string name="form_detected_title">ఫారమ్ గుర్తించబడింది</string>
+    <string name="page_detected_title">పేజీ %1$d గుర్తించబడింది</string>
+    <string name="fd_subtitle">మీరు అప్‌లోడ్ చేసిన ఫారమ్ రకాన్ని మేము గుర్తించాము</string>
+    <string name="fd_detected_label">గుర్తించబడిన ఫారమ్ రకం:</string>
+    <string name="fd_listen_label">ఫారమ్ రకాన్ని వినండి</string>
+    <string name="fd_proceed_q">మేము ఈ ఫారమ్‌తో కొనసాగవచ్చా?</string>
+    <string name="fd_proceed_desc">ఫారమ్ రకం సరైనదైతే, కొనసాగడానికి అవును క్లిక్ చేయండి. లేకపోతే, మళ్లీ స్కాన్ చేయి క్లిక్ చేయండి.</string>
+    <string name="fd_bank_type">బ్యాంక్ రకం</string>
+    <string name="fd_doc_pages">పత్రం పేజీలు</string>
+    <string name="fd_confidence">ఖచ్చితత్వం</string>
+    <string name="fd_status">స్థితి</string>
+    <string name="fd_pages_suffix">పేజీలు</string>
+    <string name="fd_yes_proceed">అవును, ఈ ఫారమ్‌తో కొనసాగండి</string>
+    <string name="fd_no_rescan">లేదు, ఫారమ్‌ను మళ్లీ స్కాన్ చేయండి</string>
+    <string name="fd_excellent">అద్భుతం</string>
+    <string name="fd_ready">సిద్ధంగా ఉంది</string>
+    <string name="fd_fair">పర్వాలేదు</string>
+    <string name="fd_unclear">అస్పష్టంగా ఉంది</string>
+
+    <!-- Toasts / Permissions Denied -->
+    <string name="camera_denied">ప్రొఫైల్ ఫోటో తీయడానికి కెమెరా అనుమతి అవసరం</string>
+    <string name="storage_denied">ఫోటోను ఎంచుకోవడానికి స్టోరేజ్ అనుమతి అవసరం</string>
+    <string name="audio_denied">వాయిస్ గైడెన్స్ కోసం ఆడియో అనుమతి అవసరం</string>
+</resources>

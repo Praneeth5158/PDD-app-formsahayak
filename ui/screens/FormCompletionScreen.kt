@@ -19,12 +19,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import android.app.DownloadManager
+import android.content.Context
+import android.net.Uri
+import android.os.Environment
+import android.widget.Toast
+import androidx.compose.material.icons.filled.Download
+import androidx.compose.ui.platform.LocalContext
 
 @Composable
 fun FormCompletionScreen(
     selectedLanguage: Language?,
     isDarkMode: Boolean,
     isHighContrast: Boolean,
+    pdfUrl: String?,
     onFillAnotherClick: () -> Unit,
     onBackToHomeClick: () -> Unit
 ) {
@@ -32,6 +40,7 @@ fun FormCompletionScreen(
     val cardColor = if (isHighContrast) Color.Black else if (isDarkMode) Color(0xFF1E1E1E) else Color.White
     val textColor = if (isDarkMode || isHighContrast) Color.White else Color(0xFF2C3E50)
     val secondaryTextColor = if (isDarkMode || isHighContrast) Color.LightGray else Color.Gray
+    val context = LocalContext.current
 
     Box(
         modifier = Modifier
@@ -104,7 +113,76 @@ fun FormCompletionScreen(
                 }
 
                 Spacer(modifier = Modifier.height(12.dp))
+                Button(
+                    onClick = {
 
+                        if (!pdfUrl.isNullOrEmpty()) {
+
+                            val request = DownloadManager.Request(
+                                Uri.parse(pdfUrl)
+                            )
+
+                            request.setTitle("FormSahayak PDF")
+
+                            request.setDescription("Downloading PDF Report")
+
+                            request.setNotificationVisibility(
+                                DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED
+                            )
+
+                            request.setDestinationInExternalPublicDir(
+                                Environment.DIRECTORY_DOWNLOADS,
+                                "FormSahayak_Report.pdf"
+                            )
+
+                            val downloadManager =
+                                context.getSystemService(Context.DOWNLOAD_SERVICE)
+                                        as DownloadManager
+
+                            downloadManager.enqueue(request)
+
+                            Toast.makeText(
+                                context,
+                                "Downloading PDF...",
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                        } else {
+
+                            Toast.makeText(
+                                context,
+                                "PDF not available",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    },
+
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(50.dp),
+
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFF4CAF50)
+                    ),
+
+                    shape = RoundedCornerShape(12.dp)
+                ) {
+
+                    Icon(
+                        Icons.Default.Download,
+                        contentDescription = null,
+                        modifier = Modifier.size(18.dp)
+                    )
+
+                    Spacer(modifier = Modifier.width(8.dp))
+
+                    Text(
+                        "Download PDF Report",
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(12.dp))
                 OutlinedButton(
                     onClick = onFillAnotherClick,
                     modifier = Modifier.fillMaxWidth().height(50.dp),

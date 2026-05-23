@@ -43,22 +43,13 @@ fun ScanningProgressScreen(
             delay(stepDelay)
             progress = i.toFloat() / steps
         }
-        
-        // If it's the analysis step, we might want to actually trigger the analysis
-        if (statusText != "Scanning...") {
-            // This is the OCR part
-            // Analysis is handled by MainActivity calling viewModel.analyzeImage
-            // but we can just delay a bit more or wait for VM if needed.
-            // For now, let's just finish the animation.
-        }
-
         onScanningComplete()
     }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF2563EB)),
+            .background(if (isHighContrast) Color.Black else Color(0xFF2563EB)),
         contentAlignment = Alignment.Center
     ) {
         Surface(
@@ -66,8 +57,9 @@ fun ScanningProgressScreen(
                 .width(300.dp)
                 .wrapContentHeight(),
             shape = RoundedCornerShape(24.dp),
-            color = Color.White,
-            shadowElevation = 12.dp
+            color = if (isHighContrast) Color.Black else Color.White,
+            shadowElevation = if (isHighContrast) 0.dp else 12.dp,
+            border = if (isHighContrast) androidx.compose.foundation.BorderStroke(2.dp, Color.Yellow) else null
         ) {
             Column(
                 modifier = Modifier.padding(32.dp),
@@ -76,13 +68,13 @@ fun ScanningProgressScreen(
                 Surface(
                     modifier = Modifier.size(80.dp),
                     shape = CircleShape,
-                    color = Color(0xFFEFF6FF)
+                    color = if (isHighContrast) Color.Yellow else Color(0xFFEFF6FF)
                 ) {
                     Box(contentAlignment = Alignment.Center) {
                         Icon(
                             Icons.Default.CameraAlt,
                             contentDescription = null,
-                            tint = Color(0xFF2563EB),
+                            tint = if (isHighContrast) Color.Black else Color(0xFF2563EB),
                             modifier = Modifier.size(36.dp)
                         )
                     }
@@ -94,7 +86,7 @@ fun ScanningProgressScreen(
                     statusText,
                     fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Black
+                    color = if (isHighContrast) Color.Yellow else Color.Black
                 )
                 
                 Spacer(modifier = Modifier.height(8.dp))
@@ -102,7 +94,7 @@ fun ScanningProgressScreen(
                 Text(
                     subText,
                     fontSize = 14.sp,
-                    color = Color.Gray,
+                    color = if (isHighContrast) Color.White else Color.Gray,
                     textAlign = TextAlign.Center,
                     lineHeight = 20.sp
                 )
@@ -115,13 +107,13 @@ fun ScanningProgressScreen(
                         .fillMaxWidth()
                         .height(10.dp)
                         .clip(RoundedCornerShape(5.dp))
-                        .background(Color(0xFFF1F5F9))
+                        .background(if (isHighContrast) Color.DarkGray else Color(0xFFF1F5F9))
                 ) {
                     Box(
                         modifier = Modifier
                             .fillMaxWidth(progress)
                             .fillMaxHeight()
-                            .background(Color.Black)
+                            .background(if (isHighContrast) Color.Yellow else Color.Black)
                     )
                 }
                 
@@ -130,7 +122,7 @@ fun ScanningProgressScreen(
                 Text(
                     "${(progress * 100).toInt()}%",
                     fontSize = 14.sp,
-                    color = Color.Gray,
+                    color = if (isHighContrast) Color.Yellow else Color.Gray,
                     fontWeight = FontWeight.Bold
                 )
             }

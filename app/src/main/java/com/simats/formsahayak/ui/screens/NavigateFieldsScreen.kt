@@ -1,5 +1,10 @@
 package com.simats.formsahayak.ui.screens
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -13,9 +18,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import com.simats.formsahayak.ui.viewmodel.FormViewModel
 
 @Composable
@@ -28,12 +35,31 @@ fun NavigateFieldsScreen(
     onGuideClick: (com.simats.formsahayak.logic.DetectedField) -> Unit
 ) {
     val isDark = isDarkMode || isHighContrast
+    val context = LocalContext.current
     val backgroundColor = if (isDark) Color.Black else Color(0xFFF8FBFF)
     val cardColor = if (isDark) Color(0xFF1E1E1E) else Color.White
     val textColor = if (isDark) Color.White else Color.Black
 
     val fields = viewModel.detectedFields
     var currentFieldIndex by remember { mutableStateOf(0) }
+
+    val audioPermissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            viewModel.speakFieldInstruction(fields[currentFieldIndex], selectedLanguage?.code ?: "en")
+            onGuideClick(fields[currentFieldIndex])
+        } else {
+            val deniedMsg = when (selectedLanguage?.code) {
+                "te" -> "వాయిస్ గైడెన్స్ కోసం ఆడియో అనుమతి అవసరం"
+                "ta" -> "గురల్ వళిగాట్టుదలుక్కు ఆడియో అనుమతి తేవై"
+                "hi" -> "आवाज मार्गदर्शन के लिए ऑडियो अनुमति की आवश्यकता है"
+                else -> "Audio permission is required for voice guidance"
+            }
+            Toast.makeText(context, deniedMsg, Toast.LENGTH_SHORT).show()
+            onGuideClick(fields[currentFieldIndex])
+        }
+    }
     
     if (fields.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -48,11 +74,13 @@ fun NavigateFieldsScreen(
     val title = when (selectedLanguage?.code) {
         "te" -> "ఫీల్డ్లను నావిగేట్ చేయండి"
         "ta" -> "புலங்களை வழிநடத்துங்கள்"
+        "hi" -> "फ़ील्ड नेविगेट करें"
         else -> "Navigate Fields"
     }
     val guideButtonText = when (selectedLanguage?.code) {
         "te" -> "మార్గదర్శకం"
         "ta" -> "வழிகாட்டி"
+        "hi" -> "गाइड"
         else -> "Guide"
     }
 
@@ -172,8 +200,12 @@ fun NavigateFieldsScreen(
 
                 Button(
                     onClick = { 
-                        viewModel.speakFieldInstruction(fields[currentFieldIndex], selectedLanguage?.code ?: "en")
-                        onGuideClick(fields[currentFieldIndex]) 
+                        if (ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+                            viewModel.speakFieldInstruction(fields[currentFieldIndex], selectedLanguage?.code ?: "en")
+                            onGuideClick(fields[currentFieldIndex])
+                        } else {
+                            audioPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
+                        }
                     },
                     modifier = Modifier
                         .fillMaxWidth()

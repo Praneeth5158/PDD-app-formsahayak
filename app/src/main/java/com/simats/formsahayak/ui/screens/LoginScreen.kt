@@ -19,11 +19,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.simats.formsahayak.R
 import com.simats.formsahayak.ui.viewmodel.FormViewModel
 
 @Composable
@@ -49,48 +51,6 @@ fun LoginScreen(
     val cardColor = if (isHighContrast) Color.Black else if (isDarkMode) Color(0xFF1E1E1E) else Color.White
     val textColor = if (isDark) Color.White else Color.Black
     val secondaryTextColor = if (isDark) Color.LightGray else Color.Gray
-
-    // Language Strings
-    val welcomeStr = when (selectedLanguage?.code) {
-        "te" -> "స్వాగతం"
-        "ta" -> "வரவேற்கிறோம்"
-        else -> "Welcome Back"
-    }
-    val loginSubStr = when (selectedLanguage?.code) {
-        "te" -> "కొనసాగడానికి లాగిన్ చేయండి"
-        "ta" -> "தொடர உள்நுழையவும்"
-        else -> "Login to continue"
-    }
-    val emailStr = when (selectedLanguage?.code) {
-        "te" -> "ఈమెయిల్"
-        "ta" -> "மின்னஞ்சல்"
-        else -> "Email"
-    }
-    val passwordStr = when (selectedLanguage?.code) {
-        "te" -> "పాస్‌వర్డ్"
-        "ta" -> "கடவுச்சொல்"
-        else -> "Password"
-    }
-    val forgotPwdStr = when (selectedLanguage?.code) {
-        "te" -> "పాస్‌వర్డ్ మర్చిపోయారా?"
-        "ta" -> "கடவுச்சொல்லை மறந்துவிட்டீர்களா?"
-        else -> "Forgot Password?"
-    }
-    val loginBtnStr = when (selectedLanguage?.code) {
-        "te" -> "లాగిన్"
-        "ta" -> "உள்நுழை"
-        else -> "Login"
-    }
-    val noAccountStr = when (selectedLanguage?.code) {
-        "te" -> "ఖాతా లేదా? "
-        "ta" -> "கணக்கு இல்லையா? "
-        else -> "Don't have an account? "
-    }
-    val signUpStr = when (selectedLanguage?.code) {
-        "te" -> "సైన్ అప్"
-        "ta" -> "பதிவுபெறு"
-        else -> "Sign Up"
-    }
 
     Column(
         modifier = Modifier
@@ -120,14 +80,14 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         Text(
-            text = welcomeStr,
+            text = stringResource(R.string.welcome_title),
             fontSize = 32.sp,
             fontWeight = FontWeight.ExtraBold,
             color = if (isHighContrast) Color.Yellow else if (isDarkMode) Color.White else Color(0xFF1A237E)
         )
 
         Text(
-            text = loginSubStr,
+            text = stringResource(R.string.login_sub),
             fontSize = 16.sp,
             color = secondaryTextColor
         )
@@ -155,7 +115,7 @@ fun LoginScreen(
                 }
 
                 Text(
-                    text = emailStr,
+                    text = stringResource(R.string.email),
                     fontWeight = FontWeight.ExtraBold,
                     fontSize = 14.sp,
                     color = textColor
@@ -164,7 +124,7 @@ fun LoginScreen(
                 TextField(
                     value = email,
                     onValueChange = { email = it },
-                    placeholder = { Text(emailStr, color = Color.Gray) },
+                    placeholder = { Text(stringResource(R.string.email), color = Color.Gray) },
                     leadingIcon = { Icon(Icons.Default.Email, contentDescription = null, tint = Color.LightGray) },
                     modifier = Modifier.fillMaxWidth(),
                     enabled = !isLoading,
@@ -182,7 +142,7 @@ fun LoginScreen(
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Text(
-                    text = passwordStr,
+                    text = stringResource(R.string.password),
                     fontWeight = FontWeight.ExtraBold,
                     fontSize = 14.sp,
                     color = textColor
@@ -191,7 +151,7 @@ fun LoginScreen(
                 TextField(
                     value = password,
                     onValueChange = { password = it },
-                    placeholder = { Text(passwordStr, color = Color.Gray) },
+                    placeholder = { Text(stringResource(R.string.password), color = Color.Gray) },
                     leadingIcon = { Icon(Icons.Default.Lock, contentDescription = null, tint = Color.LightGray) },
                     trailingIcon = {
                         IconButton(onClick = { passwordVisible = !passwordVisible }) {
@@ -224,7 +184,7 @@ fun LoginScreen(
                     contentPadding = PaddingValues(0.dp)
                 ) {
                     Text(
-                        text = forgotPwdStr, 
+                        text = stringResource(R.string.forgot_password), 
                         color = if (isHighContrast) Color.Yellow else Color(0xFF2196F3), 
                         fontSize = 14.sp, 
                         fontWeight = FontWeight.Bold
@@ -255,7 +215,7 @@ fun LoginScreen(
                     if (isLoading) {
                         CircularProgressIndicator(color = if (isHighContrast) Color.Black else Color.White, modifier = Modifier.size(24.dp))
                     } else {
-                        Text(loginBtnStr, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.login), fontSize = 16.sp, fontWeight = FontWeight.Bold)
                     }
                 }
 
@@ -266,14 +226,14 @@ fun LoginScreen(
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(noAccountStr, color = secondaryTextColor, fontSize = 14.sp)
+                    Text(stringResource(R.string.no_account), color = secondaryTextColor, fontSize = 14.sp)
                     TextButton(
                         onClick = onNavigateToSignup,
                         enabled = !isLoading,
                         contentPadding = PaddingValues(0.dp)
                     ) {
                         Text(
-                            signUpStr, 
+                            stringResource(R.string.signup),
                             color = if (isHighContrast) Color.Yellow else Color(0xFF2196F3), 
                             fontWeight = FontWeight.ExtraBold, 
                             fontSize = 14.sp

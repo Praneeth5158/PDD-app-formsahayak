@@ -20,28 +20,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.simats.formsahayak.R
 import com.simats.formsahayak.ui.components.BottomNavigationBar
 import com.simats.formsahayak.ui.viewmodel.FormViewModel
-
-abstract class SettingsLabels {
-    abstract val title: String
-    abstract val language: String
-    abstract val selectLang: String
-    abstract val voiceGuidance: String
-    abstract val voiceSpeed: String
-    abstract val accessibility: String
-    abstract val highContrast: String
-    abstract val highContrastDesc: String
-    abstract val display: String
-    abstract val darkMode: String
-    abstract val darkModeDesc: String
-    abstract val speeds: Map<String, String>
-}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -59,51 +46,6 @@ fun SettingsScreen(
     onProfileClick: () -> Unit,
     onNavigateToVoiceSettings: (String) -> Unit
 ) {
-    val labels: SettingsLabels = when (currentLanguage?.code) {
-        "te" -> object : SettingsLabels() {
-            override val title = "సెట్టింగ్‌లు"
-            override val language = "భాష"
-            override val selectLang = "భాషను ఎంచుకోండి"
-            override val voiceGuidance = "వాయిస్ గైడెన్స్"
-            override val voiceSpeed = "వాయిస్ వేగం"
-            override val accessibility = "ప్రాప్యత"
-            override val highContrast = "అధిక కాంట్రాస్ట్"
-            override val highContrastDesc = "టెక్స్ట్ మరియు బటన్ల కోసం మెరుగైన దృశ్యమానత"
-            override val display = "ప్రదర్శన"
-            override val darkMode = "డార్క్ మోడ్"
-            override val darkModeDesc = "తక్కువ కాంతిలో కంటి ఒత్తిడిని తగ్గించండి"
-            override val speeds = mapOf("Slow" to "నెమ్మదిగా (Slow)", "Normal" to "సాధారణం (Normal)", "Fast" to "వేగంగా (Fast)")
-        }
-        "ta" -> object : SettingsLabels() {
-            override val title = "அமைப்புகள்"
-            override val language = "மொழி"
-            override val selectLang = "மொழியைத் தேர்ந்தெடுக்கவும்"
-            override val voiceGuidance = "குரல் வழிகாட்டுதல்"
-            override val voiceSpeed = "குரல் வேகம்"
-            override val accessibility = "அணுகல்தன்மை"
-            override val highContrast = "உயர் மாறுபாடு"
-            override val highContrastDesc = "உரை மற்றும் பொத்தான்களுக்கு சிறந்த பார்வை"
-            override val display = "காட்சி"
-            override val darkMode = "இருண்ட பயன்முறை"
-            override val darkModeDesc = "குறைந்த ஒளியில் கண் சோர்வைக் குறைக்கவும்"
-            override val speeds = mapOf("Slow" to "மெதுவாக (Slow)", "Normal" to "சாதாரணமானது (Normal)", "Fast" to "வேகமாக (Fast)")
-        }
-        else -> object : SettingsLabels() {
-            override val title = "Settings"
-            override val language = "Language"
-            override val selectLang = "Select Language"
-            override val voiceGuidance = "Voice Guidance"
-            override val voiceSpeed = "Voice Speed"
-            override val accessibility = "Accessibility"
-            override val highContrast = "High Contrast"
-            override val highContrastDesc = "Better visibility for text and buttons"
-            override val display = "Display"
-            override val darkMode = "Dark Mode"
-            override val darkModeDesc = "Reduce eye strain in low light"
-            override val speeds = mapOf("Slow" to "Slow", "Normal" to "Normal", "Fast" to "Fast")
-        }
-    }
-
     val backgroundColor = if (isHighContrast) Color.Black else (if (isDarkMode) Color(0xFF121212) else Color(0xFFF8FBFF))
     val cardColor = if (isHighContrast) Color.Black else (if (isDarkMode) Color(0xFF1E1E1E) else Color.White)
     val textColor = if (isDarkMode || isHighContrast) Color.White else Color(0xFF2C3E50)
@@ -115,7 +57,7 @@ fun SettingsScreen(
             CenterAlignedTopAppBar(
                 title = {
                     Text(
-                        labels.title,
+                        stringResource(R.string.settings),
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 20.sp,
                         color = textColor
@@ -156,7 +98,7 @@ fun SettingsScreen(
         ) {
             // Language Section
             SettingsCard(
-                title = labels.language,
+                title = stringResource(R.string.language),
                 icon = Icons.Default.Translate,
                 iconBgColor = if (isHighContrast) Color.White else (if (isDarkMode) Color(0xFF2C3E50) else Color(0xFFE8F0FE)),
                 iconColor = if (isHighContrast) Color.Black else (if (isDarkMode) Color.White else Color(0xFF1A73E8)),
@@ -164,14 +106,15 @@ fun SettingsScreen(
                 textColor = textColor,
                 isHighContrast = isHighContrast
             ) {
-                Text(labels.selectLang, color = textColor, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+                Text(stringResource(R.string.select_language), color = textColor, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
                 Spacer(modifier = Modifier.height(8.dp))
                 
                 var languageExpanded by remember { mutableStateOf(false) }
                 val languages = listOf(
                     Language("English", "English", "en"),
                     Language("Telugu", "తెలుగు", "te"),
-                    Language("Tamil", "தமிழ்", "ta")
+                    Language("Tamil", "தமிழ்", "ta"),
+                    Language("Hindi", "हिन्दी", "hi")
                 )
                 
                 DropdownSelector(
@@ -195,10 +138,7 @@ fun SettingsScreen(
                                 onClick = {
                                     onLanguageChange(lang)
                                     languageExpanded = false
-                                },
-                                colors = MenuDefaults.itemColors(
-                                    textColor = textColor
-                                )
+                                }
                             )
                         }
                     }
@@ -207,7 +147,7 @@ fun SettingsScreen(
 
             // Voice Guidance Section
             SettingsCard(
-                title = labels.voiceGuidance,
+                title = stringResource(R.string.voice_guidance),
                 icon = Icons.AutoMirrored.Filled.VolumeUp,
                 iconBgColor = if (isHighContrast) Color.White else (if (isDarkMode) Color(0xFF1B5E20) else Color(0xFFE8F5E9)),
                 iconColor = if (isHighContrast) Color.Black else (if (isDarkMode) Color.White else Color(0xFF2E7D32)),
@@ -229,8 +169,14 @@ fun SettingsScreen(
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Column {
-                            Text(labels.voiceSpeed, fontWeight = FontWeight.Bold, fontSize = 15.sp, color = textColor)
-                            Text(labels.speeds[viewModel.voiceSpeed] ?: viewModel.voiceSpeed, color = secondaryTextColor, fontSize = 12.sp)
+                            Text(stringResource(R.string.voice_speed), fontWeight = FontWeight.Bold, fontSize = 15.sp, color = textColor)
+                            val speedText = when(viewModel.voiceSpeed) {
+                                "Slow" -> stringResource(R.string.speed_slow)
+                                "Normal" -> stringResource(R.string.speed_normal)
+                                "Fast" -> stringResource(R.string.speed_fast)
+                                else -> viewModel.voiceSpeed
+                            }
+                            Text(speedText, color = secondaryTextColor, fontSize = 12.sp)
                         }
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
@@ -243,7 +189,7 @@ fun SettingsScreen(
 
             // Accessibility Section
             SettingsCard(
-                title = labels.accessibility,
+                title = stringResource(R.string.accessibility),
                 icon = Icons.Default.Visibility,
                 iconBgColor = if (isHighContrast) Color.White else (if (isDarkMode) Color(0xFF4A148C) else Color(0xFFF3E5F5)),
                 iconColor = if (isHighContrast) Color.Black else (if (isDarkMode) Color.White else Color(0xFF7B1FA2)),
@@ -270,8 +216,8 @@ fun SettingsScreen(
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Column(modifier = Modifier.weight(1f)) {
-                            Text(labels.highContrast, fontWeight = FontWeight.Bold, fontSize = 15.sp, color = textColor)
-                            Text(labels.highContrastDesc, color = secondaryTextColor, fontSize = 12.sp)
+                            Text(stringResource(R.string.high_contrast), fontWeight = FontWeight.Bold, fontSize = 15.sp, color = textColor)
+                            Text(stringResource(R.string.high_contrast_desc), color = secondaryTextColor, fontSize = 12.sp)
                         }
                         Switch(
                             checked = isHighContrast,
@@ -287,7 +233,7 @@ fun SettingsScreen(
 
             // Display Section
             SettingsCard(
-                title = labels.display,
+                title = stringResource(R.string.display),
                 icon = Icons.Default.NightlightRound,
                 iconBgColor = if (isHighContrast) Color.White else (if (isDarkMode) Color(0xFF1A237E) else Color(0xFFE8EAF6)),
                 iconColor = if (isHighContrast) Color.Black else (if (isDarkMode) Color.White else Color(0xFF3949AB)),
@@ -314,8 +260,8 @@ fun SettingsScreen(
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Column(modifier = Modifier.weight(1f)) {
-                            Text(labels.darkMode, fontWeight = FontWeight.Bold, fontSize = 15.sp, color = textColor)
-                            Text(labels.darkModeDesc, color = secondaryTextColor, fontSize = 12.sp)
+                            Text(stringResource(R.string.dark_mode), fontWeight = FontWeight.Bold, fontSize = 15.sp, color = textColor)
+                            Text(stringResource(R.string.dark_mode_desc), color = secondaryTextColor, fontSize = 12.sp)
                         }
                         Switch(
                             checked = isDarkMode,

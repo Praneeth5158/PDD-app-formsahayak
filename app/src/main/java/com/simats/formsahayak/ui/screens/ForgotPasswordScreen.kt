@@ -15,10 +15,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.simats.formsahayak.R
 
 @Composable
 fun ForgotPasswordScreen(
@@ -36,10 +38,12 @@ fun ForgotPasswordScreen(
     val backgroundColor = if (isDark) Color.Black else Color(0xFFF8FBFF)
     val cardColor = if (isDark) Color(0xFF1E1E1E) else Color.White
     val textColor = if (isDark) Color.White else Color.Black
+    
+    val validationMsg = stringResource(R.string.enter_email_phone)
 
     fun validate(): Boolean {
         if (emailOrPhone.isBlank()) {
-            errorMessage = "Please enter your email or phone number"
+            errorMessage = validationMsg
             return false
         }
         return true
@@ -60,7 +64,7 @@ fun ForgotPasswordScreen(
             IconButton(onClick = onBackToLogin) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "Back",
+                    contentDescription = stringResource(R.string.back),
                     tint = textColor
                 )
             }
@@ -86,7 +90,7 @@ fun ForgotPasswordScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         Text(
-            text = "Forgot Password?",
+            text = stringResource(R.string.forgot_password),
             fontSize = 28.sp,
             fontWeight = FontWeight.Bold,
             color = if (isDark) Color.White else Color(0xFF1A237E)
@@ -95,7 +99,7 @@ fun ForgotPasswordScreen(
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = "Enter your email or phone to reset\npassword",
+            text = stringResource(R.string.create_new_password),
             fontSize = 14.sp,
             color = Color.Gray,
             textAlign = TextAlign.Center,
@@ -115,7 +119,7 @@ fun ForgotPasswordScreen(
                 modifier = Modifier.padding(24.dp)
             ) {
                 Text(
-                    text = "Email or Phone Number",
+                    text = stringResource(R.string.email_phone_label),
                     fontWeight = FontWeight.Bold,
                     fontSize = 14.sp,
                     color = textColor
@@ -127,7 +131,7 @@ fun ForgotPasswordScreen(
                         emailOrPhone = it 
                         showError = false
                     },
-                    placeholder = { Text("Enter your email or phone", color = Color.Gray) },
+                    placeholder = { Text(stringResource(R.string.enter_email_phone), color = Color.Gray) },
                     leadingIcon = { Icon(Icons.Default.Email, contentDescription = null, tint = Color.LightGray) },
                     modifier = Modifier.fillMaxWidth(),
                     colors = TextFieldDefaults.colors(
@@ -166,14 +170,14 @@ fun ForgotPasswordScreen(
                     shape = RoundedCornerShape(12.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2979FF))
                 ) {
-                    Text("Send OTP", fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.send_otp), fontSize = 16.sp, fontWeight = FontWeight.Bold)
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                     TextButton(onClick = onBackToLogin) {
-                        Text("Back to Login", color = Color(0xFF2979FF), fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.back_to_login), color = Color(0xFF2979FF), fontWeight = FontWeight.Bold)
                     }
                 }
             }

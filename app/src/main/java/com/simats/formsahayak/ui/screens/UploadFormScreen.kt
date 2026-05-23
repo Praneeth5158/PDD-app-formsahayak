@@ -1,6 +1,10 @@
 package com.simats.formsahayak.ui.screens
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.BorderStroke
@@ -25,12 +29,14 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import com.simats.formsahayak.ui.viewmodel.FormViewModel
+import com.simats.formsahayak.R
 import java.io.File
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -48,33 +54,6 @@ fun UploadFormScreen(
     val cardColor = if (isDark) Color(0xFF1E1E1E) else Color.White
     val textColor = if (isDark) Color.White else Color.Black
 
-    // Translation logic
-    val title = when (selectedLanguage?.code) {
-        "te" -> "ఫారమ్‌ను అప్‌లోడ్ చేయండి"
-        "ta" -> "படிவத்தைப் பதிவேற்றவும்"
-        else -> "Upload Form"
-    }
-    val subtitle = when (selectedLanguage?.code) {
-        "te" -> "స్పష్టమైన ఫోటో తీయండి లేదా గ్యాలరీ నుండి అప్‌లోడ్ చేయండి"
-        "ta" -> "தெளிவான புகைப்படத்தை எடுக்கவும் அல்லது கேலரியில் இருந்து பதிவேற்றவும்"
-        else -> "Take a clear photo or upload\nfrom gallery"
-    }
-    val cameraText = when (selectedLanguage?.code) {
-        "te" -> "కెమెరా"
-        "ta" -> "கேமரா"
-        else -> "Camera"
-    }
-    val galleryText = when (selectedLanguage?.code) {
-        "te" -> "గ్యాలరీ"
-        "ta" -> "கேலரி"
-        else -> "Gallery"
-    }
-    val tipsTitle = when (selectedLanguage?.code) {
-        "te" -> "ఉత్తమ ఫలితాల కోసం చిట్కాలు"
-        "ta" -> "சிறந்த முடிவுகளுக்கான உதவிக்குறிப்புகள்"
-        else -> "Tips for best results"
-    }
-
     val galleryLauncher = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         uri?.let { onImageSelected(it) }
     }
@@ -88,10 +67,36 @@ fun UploadFormScreen(
         if (success) onImageSelected(tempUri)
     }
 
+    val cameraPermissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            cameraLauncher.launch(tempUri)
+        } else {
+            Toast.makeText(context, context.getString(R.string.camera_denied_scan), Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    val storagePermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        Manifest.permission.READ_MEDIA_IMAGES
+    } else {
+        Manifest.permission.READ_EXTERNAL_STORAGE
+    }
+
+    val galleryPermissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            galleryLauncher.launch("image/*")
+        } else {
+            Toast.makeText(context, context.getString(R.string.storage_denied_select), Toast.LENGTH_SHORT).show()
+        }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(title, fontWeight = FontWeight.ExtraBold, fontSize = 20.sp, color = textColor) },
+                title = { Text(stringResource(R.string.upload_form), fontWeight = FontWeight.ExtraBold, fontSize = 20.sp, color = textColor) },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = textColor)
@@ -125,23 +130,35 @@ fun UploadFormScreen(
                         }
                     }
                     Spacer(modifier = Modifier.height(24.dp))
-                    Text(text = title, fontSize = 22.sp, fontWeight = FontWeight.ExtraBold, color = textColor)
+                    Text(text = stringResource(R.string.upload_form), fontSize = 22.sp, fontWeight = FontWeight.ExtraBold, color = textColor)
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text(text = subtitle, textAlign = TextAlign.Center, fontSize = 14.sp, color = if (isDark) Color.LightGray else Color.Gray)
+                    Text(text = stringResource(R.string.upload_subtitle), textAlign = TextAlign.Center, fontSize = 14.sp, color = if (isDark) Color.LightGray else Color.Gray)
                     Spacer(modifier = Modifier.height(32.dp))
                     Button(
-                        onClick = { cameraLauncher.launch(tempUri) },
+                        onClick = {
+                            if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                                cameraLauncher.launch(tempUri)
+                            } else {
+                                cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+                            }
+                        },
                         modifier = Modifier.fillMaxWidth().height(56.dp),
                         shape = RoundedCornerShape(12.dp),
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2196F3))
                     ) {
                         Icon(imageVector = Icons.Default.PhotoCamera, contentDescription = null)
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text(cameraText, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.camera), fontSize = 16.sp, fontWeight = FontWeight.Bold)
                     }
                     Spacer(modifier = Modifier.height(16.dp))
                     OutlinedButton(
-                        onClick = { galleryLauncher.launch("image/*") },
+                        onClick = {
+                            if (ContextCompat.checkSelfPermission(context, storagePermission) == PackageManager.PERMISSION_GRANTED) {
+                                galleryLauncher.launch("image/*")
+                            } else {
+                                galleryPermissionLauncher.launch(storagePermission)
+                            }
+                        },
                         modifier = Modifier.fillMaxWidth().height(56.dp),
                         shape = RoundedCornerShape(12.dp),
                         border = BorderStroke(2.dp, if (isHighContrast) Color.White else Color(0xFF4CAF50)),
@@ -149,7 +166,7 @@ fun UploadFormScreen(
                     ) {
                         Icon(imageVector = Icons.Default.FileUpload, contentDescription = null)
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text(galleryText, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.gallery), fontSize = 16.sp, fontWeight = FontWeight.Bold)
                     }
                 }
             }
@@ -170,14 +187,14 @@ fun UploadFormScreen(
                             Box(contentAlignment = Alignment.Center) { Icon(imageVector = Icons.Outlined.Lightbulb, contentDescription = null, tint = Color.White, modifier = Modifier.size(20.dp)) }
                         }
                         Spacer(modifier = Modifier.width(12.dp))
-                        Text(text = tipsTitle, color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                        Text(text = stringResource(R.string.tips_title), color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.Bold)
                     }
                     Spacer(modifier = Modifier.height(16.dp))
-                    TipItem(icon = Icons.Outlined.WbSunny, text = "Ensure good lighting")
+                    TipItem(icon = Icons.Outlined.WbSunny, text = stringResource(R.string.tip_lighting))
                     Spacer(modifier = Modifier.height(12.dp))
-                    TipItem(icon = Icons.Outlined.Image, text = "Keep form flat and clear")
+                    TipItem(icon = Icons.Outlined.Image, text = stringResource(R.string.tip_flat))
                     Spacer(modifier = Modifier.height(12.dp))
-                    TipItem(icon = Icons.Outlined.PhotoCamera, text = "Avoid shadows and glare")
+                    TipItem(icon = Icons.Outlined.PhotoCamera, text = stringResource(R.string.tip_shadows))
                 }
             }
         }

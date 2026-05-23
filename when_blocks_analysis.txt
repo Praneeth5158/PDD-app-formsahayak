@@ -1,0 +1,1152 @@
+Total when blocks found: 161
+
+--- File: app/src/main/java/com/simats/formsahayak\MainActivity.kt ---
+"te" -> "ప్రొఫైల్ ఫోటో తీయడానికి కెమెరా అనుమతి అవసరం"
+                "ta" -> "சுயவிவரப் புகைப்படத்தை எடுக்க கேமரா அனுமதி தேவை"
+                "hi" -> "प्रोफ़ाइल फ़ोटो लेने के लिए कैमरा अनुमति की आवश्यकता है"
+                else -> "Camera permission is required to take a profile photo"
+
+--- File: app/src/main/java/com/simats/formsahayak\MainActivity.kt ---
+"te" -> "ఫోటోను ఎంచుకోవడానికి స్టోరేజ్ అనుమతి అవసరం"
+                "ta" -> "புகைப்படத்தைத் தேர்ந்தெடுக்க சேமிப்பக அனுமதி தேவை"
+                "hi" -> "फ़ोटो चुनने के लिए स्टोरेज अनुमति की आवश्यकता है"
+                else -> "Storage permission is required to select a photo"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\AllPermissionsSetScreen.kt ---
+"te" -> "అన్నీ సిద్ధం! 🎉"
+            "ta" -> "எல்லாம் தயார்! 🎉"
+        "hi" -> "सभी अनुमतियाँ सेट हो गईं!"
+        else -> "All Permissions Set!"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\AllPermissionsSetScreen.kt ---
+"te" -> "అనుమతులు విజయవంతంగా పొందబడ్డాయి"
+            "ta" -> "அனுமதிகள் வெற்றிகரமாகப் பெறப்பட்டன"
+        "hi" -> "सभी अनुमतियाँ सफलतापूर्वक दी गईं"
+        else -> "All Permissions Granted Successfully"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\AllPermissionsSetScreen.kt ---
+"te" -> "కెమెరా"; "ta" -> "கேமரா"; else -> "Camera"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\AllPermissionsSetScreen.kt ---
+"te" -> "స్టోరేజ్"; "ta" -> "சேமிப்பகம்"; else -> "Storage"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\AllPermissionsSetScreen.kt ---
+"te" -> "మైక్రోఫోన్"; "ta" -> "மைக்ரோஃபோன்"; else -> "Microphone"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\AllPermissionsSetScreen.kt ---
+"te" -> "డ్యాష్‌బోర్డ్‌కు కొనసాగండి"
+                    "ta" -> "டாஷ்போர்டுக்குத் தொடரவும்"
+        "hi" -> "डैशबोर्ड पर जारी रखें"
+        else -> "Continue to Dashboard"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\DashboardScreen.kt ---
+"te" -> "మళ్ళీ స్వాగతం!"
+        "ta" -> "மீண்டும் வருக!"
+        "hi" -> "वापसी पर स्वागत है!"
+        else -> "Welcome back!"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\DashboardScreen.kt ---
+"te" -> "భాష"
+        "ta" -> "மொழி"
+        "hi" -> "भाषा"
+        else -> "Language"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\DashboardScreen.kt ---
+"te" -> "మార్చండి"
+        "ta" -> "மாற்றவும்"
+        "hi" -> "बदलें"
+        else -> "Change"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\DashboardScreen.kt ---
+"te" -> "🙏 ఫారమ్ సహాయక్ కు స్వాగతం"
+        "ta" -> "🙏 FormSahayak-కు வரவேற்கிறோம்"
+        "hi" -> "🙏 FormSahayak में आपका स्वागत है"
+        else -> "🙏 Welcome to FormSahayak"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\DashboardScreen.kt ---
+"te" -> "ఫారమ్‌ను అప్‌లోడ్ చేయండి"
+        "ta" -> "படிவத்தைப் பதிவேற்றவும்"
+        "hi" -> "फॉर्म अपलोड करें"
+        else -> "Upload a Form"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\DashboardScreen.kt ---
+"te" -> "ప్రారంభించండి"
+        "ta" -> "தொடங்குங்கள்"
+        "hi" -> "शुरू करें"
+        else -> "Get Started"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\DashboardScreen.kt ---
+"te" -> "సహాయం"
+        "ta" -> "உதவி"
+        "hi" -> "सहायता"
+        else -> "Help"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\DashboardScreen.kt ---
+"te" -> "ఫారమ్‌లు"
+        "ta" -> "படிவங்கள்"
+        "hi" -> "फॉर्म्स"
+        else -> "Forms"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\DashboardScreen.kt ---
+"te" -> "సెట్టింగ్‌లు"
+        "ta" -> "అமைப்புகள்"
+        "hi" -> "सेटिंग्स"
+        else -> "Settings"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\EditProfileScreen.kt ---
+"te" -> "ప్రొఫైల్ సవరించు"
+        "ta" -> "சுயவிவரத்தைத் திருத்து"
+        "hi" -> "प्रोफ़ाइल संपादित करें"
+        else -> "Edit Profile"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\EditProfileScreen.kt ---
+"te" -> "పూర్తి పేరు"
+        "ta" -> "முழு பெயர்"
+        "hi" -> "पूरा नाम"
+        else -> "Full Name"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\EditProfileScreen.kt ---
+"te" -> "ఇమెయిల్"
+        "ta" -> "மின்னஞ்சல்"
+        "hi" -> "ईमेल"
+        else -> "Email"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\EditProfileScreen.kt ---
+"te" -> "ఫోన్ నంబర్"
+        "ta" -> "தொலைபேசி எண்"
+        "hi" -> "फ़ोन नंबर"
+        else -> "Phone Number"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\EditProfileScreen.kt ---
+"te" -> "భాషా ప్రాధాన్యత"
+        "ta" -> "மொழி விருப்பம்"
+        "hi" -> "भाषा की प्राथमिकता"
+        else -> "Language Preference"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\EditProfileScreen.kt ---
+"te" -> "మార్పులను సేవ్ చేయండి"
+        "ta" -> "மாற்றங்களைச் சேமிக்கவும்"
+        "hi" -> "परिवर्तन सहेजें"
+        else -> "Save Changes"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\EditProfileScreen.kt ---
+"te" -> "రద్దు చేయండి"
+        "ta" -> "ரத்துசெய்"
+        "hi" -> "रद्द करें"
+        else -> "Cancel"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\EditProfileScreen.kt ---
+"te" -> "ఫోటో మార్చండి"
+        "ta" -> "புகைப்படத்தை மாற்றவும்"
+        "hi" -> "फोटो बदलें"
+        else -> "Change Photo"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ErrorsFoundScreen.kt ---
+"te" -> "లోపాలు కనుగొనబడ్డాయి"
+        "ta" -> "பிழைகள் கண்டறியப்பட்டன"
+        "hi" -> "त्रुटियाँ मिलीं"
+        else -> "Errors Found"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ErrorsFoundScreen.kt ---
+"te" -> "3 లోపాలు కనుగొనబడ్డాయి"
+        "ta" -> "3 பிழைகள் கண்டறியப்பட்டன"
+        "hi" -> "3 त्रुटियाँ मिलीं"
+        else -> "3 Errors Found"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ErrorsFoundScreen.kt ---
+"te" -> "దయచేసి వాటిని తనిఖీ చేసి సరిదిద్దండి"
+        "ta" -> "அவற்றைச் சரிபார்த்து சரிசெய்யவும்"
+        "hi" -> "कृपया जांचें और उन्हें सुधारें"
+        else -> "Please check and fix them"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ErrorsFoundScreen.kt ---
+"te" -> "లోపాలను సరిదిద్దండి"
+        "ta" -> "பிழைகளைச் சரிசெய்யவும்"
+        "hi" -> "त्रुटियाँ सुधारें"
+        else -> "Fix Errors"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ErrorsFoundScreen.kt ---
+"te" -> "సహాయం కావాలా?"
+        "ta" -> "உதவி தேவையா?"
+        "hi" -> "क्या सहायता चाहिए?"
+        else -> "NEED HELP?"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FeedbackScreen.kt ---
+"te" -> FeedbackStrings(
+                stepLabel = "ప్రశ్న",
+                ofLabel = "/",
+                cancel = "రద్దు చేయి",
+                next = "తదుపరి ప్రశ్న →",
+                previous = "మునుపటి ప్రశ్న",
+                submit = "అభిప్రాయాన్ని పంపండి",
+                backToHome = "హోమ్ పేజీకి వెళ్ళండి",
+                q1Title = "మీ మొత్తం అనుభవాన్ని ఎలా రేట్ చేస్తారు?",
+                q1Desc = "దయచేసి మీ అనుభవానికి సరిపోయే నక్షత్రాల సంఖ్యను ఎంచుకోండి.",
+                q1Hint = "రేట్ చేయడానికి నక్షత్రాలను నొక్కండి",
+                q2Title = "యాప్‌ను ఉపయోగించడం ఎంత సులభం?",
+                q2Desc = "మీ అనుభవాన్ని ఉత్తమంగా వివరించే ఎంపికను ఎంచుకోండి.",
+                q3Title = "వాయిస్ గైడెన్స్ ఎంత సహాయకరంగా ఉంది?",
+                q3Desc = "వాయిస్ గైడెన్స్ ఫీచర్‌తో మీ అనుభవాన్ని వివరించండి.",
+                q4Title = "మీరు FormSahayakను ఇతరులకు సిఫార్సు చేస్తారా?",
+                q4Desc = "మీ స్నేహితులు మరియు కుటుంబ సభ్యులకు ఈ యాప్‌ను సూచిస్తారో లేదో మాకు తెలియజేయండి.",
+                q5Title = "అదనపు వ్యాఖ్యలు",
+                q5Desc = "ఏవైనా అదనపు ఆలోచనలు లేదా సూచనలను పంచుకోండి (ఐచ్ఛికం).",
+                q5Hint = "మీకు నచ్చినవి లేదా మేము మెరుగుపరచగలవి మాకు తెలియజేయండి...",
+                successTitle = "ధన్యవాదాలు!",
+                successSubtitle = "మీ అభిప్రాయం సమర్పించబడింది",
+                thankYouTitle = "ధన్యవాదాలు!",
+                successMessage = "మీ ఆలోచనలను పంచుకోవడానికి సమయం కేటాయించినందుకు మేము మిమ్మల్ని అభినందిస్తున్నాము. మీ అభిప్రాయం FormSahayakను అందరికీ మెరుగ్గా చేయడంలో సహాయపడుతుంది.",
+                successSubmitAnother = "మరొక అభిప్రాయాన్ని సమర్పించండి",
+                optionsEase = listOf("చాలా సులభం", "సులభం", "మధ్యస్థం", "కష్టం"),
+                optionsVoice = listOf("చాలా సహాయకరం", "సహాయకరం", "కొంచెం సహాయకరం", "సహాయకరం కాదు"),
+                optionsRecommend = listOf("తప్పకుండా అవును", "బహుశా అవును", "కావచ్చు", "లేదు"),
+                placeholderText = "మీ అభిప్రాయం",
+                ratingWarning = "కొనసాగడానికి దయచేసి రేటింగ్‌ను ఎంచుకోండి"
+            )
+            "ta" -> FeedbackStrings(
+                stepLabel = "கேள்வி",
+                ofLabel = "/",
+                cancel = "ரத்துசெய்",
+                next = "அடுத்த கேள்வி →",
+                previous = "முந்தைய கேள்வி",
+                submit = "கருத்தைச் சமர்ப்பிக்கவும்",
+                backToHome = "முகப்புப் பக்கத்திற்குச் செல்லவும்",
+                q1Title = "உங்கள் ஒட்டுமொத்த அனுபவத்தை எப்படி மதிப்பிடுவீர்கள்?",
+                q1Desc = "உங்கள் அனுபவத்திற்குப் பொருத்தமான நட்சத்திரங்களின் எண்ணிக்கையைத் தேர்ந்தெடுக்கவும்.",
+                q1Hint = "மதிப்பிட நட்சத்திரங்களைத் தட்டவும்",
+                q2Title = "இந்தச் செயலியைப் பயன்படுத்துவது எவ்வளவு எளிது?",
+                q2Desc = "உங்கள் அனுபவத்தை சிறப்பாக விளக்கும் விருப்பத்தைத் தேர்ந்தெடுக்கவும்.",
+                q3Title = "குரல் வழிகாட்டுதல் எவ்வளவு உதவியாக இருந்தது?",
+                q3Desc = "குரல் வழிகாட்டுதல் அம்சத்தைப் பற்றிய உங்கள் அனுபவத்தை விவரிக்கவும்.",
+                q4Title = "FormSahayak-ஐ மற்றவர்களுக்குப் பரிந்துரைப்பீர்களா?",
+                q4Desc = "உங்கள் நண்பர்கள் மற்றும் குடும்பத்தினருக்கு இந்தச் செயலியைப் பரிந்துரைப்பீர்களா என்பதை எங்களுக்குத் தெரிவிக்கவும்.",
+                q5Title = "கூடுதல் கருத்துகள்",
+                q5Desc = "கூடுதல் எண்ணங்கள் அல்லது பரிந்துரைகளைப் பகிரவும் (விருப்பத்தேர்வு).",
+                q5Hint = "நீங்கள் விரும்புவதை அல்லது நாங்கள் மேம்படுத்த வேண்டியதை எங்களுக்குத் தெரிவிக்கவும்...",
+                successTitle = "நன்றி!",
+                successSubtitle = "உங்கள் கருத்து சமர்ப்பிக்கப்பட்டது",
+                thankYouTitle = "நன்றி!",
+                successMessage = "உங்கள் கருத்துக்களைப் பகிர நேரம் ஒதுக்கியமைக்கு நாங்கள் உங்களைப் பாராட்டுகிறோம். உங்கள் கருத்து FormSahayak-ஐ அனைவருக்கும் சிறந்ததாக மாற்ற உதவும்.",
+                successSubmitAnother = "மற்றொரு கருத்தைச் சமர்ப்பிக்கவும்",
+                optionsEase = listOf("மிகவும் எளிது", "எளிது", "மிதமானது", "கடினம்"),
+                optionsVoice = listOf("மிகவும் உதவியாக இருந்தது", "உதவியாக இருந்தது", "ஓரளவு உதவியாக இருந்தது", "உதவியாக இல்லை"),
+                optionsRecommend = listOf("நிச்சயமாக ஆம்", "அநேகமாக ஆம்", "இருக்கலாம்", "இல்லை"),
+                placeholderText = "உங்கள் கருத்து",
+                ratingWarning = "தொடர மதிப்பீட்டைத் தேர்ந்தெடுக்கவும்"
+            )
+            else -> FeedbackStrings(
+                stepLabel = "Question",
+                ofLabel = "of",
+                cancel = "Cancel",
+                next = "Next Question →",
+                previous = "← Previous Question",
+                submit = "Submit Feedback",
+                backToHome = "Go to Home",
+                q1Title = "How would you rate your overall experience?",
+                q1Desc = "Please select the number of stars that match your experience.",
+                q1Hint = "Tap stars to rate",
+                q2Title = "How easy is the app to use?",
+                q2Desc = "Select the option that best describes your experience.",
+                q3Title = "How helpful is the voice guidance?",
+                q3Desc = "What describe your experience with the voice guidance feature.",
+                q4Title = "Would you recommend FormSahayak to others?",
+                q4Desc = "Help us know if you'd suggest this app to your friends and family.",
+                q5Title = "Additional Comments",
+                q5Desc = "Share any additional thoughts or suggestions (Optional).",
+                q5Hint = "Tell us what you liked or what we can improve...",
+                successTitle = "Thank You!",
+                successSubtitle = "Your Feedback Has Been Submitted",
+                thankYouTitle = "Thank You!",
+                successMessage = "We truly appreciate you taking the time to share your thoughts. Your feedback helps us make FormSahayak better for everyone.",
+                successSubmitAnother = "Submit another feedback",
+                optionsEase = listOf("Very Easy", "Easy", "Moderate", "Difficult"),
+                optionsVoice = listOf("Very Helpful", "Helpful", "Somewhat Helpful", "Not Helpful"),
+                optionsRecommend = listOf("Yes, Definitely", "Probably Yes", "Maybe", "No"),
+                placeholderText = "Your Feedback",
+                ratingWarning = "Please select a rating to continue"
+            )
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormCompletionScreen.kt ---
+"te" -> "PDF డౌన్‌లోడ్ చేయడానికి స్టోరేజ్ అనుమతి అవసరం"
+                "ta" -> "PDF ஐப் பதிவிறக்க சேமிப்பக அனுமதி தேவை"
+                "hi" -> "पीडीएफ डाउनलोड करने के लिए स्टोरेज अनुमति की आवश्यकता है"
+                else -> "Storage permission is required to download PDF"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormCompletionScreen.kt ---
+"te" -> "విజయం!"
+        "ta" -> "வெற்றி!"
+        "hi" -> "सफलता!"
+        else -> "Success!"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormCompletionScreen.kt ---
+"te" -> "ఫారమ్ మార్గదర్శకత్వం విజయవంతంగా పూర్తయింది. మీ ఫారమ్‌లోని అన్ని ఫీల్డ్‌లను ఎలా నింపాలో ఇప్పుడు మీకు తెలుసు."
+        "ta" -> "படிவ வழிகாட்டுதல் வெற்றிகரமாக முடிந்தது. இப்போது உங்கள் படிவத்தில் உள்ள அனைத்து புலங்களையும் எவ்வாறு நிரப்புவது என்று உங்களுக்குத் தெரியும்."
+        "hi" -> "फॉर्म गाइड सफलतापूर्वक पूरी हुई। अब आप अपने फॉर्म के सभी फ़ील्ड भरना जानते हैं।"
+        else -> "Form guidance completed successfully. You now know how to fill all the fields in your form."
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormCompletionScreen.kt ---
+"te" -> "తదుపరి దశలు:"
+        "ta" -> "அடுத்த கட்டங்கள்:"
+        "hi" -> "अगले कदम:"
+        else -> "Next Steps:"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormCompletionScreen.kt ---
+"te" -> listOf(
+            "భౌతిక ఫారమ్‌ను జాగ్రత్తగా నింపండి",
+            "అన్ని సమాచారాన్ని రెండుసార్లు తనిఖీ చేయండి",
+            "నిర్దేశిత ప్రదేశంలో సంతకం చేయండి",
+            "బ్యాంకుకు సమర్పించండి"
+        )
+        "ta" -> listOf(
+            "பௌதீக படிவத்தை கவனமாக நிரப்பவும்",
+            "அனைத்து தகவல்களையும் இருமுறை சரிபார்க்கவும்",
+            "குறிக்கப்பட்ட இடத்தில் கையெழுத்திடவும்",
+            "வங்கிக்கு சமர்ப்பிக்கவும்"
+        )
+        "hi" -> listOf(
+            "भौतिक फॉर्म को ध्यान से भरें",
+            "सभी जानकारी दोबारा जांचें",
+            "निर्दिष्ट स्थान पर हस्ताक्षर करें",
+            "बैंक में जमा करें"
+        )
+        else -> listOf(
+            "Fill the physical form carefully",
+            "Double-check all information",
+            "Sign in the designated area",
+            "Submit to the bank"
+        )
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormCompletionScreen.kt ---
+"te" -> "హోమ్‌కు తిరిగి వెళ్ళండి"
+        "ta" -> "முகப்பு பக்கத்திற்கு திரும்புக"
+        "hi" -> "होम पर वापस जाएं"
+        else -> "Return to Home"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormCompletionScreen.kt ---
+"te" -> "ప్రాసెస్ అవుతోంది..."
+            "ta" -> "செயலாக்கப்படுகிறது..."
+            "hi" -> "प्रसंस्करण हो रहा है..."
+            else -> "Processing..."
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormCompletionScreen.kt ---
+"te" -> "PDF డౌన్‌లోడ్ చేయండి"
+            "ta" -> "PDF ஐப் பதிவிறக்கவும்"
+            "hi" -> "PDF डाउनलोड करें"
+            else -> "Download the pdf"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormCompletionScreen.kt ---
+"te" -> "మరొక ఫారమ్‌ను అప్‌లోడ్ చేయండి"
+        "ta" -> "மற்றொரு படிவத்தைப் பதிவேற்றவும்"
+        "hi" -> "एक और फॉर्म अपलोड करें"
+        else -> "Upload Another Form"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormCompletionScreen.kt ---
+"te" -> "ఇది ఉపయోగకరంగా అనిపించిందా? మీ స్నేహితులు మరియు కుటుంబ సభ్యులతో FormSahayakని భాగస్వామ్యం చేయండి!\n💚"
+        "ta" -> "இது பயனுள்ளதாக இருந்ததா? FormSahayak ஐ நண்பர்கள் மற்றும் குடும்பத்தினருடன் பகிர்ந்து கொள்ளுங்கள்!\n💚"
+        "hi" -> "क्या यह मददगार था? दोस्तों और परिवार के साथ\nFormSahayak शेयर करें!\n💚"
+        else -> "Found this helpful? Share\nFormSahayak with friends and family!\n💚"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormDetectedScreen.kt ---
+"te" -> "వాయిస్ గైడెన్స్ కోసం ఆడియో అనుమతి అవసరం"
+                "ta" -> "குரல் வழிகாட்டுதலுக்கு ஆடியோ அனுமதி தேவை"
+                "hi" -> "आवाज मार्गदर्शन के लिए ऑडियो अनुमति की आवश्यकता है"
+                else -> "Audio permission is required for voice guidance"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormDetectedScreen.kt ---
+"te" -> when {
+            confidence >= 90 -> "అద్భుతం"
+            confidence >= 75 -> "సిద్ధంగా ఉంది"
+            confidence >= 50 -> "పర్వాలేదు"
+            else -> "అస్పష్టంగా ఉంది"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormDetectedScreen.kt ---
+"te" -> if (viewModel.scannedPages.size > 1) "పేజీ ${viewModel.currentGuidingPageIndex + 1
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormDetectedScreen.kt ---
+"te" -> "మీరు అప్‌లోడ్ చేసిన ఫారమ్ రకాన్ని మేము గుర్తించాము"
+        "ta" -> "நீங்கள் பதிவேற்றிய படிவத்தின் வகையை நாங்கள் கண்டறிந்தோம்"
+        "hi" -> "हमने आपके द्वारा अपलोड किए गए फॉर्म के प्रकार की पहचान की है"
+        else -> "We identified the type of form you uploaded"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormDetectedScreen.kt ---
+"te" -> "గుర్తించబడిన ఫారమ్ రకం:"
+        "ta" -> "கண்டறியப்பட்ட படிவ வகை:"
+        "hi" -> "पहचाना गया फॉर्म प्रकार:"
+        else -> "Detected Form Type:"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormDetectedScreen.kt ---
+"te" -> "ఫారమ్ రకాన్ని వినండి"
+        "ta" -> "படிவ வகையைக் கேளுங்கள்"
+        "hi" -> "फॉर्म प्रकार सुनें"
+        else -> "Listen to Form Type"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormDetectedScreen.kt ---
+"te" -> "మేము ఈ ఫారమ్‌తో కొనసాగవచ్చా?"
+        "ta" -> "நாங்கள் இந்தப் படிவத்தைத் தொடரலாமா?"
+        "hi" -> "क्या हम इस फॉर्म के साथ आगे बढ़ सकते हैं?"
+        else -> "Can we proceed with this form?"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormDetectedScreen.kt ---
+"te" -> "ఫారమ్ రకం సరైనదైతే, కొనసాగడానికి 'అవును' క్లిక్ చేయండి. లేకపోతే, 'మళ్లీ స్కాన్ చేయి' క్లిక్ చేయండి."
+        "ta" -> "படிவ வகை சரியாக இருந்தால், தொடர 'ஆம்' என்பதைக் கிளிக் செய்யவும். இல்லையெனில், 'மீண்டும் ஸ்கேன் செய்' என்பதைக் கிளிக் செய்யவும்."
+        "hi" -> "यदि फॉर्म का प्रकार सही है, तो जारी रखने के लिए 'आगे बढ़ें' पर क्लिक करें। अन्यथा, फिर से अपलोड करने के लिए 'फॉर्म फिर से स्कैन करें' पर क्लिक करें।"
+        else -> "If the form type is correct, click 'Proceed' to continue. Otherwise, click 'Re-scan Form' to upload again."
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormDetectedScreen.kt ---
+"te" -> "బ్యాంక్ రకం"
+        "ta" -> "வங்கி வகை"
+        "hi" -> "बैंक का प्रकार"
+        else -> "Bank Type"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormDetectedScreen.kt ---
+"te" -> "పత్రం పేజీలు"
+        "ta" -> "ஆவணப் பக்கங்கள்"
+        "hi" -> "दस्तावेज़ पृष्ठ"
+        else -> "Document Pages"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormDetectedScreen.kt ---
+"te" -> "ఖచ్చితత్వం"
+        "ta" -> "துல்லியம்"
+        "hi" -> "विश्वास (Confidence)"
+        else -> "Confidence"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormDetectedScreen.kt ---
+"te" -> "స్థితి"
+        "ta" -> "நிலை"
+        "hi" -> "स्थिति"
+        else -> "Status"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormDetectedScreen.kt ---
+"te" -> "పేజీలు"
+        "ta" -> "பக்கங்கள்"
+        "hi" -> "पृष्ठ"
+        else -> "Pages"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormDetectedScreen.kt ---
+"te" -> "అవును, ఈ ఫారమ్‌తో కొనసాగండి"
+                                    "ta" -> "ஆம், இந்தப் படிவத்தைத் தொடரவும்"
+        "hi" -> "हां, इस फॉर्म के साथ आगे बढ़ें"
+        else -> "Yes, Proceed with this Form"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormDetectedScreen.kt ---
+"te" -> "లేదు, ఫారమ్‌ను మళ్లీ స్కాన్ చేయండి"
+                            "ta" -> "இல்லை, படிவத்தை மீண்டும் ஸகேன் செய்யவும்"
+        "hi" -> "नहीं, फॉर्म फिर से स्कैन करें"
+        else -> "No, Re-scan Form"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormDetectedScreen.kt ---
+"te" -> "తిరిగి వెళ్ళండి"
+                            "ta" -> "திரும்பி செல்"
+        "hi" -> "वापस जाएँ"
+        else -> "Go Back"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormPreviewScreen.kt ---
+"te" -> "వాయిస్ గైడెన్స్ కోసం ఆడియో అనుమతి అవసరం"
+                "ta" -> "குரல் வழிகாட்டுதலுக்கு ఆடியோ அனுமதி தேவை"
+                "hi" -> "आवाज मार्गदर्शन के लिए ऑडियो अनुमति की आवश्यकता है"
+                else -> "Audio permission is required for voice guidance"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormPreviewScreen.kt ---
+"te" -> "ఫారమ్ ప్రివ్యూ"
+        "ta" -> "படிவ முன்னோட்டம்"
+        "hi" -> "फॉर्म गाइड"
+        else -> "Form Guide"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormPreviewScreen.kt ---
+"te" -> "తదుపరి"
+        "ta" -> "அடுத்து"
+        "hi" -> "अगला"
+        else -> "Next"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormPreviewScreen.kt ---
+"te" -> "మునుపటి"
+        "ta" -> "முந்தைய"
+        "hi" -> "पिछला"
+        else -> "Previous"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormPreviewScreen.kt ---
+"te" -> "పూర్తయింది"
+        "ta" -> "முடிந்தது"
+        "hi" -> "समाप्त करें"
+        else -> "Finish"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormPreviewScreen.kt ---
+"te" -> "సూచన మళ్ళీ వినండి"
+                        "ta" -> "அறிவுறுத்தலை மீண்டும் கேளுங்கள்"
+                        "hi" -> "निर्देश दोबारा सुनें"
+                        else -> "Listen Again"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormsScreen.kt ---
+"te" -> "నా ఫారమ్‌లు"
+        "ta" -> "எனது படிவங்கள்"
+        "hi" -> "मेरे फॉर्म्स"
+        else -> "My Forms"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormsScreen.kt ---
+"te" -> "ఫారమ్‌ల కోసం వెతకండి..."
+        "ta" -> "படிவங்களைத் தேடுங்கள்..."
+        "hi" -> "फॉर्म खोजें..."
+        else -> "Search forms..."
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\FormsScreen.kt ---
+"te" -> "ఫారమ్ చరిత్ర"
+        "ta" -> "படிவ வரலாறு"
+        "hi" -> "फॉर्म्स इतिहास"
+        else -> "Forms History"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\GrantPermissionsScreen.kt ---
+"te" -> "కొనసాగడానికి అన్ని అనుమతులు అవసరం"
+                "ta" -> "தொடர அனைத்து அனுமதிகளும் தேவை"
+        "hi" -> "जारी रखने के लिए सभी अनुमतियों की आवश्यकता है"
+        else -> "All permissions are required to continue"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\GrantPermissionsScreen.kt ---
+"te" -> "అనుమతులు మంజూరు చేయండి"
+                    "ta" -> "அனுமதிகளை வழங்கவும்"
+        "hi" -> "अनुमतियाँ दें"
+        else -> "Grant Permissions"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\GrantPermissionsScreen.kt ---
+"te" -> "ఫారమ్‌లను పూరించడంలో మీకు సహాయం చేయడానికి FormSahayakకు ఈ అనుమతులు అవసరం"
+                    "ta" -> "படிவங்களை நிரப்ப உங்களுக்கு உதவ FormSahayak-க்கு இந்த அனுமதிகள் தேவை"
+        "hi" -> "फॉर्म भरने में आपकी मदद करने के लिए FormSahayak को इन अनुमतियों की आवश्यकता है"
+        else -> "FormSahayak needs these permissions to help you fill forms"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\GrantPermissionsScreen.kt ---
+"te" -> "గోప్యత మొదట: "; "ta" -> "தனியுரிமை முதலில்: "; else -> "Privacy First: "
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\GrantPermissionsScreen.kt ---
+"te" -> "మీ డేటా మీ పరికరంలోనే ఉంటుంది. మేము మీకు సహాయం చేయడానికి మాత్రమే ఈ అనుమతులను ఉపయోగిస్తాము."
+                    "ta" -> "உங்கள் தரவு உங்கள் சாதனத்திலேயே இருக்கும். உங்களுக்கு உதவ மட்டுமே இந்த அனுமதிகளைப் பயன்படுத்துகிறோம்."
+        "hi" -> "आपका डेटा आपके डिवाइस पर रहता है। हम केवल आपकी मदद के लिए इन अनुमतियों का उपयोग करते हैं।"
+        else -> "Your data stays on your device. We only use these permissions to help you."
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\GrantPermissionsScreen.kt ---
+"te" -> "కెమెరా యాక్సెస్"; "ta" -> "கேமரா அணுகல்"; else -> "Camera Access"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\GrantPermissionsScreen.kt ---
+"te" -> "పత్రాలను స్కాన్ చేయడానికి అవసరం"; "ta" -> "ஆவணங்களை ஸ்கேன் செய்ய தேவை"; else -> "Required to scan documents"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\GrantPermissionsScreen.kt ---
+"te" -> "స్టోరేజ్ యాక్సెస్"; "ta" -> "சேமிப்பக அணுகல்"; else -> "Storage Access"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\GrantPermissionsScreen.kt ---
+"te" -> "పత్రాలను సేవ్ చేయడానికి అవసరం"; "ta" -> "ஆவணங்களைச் சேமிக்க தேவை"; else -> "Required to save documents"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\GrantPermissionsScreen.kt ---
+"te" -> "మైక్రోఫోన్ యాక్సెస్"; "ta" -> "மைக்ரோஃபோன் அணுகல்"; else -> "Microphone Access"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\GrantPermissionsScreen.kt ---
+"te" -> "వాయిస్ గైడెన్స్ కోసం అవసరం"; "ta" -> "குரல் வழிகாட்டுதலுக்கு தேவை"; else -> "Required for voice guidance"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\GrantPermissionsScreen.kt ---
+"te" -> "యాప్ పని చేయడానికి అన్ని అనుమతులు అవసరం"
+                    "ta" -> "பயன்பாடு செயல்பட அனைத்து அனுமதிகளும் தேவை"
+        "hi" -> "ऐप को ठीक से काम करने के लिए सभी अनुमतियों की आवश्यकता है"
+        else -> "All permissions are required for the app to work properly"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\GrantPermissionsScreen.kt ---
+"te" -> "అన్ని అనుమతులను మంజూరు చేయండి"; "ta" -> "அனைத்து அனுமதிகளையும் வழங்கவும்"; else -> "Grant All Permissions"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\GrantPermissionsScreen.kt ---
+"te" -> "కొనసాగండి"; "ta" -> "தொடரவும்"; else -> "Continue"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\GrantPermissionsScreen.kt ---
+"te" -> "సెట్టింగ్స్ నుండి అనుమతించండి"
+                    "ta" -> "அமைப்புகளிலிருந்து அனுமதிக்கவும்"
+        "hi" -> "पॉप-अप नहीं दिख रहा? सेटिंग्स खोलें"
+        else -> "Can't see pop-up? Open Settings"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\GrantPermissionsScreen.kt ---
+"te" -> "తిరిగి వెళ్ళండి"; "ta" -> "திரும்பி செல்"; else -> "Go Back"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\GrantPermissionsScreen.kt ---
+"te" -> "అనుమతి ఇవ్వబడింది ✅"; "ta" -> "அனுமதி வழங்கப்பட்டது ✅"; else -> "Permission Granted ✅"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\GrantPermissionsScreen.kt ---
+"te" -> "అనుమతి ఇవ్వండి"; "ta" -> "அனுமதி வழங்கவும்"; else -> "Grant Permission"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\HowToUseScreen.kt ---
+"te" -> HowToUseStrings(
+            title = "ఎలా ఉపయోగించాలి",
+            welcomeText = "FormSahayak కి స్వాగతం!",
+            subtitleText = "మీ బ్యాంక్ ఫారమ్‌లను సులభంగా నింపడానికి ఈ సాధారణ దశలను అనుసరించండి",
+            videoTutorialTitle = "వీడియో ట్యుటోరియల్",
+            videoTutorialDesc = "ఫారమ్ సహాయక్ ఎలా ఉపయోగించాలో తెలుసుకోవడానికి ఈ ఉపయోగకరమైన వీడియో గైడ్‌ని చూడండి.",
+            videoTutorialTapText = "పూర్తి వీడియో ట్యుటోరియల్ చూడటానికి నొక్కండి",
+            step1Title = "ఫారమ్ చిత్రాన్ని అప్‌లోడ్ చేయండి",
+            step1Desc = "మీ బ్యాంక్ ఫారమ్ ఫోటో తీయండి లేదా గ్యాలరీ నుండి అప్‌లోడ్ చేయండి. చిత్రం స్పష్టంగా మరియు బాగా వెలిగి ఉండేలా చూసుకోండి.",
+            step2Title = "యాప్ ఫీల్డ్‌లను గుర్తిస్తుంది",
+            step2Desc = "ఫారమ్ సహాయక్ స్వయంచాలకంగా మీరు ఫారమ్‌లో పూరించాల్సిన అన్ని ఫీల్డ్‌లను గుర్తిస్తుంది మరియు హైలైట్ చేస్తుంది.",
+            step3Title = "వాయిస్ సూచనలను అనుసరించండి",
+            step3Desc = "ప్రతి ఫీల్డ్‌లో ఏమి రాయాలో వివరించే మీ భాషలోని వాయిస్ గైడెన్స్‌ని వినండి.",
+            step4Title = "ఫారమ్‌ను సరిగ్గా నింపండి",
+            step4Desc = "అన్ని ఫీల్డ్‌లను ఖచ్చితంగా పూరించడానికి మరియు మీ బ్యాంక్ ఫారమ్‌ను పూర్తి చేయడానికి యాప్ మార్గదర్శకత్వాన్ని ఉపయోగించండి.",
+            needMoreHelpTitle = "మరింత సహాయం కావాలా?",
+            contactSupportText = "సహాయం కోసం మా మద్దతు బృందాన్ని సంప్రదించండి",
+            shareExperienceTitle = "మీ అనుభవాన్ని పంచుకోండి",
+            shareExperienceDesc = "మీ విలువైన అభిప్రాయంతో ఫారమ్ సహాయక్ మెరుగుపరచడంలో మాకు సహాయపడండి.",
+            giveFeedbackButtonText = "అభిప్రాయాన్ని తెలియజేయండి",
+            gotItButtonText = "అర్థమైంది!"
+        )
+        "ta" -> HowToUseStrings(
+            title = "எப்படி பயன்படுத்துவது",
+            welcomeText = "FormSahayak-க்கு வரவேற்கிறோம்!",
+            subtitleText = "உங்கள் வங்கி படிவங்களை எளிதாக நிரப்ப இந்த எளிய வழிமுறைகளை பின்பற்றவும்",
+            videoTutorialTitle = "வீடியோ டுடோரியல்",
+            videoTutorialDesc = "FormSahayak ஐ எவ்வாறு பயன்படுத்துவது என்பதை அறிய இந்த பயனுள்ள வீடியோ வழிகாட்டியைப் பார்க்கவும்.",
+            videoTutorialTapText = "முழு வீடியோ டுடோரியலைப் பார்க்க தட்டவும்",
+            step1Title = "படிவப் படத்தைப் பதிவேற்றவும்",
+            step1Desc = "உங்கள் வங்கி படிவத்தின் புகைப்படத்தை எடுக்கவும் அல்லது கேலரியில் இருந்து பதிவேற்றவும். படம் தெளிவாகவும் வெளிச்சமாகவும் இருப்பதை உறுதி செய்யவும்.",
+            step2Title = "ஆப் புலங்களைக் கண்டறியும்",
+            step2Desc = "FormSahayak நீங்கள் படிவத்தில் நிரப்ப வேண்டிய அனைத்து புலங்களையும் தானாகவே கண்டறிந்து முன்னிலைப்படுத்தும்.",
+            step3Title = "குரல் வழிமுறைகளைப் பின்பற்றவும்",
+            step3Desc = "ஒவ்வொரு புலத்திலும் என்ன எழுத வேண்டும் என்பதை விளக்கும் உங்கள் மொழியில் குரல் வழிகாட்டுதலைக் கேளுங்கள்.",
+            step4Title = "படிவத்தை சரியாக நிரப்பவும்",
+            step4Desc = "அனைத்து புலங்களையும் துல்லியமாக நிரப்பவும் உங்கள் வங்கி படிவத்தை பூர்த்தி செய்யவும் பயன்பாட்டின் வழிகாட்டுதலைப் பயன்படுத்தவும்.",
+            needMoreHelpTitle = "மேலும் உதவி வேண்டுமா?",
+            contactSupportText = "உதவிக்கு எங்கள் ஆதரவு குழுவை தொடர்பு கொள்ளவும்",
+            shareExperienceTitle = "உங்கள் அனுபவத்தைப் பகிரவும்",
+            shareExperienceDesc = "உங்கள் மதிப்புமிக்க கருத்துக்களுடன் FormSahayak ஐ மேம்படுத்த எங்களுக்கு உதவுங்கள்.",
+            giveFeedbackButtonText = "கருத்து தெரிவிக்கவும்",
+            gotItButtonText = "புரிந்தது!"
+        )
+        else -> HowToUseStrings(
+            title = "How to Use",
+            welcomeText = "Welcome to FormSahayak!",
+            subtitleText = "Follow these simple steps to fill your bank forms easily",
+            videoTutorialTitle = "Video Tutorial",
+            videoTutorialDesc = "Watch this helpful video guide to learn how to use FormSahayak.",
+            videoTutorialTapText = "Tap to watch full video tutorial",
+            step1Title = "Upload Form Image",
+            step1Desc = "Take a photo of your bank form or upload from gallery. Make sure the image is clear and well-lit.",
+            step2Title = "App Detects Fields",
+            step2Desc = "FormSahayak automatically identifies and highlights all the fields you need to fill in the form.",
+            step3Title = "Follow Voice Instructions",
+            step3Desc = "Listen to voice guidance in your language that explains what to write in each field.",
+            step4Title = "Fill Form Correctly",
+            step4Desc = "Use the app's guidance to fill all fields accurately and complete your bank form.",
+            needMoreHelpTitle = "Need More Help?",
+            contactSupportText = "Contact our support team for assistance",
+            shareExperienceTitle = "Share Your Experience",
+            shareExperienceDesc = "Help us improve FormSahayak with your valuable feedback.",
+            giveFeedbackButtonText = "Give Feedback",
+            gotItButtonText = "Got It!"
+        )
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ImageUnclearScreen.kt ---
+"te" -> "చిత్రం అస్పష్టంగా ఉంది"
+        "ta" -> "படம் தெளிவாக இல்லை"
+        "hi" -> "छवि अस्पष्ट है"
+        else -> "Image is Unclear"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ImageUnclearScreen.kt ---
+"te" -> "అప్‌లోడ్ చేసిన చిత్రం మసకగా లేదా అస్పష్టంగా ఉంది. దయచేసి ఫారమ్ యొక్క స్పష్టమైన ఫోటోను అప్‌లోడ్ చేయండి."
+        "ta" -> "பதிவேற்றப்பட்ட படம் மங்கலாக அல்லது தெளிவாக இல்லை. படிவத்தின் தெளிவான புகைப்படத்தைப் பதிவேற்றவும்."
+        "hi" -> "अपलोड की गई छवि धुंधली या अस्पष्ट है। कृपया फॉर्म की स्पष्ट फोटो अपलोड करें।"
+        else -> "The uploaded image is blurry or unclear. Please upload a clear photo of the form."
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ImageUnclearScreen.kt ---
+"te" -> "మెరుగైన చిత్రాల కోసం చిట్కాలు:"
+        "ta" -> "சிறந்த படங்களுக்கான உதவிக்குறிப்புகள்:"
+        "hi" -> "बेहतर छवियों के लिए टिप्स:"
+        else -> "Tips for better images:"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ImageUnclearScreen.kt ---
+"te" -> "ఫారమ్ బాగా వెలిగి ఉండేలా చూసుకోండి"
+        "ta" -> "படிவம் வெளிச்சமாக இருப்பதை உறுதி செய்யவும்"
+        "hi" -> "सुनिश्चित करें कि फॉर्म पर पर्याप्त रोशनी है"
+        else -> "Make sure the form is well-lit"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ImageUnclearScreen.kt ---
+"te" -> "మీ ఫోన్‌ను నిలకడగా పట్టుకోండి"
+        "ta" -> "உங்கள் தொலைபேசியை நிலையாக வைத்திருக்கவும்"
+        "hi" -> "अपने फ़ोन को स्थिर रखें"
+        else -> "Hold your phone steady"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ImageUnclearScreen.kt ---
+"te" -> "అన్ని ఫీల్డ్‌లు కనిపిస్తున్నాయని నిర్ధారించుకోండి"
+        "ta" -> "அனைத்து புலங்களும் தெரிவதை உறுதி செய்யவும்"
+        "hi" -> "सुनिश्चित करें कि सभी फ़ील्ड दिखाई दे रहे हैं"
+        else -> "Ensure all fields are visible"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ImageUnclearScreen.kt ---
+"te" -> "ఫారమ్‌పై నీడలు పడకుండా చూసుకోండి"
+        "ta" -> "படிவத்தில் நிழல்கள் விழுவதைத் தவிர்க்கவும்"
+        "hi" -> "फॉर्म पर परछाई से बचें"
+        else -> "Avoid shadows on the form"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ImageUnclearScreen.kt ---
+"te" -> "మళ్లీ ప్రయత్నించండి"
+        "ta" -> "மீண்டும் முயற்சிக்கவும்"
+        "hi" -> "पुनः प्रयास करें"
+        else -> "Try Again"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ImageUnclearScreen.kt ---
+"te" -> "హోమ్‌కి తిరిగి వెళ్ళు"
+        "ta" -> "முகப்புக்குத் திரும்பு"
+        "hi" -> "होम पर वापस जाएं"
+        else -> "Back to Home"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\LanguageSelectionScreen.kt ---
+"te" -> "భాషను ఎంచుకోండి"
+                "ta" -> "மொழியைத் தேர்ந்தெடுக்கவும்"
+        "hi" -> "भाषा चुनें"
+        else -> "Select Language"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\LanguageSelectionScreen.kt ---
+"te" -> "కొనసాగండి"
+                "ta" -> "தொடரவும்"
+        "hi" -> "जारी रखें"
+        else -> "Continue"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\LoginScreen.kt ---
+"te" -> "స్వాగతం"
+        "ta" -> "வரவேற்கிறோம்"
+        "hi" -> "वापसी पर स्वागत है"
+        else -> "Welcome Back"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\LoginScreen.kt ---
+"te" -> "కొనసాగడానికి లాగిన్ చేయండి"
+        "ta" -> "தொடர உள்நுழையவும்"
+        "hi" -> "जारी रखने के लिए लॉगिन करें"
+        else -> "Login to continue"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\LoginScreen.kt ---
+"te" -> "ఈమెయిల్"
+        "ta" -> "மின்னஞ்சல்"
+        "hi" -> "ईमेल"
+        else -> "Email"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\LoginScreen.kt ---
+"te" -> "పాస్‌వర్డ్"
+        "ta" -> "கடவுச்சொல்"
+        "hi" -> "पासवर्ड"
+        else -> "Password"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\LoginScreen.kt ---
+"te" -> "పాస్‌వర్డ్ మర్చిపోయారా?"
+        "ta" -> "கடவுச்சொல்லை மறந்துவிட்டீர்களா?"
+        "hi" -> "पासवर्ड भूल गए?"
+        else -> "Forgot Password?"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\LoginScreen.kt ---
+"te" -> "లాగిన్"
+        "ta" -> "உள்நுழை"
+        "hi" -> "लॉगिन"
+        else -> "Login"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\LoginScreen.kt ---
+"te" -> "ఖాతా లేదా? "
+        "ta" -> "கணக்கு இல்லையா? "
+        "hi" -> "क्या आपके पास खाता नहीं है? "
+        else -> "Don't have an account? "
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\LoginScreen.kt ---
+"te" -> "సైన్ అప్"
+        "ta" -> "பதிவுபெறு"
+        "hi" -> "साइन अप"
+        else -> "Sign Up"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\NavigateFieldsScreen.kt ---
+"te" -> "వాయిస్ గైడెన్స్ కోసం ఆడియో అనుమతి అవసరం"
+                "ta" -> "గురల్ వళిగాట్టుదలుక్కు ఆడియో అనుమతి తేవై"
+                "hi" -> "आवाज मार्गदर्शन के लिए ऑडियो अनुमति की आवश्यकता है"
+                else -> "Audio permission is required for voice guidance"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\NavigateFieldsScreen.kt ---
+"te" -> "ఫీల్డ్లను నావిగేట్ చేయండి"
+        "ta" -> "புலங்களை வழிநடத்துங்கள்"
+        "hi" -> "फ़ील्ड नेविगेट करें"
+        else -> "Navigate Fields"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\NavigateFieldsScreen.kt ---
+"te" -> "మార్గదర్శకం"
+        "ta" -> "வழிகாட்டி"
+        "hi" -> "गाइड"
+        else -> "Guide"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\OnboardingScreen.kt ---
+"te" -> "బ్యాంక్ ఫారమ్‌లను స్కాన్ చేయండి"
+                "ta" -> "வங்கி படிவங்களை ஸ்கேன் செய்யுங்கள்"
+        "hi" -> "बैंक फॉर्म स्कैन करें"
+        else -> "Scan Bank Forms"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\OnboardingScreen.kt ---
+"te" -> "బ్యాంక్ ఫారమ్‌లను సులభంగా స్కాన్ చేయడానికి మీ ఫోన్ కెమెరాను ఉపయోగించండి"
+                "ta" -> "வங்கி படிவங்களை எளிதாக ஸ்கேன் செய்ய உங்கள் தொலைபேசி கேமராவைப் பயன்படுத்தவும்"
+        "hi" -> "बैंक फॉर्म को आसानी से स्कैन करने के लिए अपने फोन कैमरे का उपयोग करें"
+        else -> "Use your phone camera to scan bank forms easily"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\OnboardingScreen.kt ---
+"te" -> "ముఖ్యాంశాలు"
+                "ta" -> "சிறப்பம்சங்கள்"
+        "hi" -> "हाइलाइट किए गए फ़ील्ड"
+        else -> "Highlighted Fields"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\OnboardingScreen.kt ---
+"te" -> "మీరు నింపాల్సిన ముఖ్యమైన ఫీల్డ్‌లను యాప్ హైలైట్ చేస్తుంది"
+                "ta" -> "நீங்கள் நிரப்ப வேண்டிய முக்கியமான புலங்களை ஆப்ஸ் சிறப்பித்துக் காட்டுகிறது"
+        "hi" -> "ऐप उन महत्वपूर्ण फ़ील्ड को हाइलाइट करता है जिन्हें आपको भरना है"
+        else -> "App highlights important fields you need to fill"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\OnboardingScreen.kt ---
+"te" -> "వాయిస్ గైడెన్స్"
+                "ta" -> "குரல் வழிகாட்டுதல்"
+        "hi" -> "ध्वनि मार्गदर्शन"
+        else -> "Voice Guidance"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\OnboardingScreen.kt ---
+"te" -> "మీ ప్రాంతీయ భాషలో వాయిస్ సూచనలను పొందండి"
+                "ta" -> "உங்கள் பிராந்திய மொழியில் குரல் வழிமுறைகளைப் பெறுங்கள்"
+        "hi" -> "अपनी क्षेत्रीय भाषा में ध्वनि निर्देश प्राप्त करें"
+        else -> "Get voice instructions in your regional language"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\OnboardingScreen.kt ---
+"te" -> "వదిలేయండి"
+        "ta" -> "தவிர்"
+        "hi" -> "छोड़ें"
+        else -> "Skip"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\OnboardingScreen.kt ---
+"te" -> "తదుపరి >"
+        "ta" -> "அடுத்து >"
+        "hi" -> "अगला >"
+        else -> "Next >"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\OnboardingScreen.kt ---
+"te" -> "ప్రారంభించండి >"
+        "ta" -> "தொடங்குங்கள் >"
+        "hi" -> "शुरू करें >"
+        else -> "Get Started >"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\PasswordUpdatedSuccessScreen.kt ---
+"te" -> "పాస్‌వర్డ్ విజయవంతంగా రీసెట్ చేయబడింది!"
+        "ta" -> "கடவுச்சொல் வெற்றிகரமாக மீட்டமைக்கப்பட்டது!"
+        "hi" -> "पासवर्ड सफलतापूर्वक\nरीसेट हो गया!"
+        else -> "Password Reset\nSuccessfully!"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\PasswordUpdatedSuccessScreen.kt ---
+"te" -> "మీ పాస్‌వర్డ్ మార్చబడింది"
+        "ta" -> "உங்கள் கடவுச்சொல் மாற்றப்பட்டுள்ளது"
+        "hi" -> "आपका पासवर्ड बदल दिया गया है"
+        else -> "Your password has been changed"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\PasswordUpdatedSuccessScreen.kt ---
+"te" -> "మీరు ఇప్పుడు మీ కొత్త పాస్‌వర్డ్‌తో లాగిన్ చేయవచ్చు"
+        "ta" -> "நீங்கள் இப்போது உங்கள் புதிய கடவுச்சொல்லுடன் உள்நுழையலாம்"
+        "hi" -> "अब आप अपने नए\nपासवर्ड के साथ लॉगिन कर सकते हैं"
+        else -> "You can now login with your new\npassword"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\PasswordUpdatedSuccessScreen.kt ---
+"te" -> "లాగిన్‌కి తిరిగి వెళ్లండి"
+        "ta" -> "உள்நுழைவுக்குத் திரும்பு"
+        "hi" -> "लॉगिन पर वापस जाएं"
+        else -> "Back to Login"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ProfileScreen.kt ---
+"te" -> "ప్రొఫైల్"
+        "ta" -> "சுயவிவரம்"
+        "hi" -> "प्रोफ़ाइल"
+        else -> "Profile"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ProfileScreen.kt ---
+"te" -> "ప్రీమియం సభ్యుడు"
+        "ta" -> "பிரீமியம் உறுப்பினர்"
+        "hi" -> "प्रीमियम सदस्य"
+        else -> "Premium Member"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ProfileScreen.kt ---
+"te" -> "వ్యక్తిగత సమాచారం"
+        "ta" -> "தனிப்பட்ட தகவல்"
+        "hi" -> "व्यक्तिगत जानकारी"
+        else -> "Personal Information"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ProfileScreen.kt ---
+"te" -> "ఇమెయిల్"
+        "ta" -> "மின்னஞ்சல்"
+        "hi" -> "ईमेल"
+        else -> "Email"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ProfileScreen.kt ---
+"te" -> "ఫోన్ నంబర్"
+        "ta" -> "தொலைபேசி எண்"
+        "hi" -> "फ़ोन नंबर"
+        else -> "Phone Number"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ProfileScreen.kt ---
+"te" -> "భాషా ప్రాధాన్యత"
+        "ta" -> "மொழி விருப்பம்"
+        "hi" -> "भाषा की प्राथमिकता"
+        else -> "Language Preference"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ProfileScreen.kt ---
+"te" -> "ప్రొఫైల్ సవరించు"
+        "ta" -> "சுயவிவரத்தைத் திருத்து"
+        "hi" -> "प्रोफ़ाइल संपादित करें"
+        else -> "Edit Profile"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ProfileScreen.kt ---
+"te" -> "పాస్‌వర్డ్ మార్చండి"
+        "ta" -> "கடவுச்சொல்லை மாற்றவும்"
+        "hi" -> "पासवर्ड बदलें"
+        else -> "Change Password"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ProfileScreen.kt ---
+"te" -> "లాగ్ అవుట్"
+        "ta" -> "வெளியேறு"
+        "hi" -> "लॉग आउट"
+        else -> "Logout"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\RegistrationSuccessScreen.kt ---
+"te" -> "విజయవంతంగా\nనమోదయ్యారు! 🎉"
+        "ta" -> "வெற்றிகரமாக\nபதிவு செய்யப்பட்டது! 🎉"
+        "hi" -> "सफलतापूर्वक\nपंजीकृत! 🎉"
+        else -> "Registered\nSuccessfully! 🎉"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\RegistrationSuccessScreen.kt ---
+"te" -> "మీ ఖాతా సృష్టించబడింది"
+        "ta" -> "உங்கள் கணக்கு உருவாக்கப்பட்டது"
+        "hi" -> "आपका खाता बन गया है"
+        else -> "Your account has been created"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\RegistrationSuccessScreen.kt ---
+"te" -> "లాగిన్‌కి తిరిగి వెళ్లండి"
+        "ta" -> "உள்நுழைவுக்குத் திரும்பு"
+        "hi" -> "लॉगिन पर वापस जाएं"
+        else -> "Back to Login"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ResetPasswordScreen.kt ---
+"te" -> if (isChangePassword) "పాస్‌వర్డ్ మార్చండి" else "పాస్‌వర్డ్ రీసెట్ చేయండి"
+        "ta" -> if (isChangePassword) "கடவுச்சொல்லை மாற்றவும்" else "கடவுச்சொல்லை மீட்டமைக்கவும்"
+        "hi" -> if (isChangePassword) "पासवर्ड बदलें" else "Reset Password"
+        else -> if (isChangePassword) "Change Password" else "Reset Password"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ResetPasswordScreen.kt ---
+"te" -> "మీ ఖాతా కోసం కొత్త పాస్‌వర్డ్‌ను సృష్టించండి"
+        "ta" -> "உங்கள் கணக்கிற்கு புதிய கடவுச்சொல்லை உருவாக்கவும்"
+        "hi" -> "अपने खाते के लिए नया पासवर्ड बनाएँ"
+        else -> "Create a new password for your account"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ResetPasswordScreen.kt ---
+"te" -> "కొత్త పాస్‌వర్డ్"
+        "ta" -> "புதிய கடவுச்சொல்"
+        "hi" -> "नया पासवर्ड"
+        else -> "New Password"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ResetPasswordScreen.kt ---
+"te" -> "కొత్త పాస్‌వర్డ్‌ను నమోదు చేయండి"
+        "ta" -> "புதிய கடவுச்சொல்லை உள்ளிடவும்"
+        "hi" -> "नया पासवर्ड दर्ज करें"
+        else -> "Enter new password"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ResetPasswordScreen.kt ---
+"te" -> "పాస్‌వర్డ్‌ను ధృవీకరించండి"
+        "ta" -> "கடவுச்சொல்லை உறுதிப்படுத்தவும்"
+        "hi" -> "पासवर्ड की पुष्टि करें"
+        else -> "Confirm Password"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ResetPasswordScreen.kt ---
+"te" -> "కొత్త పాస్‌వర్డ్‌ను ధృవీకరించండి"
+        "ta" -> "புதிய கடவுச்சொல்லை உறுதிப்படுத்தவும்"
+        "hi" -> "नए पासवर्ड की पुष्टि करें"
+        else -> "Confirm new password"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ResetPasswordScreen.kt ---
+"te" -> if (isChangePassword) "పాస్‌వర్డ్ మార్చండి" else "పాస్‌వర్డ్ రీసెట్ చేయండి"
+        "ta" -> if (isChangePassword) "கடவுச்சொல்லை மாற்றவும்" else "கடவுச்சொல்லை மீட்டமைக்கவும்"
+        "hi" -> if (isChangePassword) "Update Password" else "Reset Password"
+        else -> if (isChangePassword) "Update Password" else "Reset Password"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\ResetPasswordScreen.kt ---
+"te" -> if (isChangePassword) "తిరిగి వెళ్ళండి" else "లాగిన్‌కి తిరిగి వెళ్లండి"
+        "ta" -> if (isChangePassword) "மீண்டும் செல்" else "உள்நுழைவுக்குத் திரும்பு"
+        "hi" -> if (isChangePassword) "Back to Profile" else "लॉगिन पर वापस जाएं"
+        else -> if (isChangePassword) "Back to Profile" else "Back to Login"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\UploadFormScreen.kt ---
+"te" -> "ఫారమ్‌ను అప్‌లోడ్ చేయండి"
+        "ta" -> "படிவத்தைப் பதிவேற்றவும்"
+        "hi" -> "फॉर्म अपलोड करें"
+        else -> "Upload Form"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\UploadFormScreen.kt ---
+"te" -> "స్పష్టమైన ఫోటో తీయండి లేదా గ్యాలరీ నుండి అప్‌లోడ్ చేయండి"
+        "ta" -> "தெளிவான புகைப்படத்தை எடுக்கவும் அல்லது கேலரியில் இருந்து பதிவேற்றவும்"
+        "hi" -> "स्पष्ट फोटो लें या गैलरी\nसे अपलोड करें"
+        else -> "Take a clear photo or upload\nfrom gallery"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\UploadFormScreen.kt ---
+"te" -> "కెమెరా"
+        "ta" -> "கேமரா"
+        "hi" -> "कैमरा"
+        else -> "Camera"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\UploadFormScreen.kt ---
+"te" -> "గ్యాలరీ"
+        "ta" -> "கேலரி"
+        "hi" -> "गैलरी"
+        else -> "Gallery"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\UploadFormScreen.kt ---
+"te" -> "ఉత్తమ ఫలితాల కోసం చిట్కాలు"
+        "ta" -> "சிறந்த முடிவுகளுக்கான உதவிக்குறிப்புகள்"
+        "hi" -> "बेहतर परिणामों के लिए टिप्स"
+        else -> "Tips for best results"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\UploadFormScreen.kt ---
+"te" -> "కెమెరా అనుమతి అవసరం"
+                "ta" -> "கேமரா அனுமதி தேவை"
+                "hi" -> "कैमरा अनुमति की आवश्यकता है"
+                else -> "Camera permission is required to scan forms"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\UploadFormScreen.kt ---
+"te" -> "స్టోరేజ్ అనుమతి అవసరం"
+                "ta" -> "சேமிப்பக அனுமதி தேவை"
+                "hi" -> "स्टोरेज अनुमति की आवश्यकता है"
+                else -> "Storage permission is required to select forms"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\VerifyingFormScreen.kt ---
+"te" -> "ఫారమ్‌ను ధృవీకరిస్తోంది"
+        "ta" -> "படிவத்தைச் சரிபார்க்கிறது"
+        "hi" -> "फॉर्म सत्यापित हो रहा है"
+        else -> "Verifying Form"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\VerifyingFormScreen.kt ---
+"te" -> "దయచేసి వేచి ఉండండి..."
+        "ta" -> "தயவுசெய்து காத்திருங்கள்..."
+        "hi" -> "कृपया प्रतीक्षा करें..."
+        else -> "Please wait..."
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\VerifyingFormScreen.kt ---
+"te" -> "పూర్తి పేరు"
+        "ta" -> "முழு பெயர்"
+        "hi" -> "पूरा नाम"
+        else -> "Full Name"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\VerifyingFormScreen.kt ---
+"te" -> "ఖాతా సంఖ్య"
+        "ta" -> "கணக்கு எண்"
+        "hi" -> "खाता संख्या"
+        else -> "Account Number"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\VerifyingFormScreen.kt ---
+"te" -> "చిరునామా"
+        "ta" -> "முகவரி"
+        "hi" -> "पता"
+        else -> "Address"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\VerifyingFormScreen.kt ---
+"te" -> "సంతకం"
+        "ta" -> "கையெழுத்து"
+        "hi" -> "हस्ताक्षर"
+        else -> "Signature"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\VerifyOtpScreen.kt ---
+"te" -> "OTPని ధృవీకరించండి"
+        "ta" -> "OTP ஐச் சரிபார்க்கவும்"
+        "hi" -> "OTP सत्यापित करें"
+        else -> "Verify OTP"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\VerifyOtpScreen.kt ---
+"te" -> "కోడ్ పంపబడింది: "
+        "ta" -> "குறியீடு அனுப்பப்பட்டது: "
+        "hi" -> "कोड भेजा गया: "
+        else -> "Code sent to: "
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\VerifyOtpScreen.kt ---
+"te" -> "ధృవీకరించండి"
+        "ta" -> "சரிபார்க்கவும்"
+        "hi" -> "OTP सत्यापित करें"
+        else -> "Verify OTP"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\VerifyOtpScreen.kt ---
+"te" -> "కోడ్ రాలేదా? మళ్లీ పంపండి"
+        "ta" -> "குறியீடு வரவில்லையா? மீண்டும் அனுப்பவும்"
+        "hi" -> "कोड नहीं मिला? OTP फिर से भेजें"
+        else -> "Didn't receive code? Resend OTP"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\VideoTutorialScreen.kt ---
+"te" -> VideoTutorialStrings(
+            title = "ఫారమ్ సహాయక్ ఎలా ఉపయోగించాలి",
+            videoStatus = "వీడియో ప్లే అవుతోంది",
+            aboutTitle = "ఈ ట్యుటోరియల్ గురించి",
+            aboutDesc = "ఈ సమగ్ర వీడియో గైడ్ మీకు ఫారమ్ సహాయక్ యొక్క అన్ని ఫీచర్ల ద్వారా నడిపిస్తుంది, మీకు ఎలా చేయాలో చూపుతుంది:",
+            points = listOf(
+                "బ్యాంక్ ఫారమ్‌లను అప్‌లోడ్ చేయండి మరియు స్కాన్ చేయండి",
+                "మీకు నచ్చిన భాషలో వాయిస్ గైడెన్స్‌ని ఉపయోగించండి",
+                "ఫారమ్ ఫీల్డ్‌ల ద్వారా సులభంగా నావిగేట్ చేయండి",
+                "ఫారమ్‌లను సరిగ్గా పూర్తి చేయండి మరియు సమర్పించండి"
+            )
+        )
+        "ta" -> VideoTutorialStrings(
+            title = "FormSahayak ఐ எவ்வாறு பயன்படுத்துவது",
+            videoStatus = "வீடியோ இயங்குகிறது",
+            aboutTitle = "இந்த டுடோரியல் பற்றி",
+            aboutDesc = "இந்த விரிவான வீடியோ வழிகாட்டி FormSahayak இன் அனைத்து அம்சங்களையும் உங்களுக்கு வழங்கும், எப்படி செய்வது என்பதைக் காட்டும்:",
+            points = listOf(
+                "வங்கி படிவங்களைப் பதிவேற்றவும் மற்றும் ஸேன் செய்யவும்",
+                "உங்களுக்கு விருப்பமான மொழியில் குரல் வழிகாட்டலைப் பயன்படுத்தவும்",
+                "படிவப் புலங்கள் வழியாக எளிதாக செல்லவும்",
+                "படிவங்களைச் சரியாகப் பூர்த்தி செய்து சமர்ப்பிக்கவும்"
+            )
+        )
+        else -> VideoTutorialStrings(
+            title = "How to Use FormSahayak",
+            videoStatus = "Video Playing",
+            aboutTitle = "About This Tutorial",
+            aboutDesc = "This comprehensive video guide will walk you through all the features of FormSahayak, showing you how to:",
+            points = listOf(
+                "Upload and scan bank forms",
+                "Use voice guidance in your preferred language",
+                "Navigate through form fields easily",
+                "Complete and submit forms correctly"
+            )
+        )
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\VoiceSpeedSelectionScreen.kt ---
+"te" -> VoiceSpeedStrings(
+            title = "వాయిస్ వేగం",
+            subtitle = "వాయిస్ గైడెన్స్ ఎంత వేగంగా మాట్లాడాలో ఎంచుకోండి",
+            slow = "నెమ్మదిగా",
+            slowDesc = "మెరుగైన అవగాహన కోసం నెమ్మదిగా మాట్లాడటం",
+            normal = "సాధారణం",
+            normalDesc = "సాధారణ మాట్లాడే వేగం",
+            fast = "వేగంగా",
+            fastDesc = "త్వరిత నావిగేషన్ కోసం వేగంగా మాట్లాడటం",
+            footer = "మీరు సెట్టింగ్‌ల నుండి ఎప్పుడైనా ఈ సెట్టింగ్‌ను మార్చవచ్చు"
+        )
+        "ta" -> VoiceSpeedStrings(
+            title = "குரல் வேகம்",
+            subtitle = "குரல் வழிகாட்டுதல் எவ்வளவு வேகமாகப் பேச வேண்டும் என்பதைத் தேர்வுசெய்யவும்",
+            slow = "மெதுவாக",
+            slowDesc = "சிறந்த புரிதலுக்காக மெதுவான பேச்சு",
+            normal = "சாதாரணமானது",
+            normalDesc = "சாதாரண பேசும் வேகம்",
+            fast = "வேகமாக",
+            fastDesc = "விரைவான வழிசெலுத்தலுக்கு வேகமான பேச்சு",
+            footer = "அமைப்புகளிலிருந்து எந்த நேரத்திலும் இந்த அமைப்பை மாற்றலாம்"
+        )
+        else -> VoiceSpeedStrings(
+            title = "Voice Speed",
+            subtitle = "Choose how fast the voice guidance should speak",
+            slow = "Slow",
+            slowDesc = "Slower speech for better understanding",
+            normal = "Normal",
+            normalDesc = "Standard speaking speed",
+            fast = "Fast",
+            fastDesc = "Faster speech for quick navigation",
+            footer = "You can change this setting anytime from Settings"
+        )
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\WelcomeScreen.kt ---
+"te" -> "ప్రారంభించడానికి నొక్కండి"
+        "ta" -> "தொடங்க தட்டவும்"
+        "hi" -> "शुरू करने के लिए टैप करें"
+        else -> "Tap to get started"
+
+--- File: app/src/main/java/com/simats/formsahayak\ui\screens\WelcomeScreen.kt ---
+"te" -> "అందరికీ స్మార్ట్ ఫారమ్ మార్గదర్శకత్వం"
+                    "ta" -> "அனைவருக்கும் ஸ்மார்ட் படிவ வழிகாட்டுதல்"
+        "hi" -> "सभी के लिए स्मार्ट फॉर्म मार्गदर्शन"
+        else -> "Smart Form Guidance for Everyone"

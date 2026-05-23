@@ -27,31 +27,37 @@ fun VerifyingFormScreen(
     val title = when (selectedLanguage?.code) {
         "te" -> "ఫారమ్‌ను ధృవీకరిస్తోంది"
         "ta" -> "படிவத்தைச் சரிபார்க்கிறது"
+        "hi" -> "फॉर्म सत्यापित हो रहा है"
         else -> "Verifying Form"
     }
     val pleaseWaitText = when (selectedLanguage?.code) {
         "te" -> "దయచేసి వేచి ఉండండి..."
         "ta" -> "தயவுசெய்து காத்திருங்கள்..."
+        "hi" -> "कृपया प्रतीक्षा करें..."
         else -> "Please wait..."
     }
     val step1 = when (selectedLanguage?.code) {
         "te" -> "పూర్తి పేరు"
         "ta" -> "முழு பெயர்"
+        "hi" -> "पूरा नाम"
         else -> "Full Name"
     }
     val step2 = when (selectedLanguage?.code) {
         "te" -> "ఖాతా సంఖ్య"
         "ta" -> "கணக்கு எண்"
+        "hi" -> "खाता संख्या"
         else -> "Account Number"
     }
     val step3 = when (selectedLanguage?.code) {
         "te" -> "చిరునామా"
         "ta" -> "முகவரி"
+        "hi" -> "पता"
         else -> "Address"
     }
     val step4 = when (selectedLanguage?.code) {
         "te" -> "సంతకం"
         "ta" -> "கையெழுத்து"
+        "hi" -> "हस्ताक्षर"
         else -> "Signature"
     }
 

@@ -15,11 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.simats.formsahayak.R
 
 @Composable
 fun WelcomeScreen(
@@ -28,8 +29,6 @@ fun WelcomeScreen(
     isHighContrast: Boolean = false,
     onGetStarted: () -> Unit
 ) {
-    val isDark = isDarkMode || isHighContrast
-    
     val gradient = if (isHighContrast) {
         Brush.linearGradient(listOf(Color.Black, Color.Black))
     } else {
@@ -42,12 +41,6 @@ fun WelcomeScreen(
             start = Offset(0f, 0f),
             end = Offset(1000f, 2000f)
         )
-    }
-
-    val getStartedText = when (selectedLanguage?.code) {
-        "te" -> "ప్రారంభించడానికి నొక్కండి"
-        "ta" -> "தொடங்க தட்டவும்"
-        else -> "Tap to get started"
     }
 
     Box(
@@ -122,7 +115,7 @@ fun WelcomeScreen(
             Spacer(modifier = Modifier.height(28.dp))
 
             Text(
-                text = "FormSahayak",
+                text = stringResource(R.string.app_name),
                 fontSize = 28.sp, 
                 fontWeight = FontWeight.ExtraBold,
                 color = if (isHighContrast) Color.Yellow else Color.White,
@@ -133,35 +126,17 @@ fun WelcomeScreen(
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = when (selectedLanguage?.code) {
-                    "te" -> "అందరికీ స్మార్ట్ ఫారమ్ మార్గదర్శకత్వం"
-                    "ta" -> "அனைவருக்கும் ஸ்மார்ட் படிவ வழிகாட்டுதல்"
-                    else -> "Smart Form Guidance for Everyone"
-                },
+                text = stringResource(R.string.smart_guidance),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
-                color = if (isHighContrast) Color.White else Color.White,
+                color = Color.White,
                 textAlign = TextAlign.Center
-            )
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            Text(
-                text = "सभी के लिए स्मार्ट फॉर्म मार्गदर्शन\n" +
-                        "అందరికీ స్మార్ట్ ఫారమ్ మార్గదర్శకత్వం\n" +
-                        "அனைவருக்கும் ஸ்மார்ட் படிவ\n" +
-                        "வழிகாட்டுதல்",
-                fontSize = 11.sp,
-                lineHeight = 15.sp,
-                color = if (isHighContrast) Color.White else Color.White.copy(alpha = 0.9f),
-                textAlign = TextAlign.Center,
-                fontWeight = FontWeight.Normal
             )
 
             Spacer(modifier = Modifier.height(40.dp))
 
             Text(
-                text = getStartedText,
+                text = stringResource(R.string.tap_to_get_started),
                 color = if (isHighContrast) Color.Yellow else Color.White,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold
@@ -179,18 +154,18 @@ fun WelcomeScreen(
 }
 
 @Composable
-fun Dot(isSelected: Boolean, isHighContrast: Boolean) {
+private fun Dot(isSelected: Boolean, isHighContrast: Boolean) {
+    val color = if (isSelected) {
+        if (isHighContrast) Color.Yellow else Color.White
+    } else {
+        if (isHighContrast) Color.Gray else Color.White.copy(alpha = 0.5f)
+    }
+    val size = if (isSelected) 10.dp else 6.dp
     Box(
         modifier = Modifier
-            .padding(horizontal = 6.dp)
-            .size(if (isSelected) 10.dp else 8.dp)
-            .background(
-                color = if (isSelected) {
-                    if (isHighContrast) Color.Yellow else Color.White
-                } else {
-                    if (isHighContrast) Color.Gray else Color.White.copy(alpha = 0.5f)
-                },
-                shape = CircleShape
-            )
+            .padding(horizontal = 4.dp)
+            .size(size)
+            .background(color, CircleShape)
     )
 }
+

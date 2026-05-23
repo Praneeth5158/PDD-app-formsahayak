@@ -1,5 +1,6 @@
 package com.simats.formsahayak.ui.components
 
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -53,7 +54,10 @@ fun BottomNavigationBar(
             icon = { Icon(if (currentScreen == "home") Icons.Default.Home else Icons.Outlined.Home, contentDescription = null, modifier = Modifier.size(22.dp)) },
             label = { Text(labels[0], fontSize = 10.sp, fontWeight = if (isHighContrast) FontWeight.Bold else FontWeight.Normal) },
             selected = currentScreen == "home",
-            onClick = onHomeClick,
+            onClick = {
+                Log.d("BottomNav", "Home clicked")
+                onHomeClick()
+            },
             colors = NavigationBarItemDefaults.colors(
                 selectedIconColor = activeColor,
                 selectedTextColor = activeColor,
@@ -66,7 +70,10 @@ fun BottomNavigationBar(
             icon = { Icon(if (currentScreen == "forms") Icons.Default.Description else Icons.Outlined.Description, contentDescription = null, modifier = Modifier.size(22.dp)) },
             label = { Text(labels[1], fontSize = 10.sp, fontWeight = if (isHighContrast) FontWeight.Bold else FontWeight.Normal) },
             selected = currentScreen == "forms",
-            onClick = onFormsClick,
+            onClick = {
+                Log.d("BottomNav", "Forms clicked")
+                onFormsClick()
+            },
             colors = NavigationBarItemDefaults.colors(
                 selectedIconColor = activeColor,
                 selectedTextColor = activeColor,
@@ -79,7 +86,10 @@ fun BottomNavigationBar(
             icon = { Icon(if (currentScreen == "help") Icons.Default.Help else Icons.AutoMirrored.Outlined.HelpOutline, contentDescription = null, modifier = Modifier.size(22.dp)) },
             label = { Text(labels[2], fontSize = 10.sp, fontWeight = if (isHighContrast) FontWeight.Bold else FontWeight.Normal) },
             selected = currentScreen == "help",
-            onClick = onHelpClick,
+            onClick = {
+                Log.d("BottomNav", "Help clicked")
+                onHelpClick()
+            },
             colors = NavigationBarItemDefaults.colors(
                 selectedIconColor = activeColor,
                 selectedTextColor = activeColor,
@@ -92,7 +102,10 @@ fun BottomNavigationBar(
             icon = { Icon(if (currentScreen == "settings") Icons.Default.Settings else Icons.Outlined.Settings, contentDescription = null, modifier = Modifier.size(22.dp)) },
             label = { Text(labels[3], fontSize = 10.sp, fontWeight = if (isHighContrast) FontWeight.Bold else FontWeight.Normal) },
             selected = currentScreen == "settings",
-            onClick = onSettingsClick,
+            onClick = {
+                Log.d("BottomNav", "Settings clicked")
+                onSettingsClick()
+            },
             colors = NavigationBarItemDefaults.colors(
                 selectedIconColor = activeColor,
                 selectedTextColor = activeColor,
@@ -105,7 +118,10 @@ fun BottomNavigationBar(
             icon = { Icon(if (currentScreen == "profile") Icons.Default.Person else Icons.Outlined.Person, contentDescription = null, modifier = Modifier.size(22.dp)) },
             label = { Text(labels[4], fontSize = 10.sp, fontWeight = if (isHighContrast) FontWeight.Bold else FontWeight.Normal) },
             selected = currentScreen == "profile",
-            onClick = onProfileClick,
+            onClick = {
+                Log.d("BottomNav", "Profile clicked")
+                onProfileClick()
+            },
             colors = NavigationBarItemDefaults.colors(
                 selectedIconColor = activeColor,
                 selectedTextColor = activeColor,

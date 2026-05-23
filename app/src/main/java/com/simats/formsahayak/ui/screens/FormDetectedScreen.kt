@@ -1,5 +1,10 @@
 package com.simats.formsahayak.ui.screens
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -20,10 +25,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
+import com.simats.formsahayak.R
 import com.simats.formsahayak.ui.viewmodel.FormViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -40,6 +49,17 @@ fun FormDetectedScreen(
     onRescan: () -> Unit,
     onBack: () -> Unit
 ) {
+    val context = LocalContext.current
+    val audioPermissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            viewModel.speak(formType, selectedLanguage?.code ?: "en")
+        } else {
+            Toast.makeText(context, context.getString(R.string.audio_denied), Toast.LENGTH_SHORT).show()
+        }
+    }
+
     val backgroundColor = if (isHighContrast) Color.Black else if (isDarkMode) Color(0xFF121212) else Color(0xFFF8FBFF)
     val cardColor = if (isHighContrast) Color.Black else if (isDarkMode) Color(0xFF1E1E1E) else Color.White
     val textColor = if (isDarkMode || isHighContrast) Color.White else Color(0xFF1A237E)
@@ -47,91 +67,11 @@ fun FormDetectedScreen(
     val accentColor = if (isHighContrast) Color.Yellow else if (isDarkMode) Color(0xFF63B3ED) else Color(0xFF1E40AF)
     val cardBorderColor = if (isHighContrast) Color.White else if (isDarkMode) Color(0xFF333333) else Color(0xFFE2E8F0)
 
-    val statusText = when (selectedLanguage?.code) {
-        "te" -> when {
-            confidence >= 90 -> "అద్భుతం"
-            confidence >= 75 -> "సిద్ధంగా ఉంది"
-            confidence >= 50 -> "పర్వాలేదు"
-            else -> "అస్పష్టంగా ఉంది"
-        }
-        "ta" -> when {
-            confidence >= 90 -> "மிகச்சிறந்தது"
-            confidence >= 75 -> "தயார்"
-            confidence >= 50 -> "பரவாயில்லை"
-            else -> "தெளிவற்றது"
-        }
-        else -> when {
-            confidence >= 90 -> "Excellent"
-            confidence >= 75 -> "Ready"
-            confidence >= 50 -> "Fair"
-            else -> "Unclear"
-        }
-    }
-
-    val title = when (selectedLanguage?.code) {
-        "te" -> if (viewModel.scannedPages.size > 1) "పేజీ ${viewModel.currentGuidingPageIndex + 1} గుర్తించబడింది" else "ఫారమ్ గుర్తించబడింది"
-        "ta" -> if (viewModel.scannedPages.size > 1) "பக்கம் ${viewModel.currentGuidingPageIndex + 1} கண்டறியப்பட்டது" else "படிவம் கண்டறியப்பட்டது"
-        else -> if (viewModel.scannedPages.size > 1) "Page ${viewModel.currentGuidingPageIndex + 1} Detected" else "Form Detected"
-    }
-    
-    val subtitle = when (selectedLanguage?.code) {
-        "te" -> "మీరు అప్‌లోడ్ చేసిన ఫారమ్ రకాన్ని మేము గుర్తించాము"
-        "ta" -> "நீங்கள் பதிவேற்றிய படிவத்தின் வகையை நாங்கள் கண்டறிந்தோம்"
-        else -> "We identified the type of form you uploaded"
-    }
-
-    val detectedLabel = when (selectedLanguage?.code) {
-        "te" -> "గుర్తించబడిన ఫారమ్ రకం:"
-        "ta" -> "கண்டறியப்பட்ட படிவ வகை:"
-        else -> "Detected Form Type:"
-    }
-
-    val listenLabel = when (selectedLanguage?.code) {
-        "te" -> "ఫారమ్ రకాన్ని వినండి"
-        "ta" -> "படிவ வகையைக் கேளுங்கள்"
-        else -> "Listen to Form Type"
-    }
-
-    val proceedQuestion = when (selectedLanguage?.code) {
-        "te" -> "మేము ఈ ఫారమ్‌తో కొనసాగవచ్చా?"
-        "ta" -> "நாங்கள் இந்தப் படிவத்தைத் தொடரலாமா?"
-        else -> "Can we proceed with this form?"
-    }
-
-    val proceedDesc = when (selectedLanguage?.code) {
-        "te" -> "ఫారమ్ రకం సరైనదైతే, కొనసాగడానికి 'అవును' క్లిక్ చేయండి. లేకపోతే, 'మళ్లీ స్కాన్ చేయి' క్లిక్ చేయండి."
-        "ta" -> "படிவ வகை சரியாக இருந்தால், தொடர 'ஆம்' என்பதைக் கிளிக் செய்யவும். இல்லையெனில், 'மீண்டும் ஸ்கேன் செய்' என்பதைக் கிளிக் செய்யவும்."
-        else -> "If the form type is correct, click 'Proceed' to continue. Otherwise, click 'Re-scan Form' to upload again."
-    }
-
-    val bankTypeLabel = when (selectedLanguage?.code) {
-        "te" -> "బ్యాంక్ రకం"
-        "ta" -> "வங்கி வகை"
-        else -> "Bank Type"
-    }
-
-    val docPagesLabel = when (selectedLanguage?.code) {
-        "te" -> "పత్రం పేజీలు"
-        "ta" -> "ஆவணப் பக்கங்கள்"
-        else -> "Document Pages"
-    }
-
-    val confidenceLabel = when (selectedLanguage?.code) {
-        "te" -> "ఖచ్చితత్వం"
-        "ta" -> "துல்லியம்"
-        else -> "Confidence"
-    }
-
-    val statusLabel = when (selectedLanguage?.code) {
-        "te" -> "స్థితి"
-        "ta" -> "நிலை"
-        else -> "Status"
-    }
-
-    val pagesSuffix = when (selectedLanguage?.code) {
-        "te" -> "పేజీలు"
-        "ta" -> "பக்கங்கள்"
-        else -> "Pages"
+    val statusText = when {
+        confidence >= 90 -> stringResource(R.string.fd_excellent)
+        confidence >= 75 -> stringResource(R.string.fd_ready)
+        confidence >= 50 -> stringResource(R.string.fd_fair)
+        else -> stringResource(R.string.fd_unclear)
     }
 
     Scaffold(
@@ -140,7 +80,7 @@ fun FormDetectedScreen(
                 title = { },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = textColor)
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.back), tint = textColor)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = backgroundColor)
@@ -183,14 +123,14 @@ fun FormDetectedScreen(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
-                    text = title,
+                    text = if (viewModel.scannedPages.size > 1) stringResource(R.string.page_detected_title, viewModel.currentGuidingPageIndex + 1) else stringResource(R.string.form_detected_title),
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
                     color = textColor,
                     textAlign = TextAlign.Center
                 )
                 Text(
-                    text = subtitle,
+                    text = stringResource(R.string.fd_subtitle),
                     fontSize = 14.sp,
                     color = secondaryTextColor,
                     textAlign = TextAlign.Center,
@@ -211,7 +151,7 @@ fun FormDetectedScreen(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            detectedLabel,
+                            stringResource(R.string.fd_detected_label),
                             fontSize = 13.sp,
                             color = secondaryTextColor
                         )
@@ -226,7 +166,13 @@ fun FormDetectedScreen(
                         
                         // Listen Button
                         Button(
-                            onClick = { viewModel.speak(formType, selectedLanguage?.code ?: "en") },
+                            onClick = {
+                                if (ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+                                    viewModel.speak(formType, selectedLanguage?.code ?: "en")
+                                } else {
+                                    audioPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
+                                }
+                            },
                             modifier = Modifier
                                 .fillMaxWidth(0.85f)
                                 .height(48.dp),
@@ -247,7 +193,7 @@ fun FormDetectedScreen(
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Icon(Icons.AutoMirrored.Filled.VolumeUp, null, modifier = Modifier.size(18.dp))
                                     Spacer(modifier = Modifier.width(8.dp))
-                                    Text(listenLabel, fontWeight = FontWeight.SemiBold)
+                                    Text(stringResource(R.string.fd_listen_label), fontWeight = FontWeight.SemiBold)
                                 }
                             }
                         }
@@ -276,14 +222,14 @@ fun FormDetectedScreen(
                         Spacer(modifier = Modifier.width(12.dp))
                         Column {
                             Text(
-                                proceedQuestion,
+                                stringResource(R.string.fd_proceed_q),
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = accentColor
                             )
                             Spacer(modifier = Modifier.height(4.dp))
                             Text(
-                                proceedDesc,
+                                stringResource(R.string.fd_proceed_desc),
                                 fontSize = 12.sp,
                                 lineHeight = 16.sp,
                                 color = if (isHighContrast) Color.White else if (isDarkMode) Color.LightGray else Color(0xFF3B82F6)
@@ -304,22 +250,22 @@ fun FormDetectedScreen(
                     Column(modifier = Modifier.padding(16.dp)) {
                         Row(modifier = Modifier.fillMaxWidth()) {
                             Column(modifier = Modifier.weight(1f)) {
-                                Text(bankTypeLabel, fontSize = 12.sp, color = secondaryTextColor)
+                                Text(stringResource(R.string.fd_bank_type), fontSize = 12.sp, color = secondaryTextColor)
                                 Text(accountType, fontSize = 14.sp, fontWeight = FontWeight.Bold, color = textColor)
                             }
                             Column(modifier = Modifier.weight(1f)) {
-                                Text(docPagesLabel, fontSize = 12.sp, color = secondaryTextColor)
-                                Text("${viewModel.scannedPages.size} $pagesSuffix", fontSize = 14.sp, fontWeight = FontWeight.Bold, color = textColor)
+                                Text(stringResource(R.string.fd_doc_pages), fontSize = 12.sp, color = secondaryTextColor)
+                                Text("${viewModel.scannedPages.size} ${stringResource(R.string.fd_pages_suffix)}", fontSize = 14.sp, fontWeight = FontWeight.Bold, color = textColor)
                             }
                         }
                         Spacer(modifier = Modifier.height(16.dp))
                         Row(modifier = Modifier.fillMaxWidth()) {
                             Column(modifier = Modifier.weight(1f)) {
-                                Text(confidenceLabel, fontSize = 12.sp, color = secondaryTextColor)
+                                Text(stringResource(R.string.fd_confidence), fontSize = 12.sp, color = secondaryTextColor)
                                 Text("$confidence%", fontSize = 14.sp, fontWeight = FontWeight.Bold, color = Color(0xFF10B981))
                             }
                             Column(modifier = Modifier.weight(1f)) {
-                                Text(statusLabel, fontSize = 12.sp, color = secondaryTextColor)
+                                Text(stringResource(R.string.fd_status), fontSize = 12.sp, color = secondaryTextColor)
                                 Text(statusText, fontSize = 14.sp, fontWeight = FontWeight.Bold, color = if (isHighContrast) Color.Yellow else Color(0xFF2563EB))
                             }
                         }
@@ -352,11 +298,7 @@ fun FormDetectedScreen(
                             Icon(Icons.Default.CheckCircle, null, modifier = Modifier.size(18.dp))
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(
-                                when (selectedLanguage?.code) {
-                                    "te" -> "అవును, ఈ ఫారమ్‌తో కొనసాగండి"
-                                    "ta" -> "ஆம், இந்தப் படிவத்தைத் தொடரவும்"
-                                    else -> "Yes, Proceed with this Form"
-                                },
+                                stringResource(R.string.fd_yes_proceed),
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 16.sp
                             )
@@ -377,11 +319,7 @@ fun FormDetectedScreen(
                     Icon(Icons.Default.Refresh, null, tint = if (isHighContrast || isDarkMode) Color.White else Color.Black, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        when (selectedLanguage?.code) {
-                            "te" -> "లేదు, ఫారమ్‌ను మళ్లీ స్కాన్ చేయండి"
-                            "ta" -> "இல்லை, படிவத்தை மீண்டும் ஸகேன் செய்யவும்"
-                            else -> "No, Re-scan Form"
-                        },
+                        stringResource(R.string.fd_no_rescan),
                         color = if (isHighContrast || isDarkMode) Color.White else Color.Black,
                         fontWeight = FontWeight.SemiBold
                     )
@@ -394,11 +332,7 @@ fun FormDetectedScreen(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
-                        when (selectedLanguage?.code) {
-                            "te" -> "తిరిగి వెళ్ళండి"
-                            "ta" -> "திரும்பி செல்"
-                            else -> "Go Back"
-                        },
+                        stringResource(R.string.go_back),
                         color = secondaryTextColor,
                         fontWeight = FontWeight.Medium
                     )

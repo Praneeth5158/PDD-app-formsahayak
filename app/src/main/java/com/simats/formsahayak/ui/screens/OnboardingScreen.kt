@@ -17,10 +17,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.simats.formsahayak.R
 import kotlinx.coroutines.launch
 
 data class OnboardingPage(
@@ -45,46 +47,22 @@ fun OnboardingScreen(
 
     val onboardingPages = listOf(
         OnboardingPage(
-            title = when (selectedLanguage?.code) {
-                "te" -> "బ్యాంక్ ఫారమ్‌లను స్కాన్ చేయండి"
-                "ta" -> "வங்கி படிவங்களை ஸ்கேன் செய்யுங்கள்"
-                else -> "Scan Bank Forms"
-            },
-            description = when (selectedLanguage?.code) {
-                "te" -> "బ్యాంక్ ఫారమ్‌లను సులభంగా స్కాన్ చేయడానికి మీ ఫోన్ కెమెరాను ఉపయోగించండి"
-                "ta" -> "வங்கி படிவங்களை எளிதாக ஸ்கேன் செய்ய உங்கள் தொலைபேசி கேமராவைப் பயன்படுத்தவும்"
-                else -> "Use your phone camera to scan bank forms easily"
-            },
+            title = stringResource(R.string.ob_scan_title),
+            description = stringResource(R.string.ob_scan_desc),
             icon = Icons.Default.CameraAlt,
             color = if (isHighContrast) Color.Yellow else Color(0xFF2196F3),
             bgColor = if (isHighContrast) Color.DarkGray else Color(0xFFE3F2FD)
         ),
         OnboardingPage(
-            title = when (selectedLanguage?.code) {
-                "te" -> "ముఖ్యాంశాలు"
-                "ta" -> "சிறப்பம்சங்கள்"
-                else -> "Highlighted Fields"
-            },
-            description = when (selectedLanguage?.code) {
-                "te" -> "మీరు నింపాల్సిన ముఖ్యమైన ఫీల్డ్‌లను యాప్ హైలైట్ చేస్తుంది"
-                "ta" -> "நீங்கள் நிரப்ப வேண்டிய முக்கியமான புலங்களை ஆப்ஸ் சிறப்பித்துக் காட்டுகிறது"
-                else -> "App highlights important fields you need to fill"
-            },
+            title = stringResource(R.string.ob_highlight_title),
+            description = stringResource(R.string.ob_highlight_desc),
             icon = Icons.Default.Lightbulb,
             color = if (isHighContrast) Color.Yellow else Color(0xFF4CAF50),
             bgColor = if (isHighContrast) Color.DarkGray else Color(0xFFE8F5E9)
         ),
         OnboardingPage(
-            title = when (selectedLanguage?.code) {
-                "te" -> "వాయిస్ గైడెన్స్"
-                "ta" -> "குரல் வழிகாட்டுதல்"
-                else -> "Voice Guidance"
-            },
-            description = when (selectedLanguage?.code) {
-                "te" -> "మీ ప్రాంతీయ భాషలో వాయిస్ సూచనలను పొందండి"
-                "ta" -> "உங்கள் பிராந்திய மொழியில் குரல் வழிமுறைகளைப் பெறுங்கள்"
-                else -> "Get voice instructions in your regional language"
-            },
+            title = stringResource(R.string.ob_voice_title),
+            description = stringResource(R.string.ob_voice_desc),
             icon = Icons.Default.VolumeUp,
             color = if (isHighContrast) Color.Yellow else Color(0xFF9C27B0),
             bgColor = if (isHighContrast) Color.DarkGray else Color(0xFFF3E5F5)
@@ -93,22 +71,6 @@ fun OnboardingScreen(
 
     val pagerState = rememberPagerState(pageCount = { onboardingPages.size })
     val scope = rememberCoroutineScope()
-
-    val skipText = when (selectedLanguage?.code) {
-        "te" -> "వదిలేయండి"
-        "ta" -> "தவிர்"
-        else -> "Skip"
-    }
-    val nextText = when (selectedLanguage?.code) {
-        "te" -> "తదుపరి >"
-        "ta" -> "அடுத்து >"
-        else -> "Next >"
-    }
-    val getStartedText = when (selectedLanguage?.code) {
-        "te" -> "ప్రారంభించండి >"
-        "ta" -> "தொடங்குங்கள் >"
-        else -> "Get Started >"
-    }
 
     Column(
         modifier = Modifier
@@ -199,7 +161,7 @@ fun OnboardingScreen(
                     .weight(1f)
                     .height(56.dp)
             ) {
-                Text(skipText, color = if (isHighContrast) Color.White else secondaryTextColor)
+                Text(stringResource(R.string.skip), color = if (isHighContrast) Color.White else secondaryTextColor)
             }
 
             Spacer(modifier = Modifier.width(16.dp))
@@ -224,7 +186,7 @@ fun OnboardingScreen(
                 )
             ) {
                 Text(
-                    text = if (pagerState.currentPage == onboardingPages.size - 1) getStartedText else nextText,
+                    text = if (pagerState.currentPage == onboardingPages.size - 1) stringResource(R.string.get_started) else stringResource(R.string.next),
                     fontWeight = FontWeight.Bold
                 )
             }

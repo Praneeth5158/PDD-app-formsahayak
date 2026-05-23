@@ -16,11 +16,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.simats.formsahayak.R
 
 @Composable
 fun VerifyOtpScreen(
@@ -28,7 +30,7 @@ fun VerifyOtpScreen(
     selectedLanguage: Language?,
     isDarkMode: Boolean,
     isHighContrast: Boolean,
-    onVerifyClick: (Boolean) -> Unit,
+    onVerifyClick: (String) -> Unit,
     onResendOtpClick: () -> Unit
 ) {
     val otpValues = remember { mutableStateListOf("", "", "", "") }
@@ -38,29 +40,6 @@ fun VerifyOtpScreen(
     val backgroundColor = if (isHighContrast) Color.Black else if (isDarkMode) Color(0xFF121212) else Color(0xFFF8FBFF)
     val cardColor = if (isHighContrast) Color.Black else if (isDarkMode) Color(0xFF1E1E1E) else Color.White
     val textColor = if (isHighContrast) Color.Yellow else if (isDarkMode) Color.White else Color.Black
-
-    val title = when (selectedLanguage?.code) {
-        "te" -> "OTPని ధృవీకరించండి"
-        "ta" -> "OTP ஐச் சரிபார்க்கவும்"
-        else -> "Verify OTP"
-    }
-    
-    val subtitlePrefix = when (selectedLanguage?.code) {
-        "te" -> "కోడ్ పంపబడింది: "
-        "ta" -> "குறியீடு அனுப்பப்பட்டது: "
-        else -> "Code sent to: "
-    }
-
-    val verifyButtonText = when (selectedLanguage?.code) {
-        "te" -> "ధృవీకరించండి"
-        "ta" -> "சரிபார்க்கவும்"
-        else -> "Verify OTP"
-    }
-    val resendText = when (selectedLanguage?.code) {
-        "te" -> "కోడ్ రాలేదా? మళ్లీ పంపండి"
-        "ta" -> "குறியீடு வரவில்லையா? மீண்டும் அனுப்பவும்"
-        else -> "Didn't receive code? Resend OTP"
-    }
 
     Column(
         modifier = Modifier
@@ -90,7 +69,7 @@ fun VerifyOtpScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         Text(
-            text = title,
+            text = stringResource(R.string.verify_otp),
             fontSize = 28.sp,
             fontWeight = FontWeight.Bold,
             color = textColor
@@ -99,7 +78,7 @@ fun VerifyOtpScreen(
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = "$subtitlePrefix ${maskInput(userInput)}",
+            text = "${stringResource(R.string.code_sent_to)} ${maskInput(userInput)}",
             fontSize = 14.sp,
             color = if (isDark) Color.LightGray else Color.Gray,
             textAlign = TextAlign.Center
@@ -145,7 +124,10 @@ fun VerifyOtpScreen(
                 Button(
                     onClick = { 
                         val isSuccess = otpValues.all { it.isNotEmpty() }
-                        onVerifyClick(isSuccess) 
+                        if (isSuccess) {
+                            val otpStr = otpValues.joinToString("")
+                            onVerifyClick(otpStr)
+                        } 
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -156,14 +138,14 @@ fun VerifyOtpScreen(
                         contentColor = if (isHighContrast) Color.Black else Color.White
                     )
                 ) {
-                    Text(verifyButtonText, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.continue_btn), fontSize = 16.sp, fontWeight = FontWeight.Bold)
                 }
 
                 Spacer(modifier = Modifier.height(24.dp))
 
                 TextButton(onClick = onResendOtpClick) {
                     Text(
-                        text = resendText,
+                        text = stringResource(R.string.didnt_receive_code),
                         color = if (isHighContrast) Color.Yellow else Color.Gray,
                         fontSize = 14.sp,
                         textAlign = TextAlign.Center

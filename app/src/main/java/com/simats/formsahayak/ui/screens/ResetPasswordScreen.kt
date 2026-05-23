@@ -43,41 +43,49 @@ fun ResetPasswordScreen(
     val title = when (selectedLanguage?.code) {
         "te" -> if (isChangePassword) "పాస్‌వర్డ్ మార్చండి" else "పాస్‌వర్డ్ రీసెట్ చేయండి"
         "ta" -> if (isChangePassword) "கடவுச்சொல்லை மாற்றவும்" else "கடவுச்சொல்லை மீட்டமைக்கவும்"
+        "hi" -> if (isChangePassword) "पासवर्ड बदलें" else "Reset Password"
         else -> if (isChangePassword) "Change Password" else "Reset Password"
     }
     val subtitle = when (selectedLanguage?.code) {
         "te" -> "మీ ఖాతా కోసం కొత్త పాస్‌వర్డ్‌ను సృష్టించండి"
         "ta" -> "உங்கள் கணக்கிற்கு புதிய கடவுச்சொல்லை உருவாக்கவும்"
+        "hi" -> "अपने खाते के लिए नया पासवर्ड बनाएँ"
         else -> "Create a new password for your account"
     }
     val newPasswordLabel = when (selectedLanguage?.code) {
         "te" -> "కొత్త పాస్‌వర్డ్"
         "ta" -> "புதிய கடவுச்சொல்"
+        "hi" -> "नया पासवर्ड"
         else -> "New Password"
     }
     val newPasswordPlaceholder = when (selectedLanguage?.code) {
         "te" -> "కొత్త పాస్‌వర్డ్‌ను నమోదు చేయండి"
         "ta" -> "புதிய கடவுச்சொல்லை உள்ளிடவும்"
+        "hi" -> "नया पासवर्ड दर्ज करें"
         else -> "Enter new password"
     }
     val confirmPasswordLabel = when (selectedLanguage?.code) {
         "te" -> "పాస్‌వర్డ్‌ను ధృవీకరించండి"
         "ta" -> "கடவுச்சொல்லை உறுதிப்படுத்தவும்"
+        "hi" -> "पासवर्ड की पुष्टि करें"
         else -> "Confirm Password"
     }
     val confirmPasswordPlaceholder = when (selectedLanguage?.code) {
         "te" -> "కొత్త పాస్‌వర్డ్‌ను ధృవీకరించండి"
         "ta" -> "புதிய கடவுச்சொல்லை உறுதிப்படுத்தவும்"
+        "hi" -> "नए पासवर्ड की पुष्टि करें"
         else -> "Confirm new password"
     }
     val resetButtonText = when (selectedLanguage?.code) {
         "te" -> if (isChangePassword) "పాస్‌వర్డ్ మార్చండి" else "పాస్‌వర్డ్ రీసెట్ చేయండి"
         "ta" -> if (isChangePassword) "கடவுச்சொல்லை மாற்றவும்" else "கடவுச்சொல்லை மீட்டமைக்கவும்"
+        "hi" -> if (isChangePassword) "Update Password" else "Reset Password"
         else -> if (isChangePassword) "Update Password" else "Reset Password"
     }
     val backButtonText = when (selectedLanguage?.code) {
         "te" -> if (isChangePassword) "తిరిగి వెళ్ళండి" else "లాగిన్‌కి తిరిగి వెళ్లండి"
         "ta" -> if (isChangePassword) "மீண்டும் செல்" else "உள்நுழைவுக்குத் திரும்பு"
+        "hi" -> if (isChangePassword) "Back to Profile" else "लॉगिन पर वापस जाएं"
         else -> if (isChangePassword) "Back to Profile" else "Back to Login"
     }
 

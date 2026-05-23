@@ -1,0 +1,280 @@
+<resources>
+    <string name="app_name">Praneeth FormSahayak</string>
+    <string name="welcome_back">वापसी पर स्वागत है!</string>
+    <string name="get_started">शुरू करें</string>
+    <string name="tap_to_get_started">शुरू करने के लिए टैप करें</string>
+    <string name="smart_guidance">सभी के लिए स्मार्ट फॉर्म मार्गदर्शन</string>
+    <string name="select_language">भाषा चुनें</string>
+    <string name="continue_btn">जारी रखें</string>
+    <string name="skip">छोड़ें</string>
+    <string name="next">अगला</string>
+    <string name="previous">पिछला</string>
+    <string name="finish">समाप्त</string>
+    <string name="back">पीछे</string>
+    <string name="home">होम</string>
+
+    <!-- Onboarding -->
+    <string name="ob_scan_title">बैंक फॉर्म स्कैन करें</string>
+    <string name="ob_scan_desc">बैंक फॉर्म को आसानी से स्कैन करने के लिए अपने फोन कैमरे का उपयोग करें</string>
+    <string name="ob_highlight_title">मुख्य भाग</string>
+    <string name="ob_highlight_desc">ऐप उन महत्वपूर्ण फ़ील्ड को हाइलाइट करता है जिन्हें आपको भरना है</string>
+    <string name="ob_voice_title">ध्वनि मार्गदर्शन</string>
+    <string name="ob_voice_desc">अपनी क्षेत्रीय भाषा में ध्वनि निर्देश प्राप्त करें</string>
+
+    <!-- Permissions -->
+    <string name="grant_permissions">अनुमतियाँ दें</string>
+    <string name="perm_desc">फॉर्म भरने में आपकी मदद करने के लिए FormSahayak को इन अनुमतियों की आवश्यकता है</string>
+    <string name="privacy_first">गोपनीयता पहले: </string>
+    <string name="privacy_desc">आपका डेटा आपके डिवाइस पर रहता है। हम केवल आपकी मदद के लिए इन अनुमतियों का उपयोग करते हैं।</string>
+    <string name="camera_access">कैमरा एक्सेस</string>
+    <string name="camera_desc">दस्तावेजों को स्कैन करने के लिए आवश्यक</string>
+    <string name="storage_access">स्टोरेज एक्सेस</string>
+    <string name="storage_desc">दस्तावेजों को सहेजने के लिए आवश्यक</string>
+    <string name="mic_access">माइक्रोफोन एक्सेस</string>
+    <string name="mic_desc">आवाज मार्गदर्शन के लिए आवश्यक</string>
+    <string name="perm_required_warning">ऐप के ठीक से काम करने के लिए सभी अनुमतियों की आवश्यकता है</string>
+    <string name="grant_all_perm">सभी अनुमतियां दें</string>
+    <string name="open_settings">पॉप-अप नहीं दिख रहा है? सेटिंग्स खोलें</string>
+    <string name="go_back">पीछे जाएं</string>
+    <string name="perm_granted">अनुमति मिल गई ✅</string>
+    <string name="grant_perm_btn">अनुमति दें</string>
+    <string name="perm_required_toast">जारी रखने के लिए सभी अनुमतियों की आवश्यकता है</string>
+    <string name="all_perm_set">सभी अनुमतियां सेट हैं!</string>
+    <string name="all_perm_granted_desc">सभी अनुमतियां सफलतापूर्वक दी गईं</string>
+    <string name="continue_dashboard">डैशबोर्ड पर जारी रखें</string>
+
+    <!-- Login/Signup -->
+    <string name="welcome_title">वापसी पर स्वागत है</string>
+    <string name="login_sub">जारी रखने के लिए लॉगिन करें</string>
+    <string name="login">लॉगिन</string>
+    <string name="signup">साइन अप</string>
+    <string name="email">ईमेल</string>
+    <string name="password">पासवर्ड</string>
+    <string name="forgot_password">पासवर्ड भूल गए?</string>
+    <string name="no_account">क्या आपके पास खाता नहीं है? </string>
+    <string name="create_account">खाता बनाएं</string>
+    <string name="signup_sub">शुरू करने के लिए साइन अप करें</string>
+    <string name="full_name">पूरा नाम</string>
+    <string name="confirm_password">पासवर्ड की पुष्टि करें</string>
+    <string name="already_have_account">क्या आपके पास पहले से ही खाता है? </string>
+    <string name="enter_full_name">अपना पूरा नाम दर्ज करें</string>
+    <string name="enter_email">अपना ईमेल दर्ज करें</string>
+    <string name="create_password">एक पासवर्ड बनाएं</string>
+    <string name="register">रजिस्टर करें</string>
+    <string name="enter_email_phone">अपना ईमेल या फोन नंबर दर्ज करें</string>
+    <string name="email_phone_label">ईमेल या फोन नंबर</string>
+    <string name="send_otp">OTP भेजें</string>
+    <string name="back_to_login">लॉगिन पर वापस जाएं</string>
+
+    <!-- OTP / Verification -->
+    <string name="verify_otp">OTP सत्यापित करें</string>
+    <string name="code_sent_to">कोड भेजा गया: </string>
+    <string name="didnt_receive_code">कोड नहीं मिला? OTP फिर से भेजें</string>
+
+    <!-- Reset Password -->
+    <string name="reset_password">पासवर्ड रीसेट करें</string>
+    <string name="create_new_password">अपने खाते के लिए एक नया पासवर्ड बनाएं</string>
+    <string name="new_password">नया पासवर्ड</string>
+    <string name="enter_new_password">नया पासवर्ड दर्ज करें</string>
+    <string name="confirm_new_password">नए पासवर्ड की पुष्टि करें</string>
+    <string name="update_password">पासवर्ड अपडेट करें</string>
+    <string name="back_to_profile">प्रोफाइल पर वापस जाएं</string>
+    <string name="change_password_title">पासवर्ड बदलें</string>
+
+    <!-- Dashboard -->
+    <string name="language">भाषा</string>
+    <string name="change">बदलें</string>
+    <string name="welcome_to_fs">🙏 FormSahayak में आपका स्वागत है</string>
+    <string name="upload_form">फॉर्म अपलोड करें</string>
+    <string name="help">सहायता</string>
+    <string name="forms">फॉर्म्स</string>
+    <string name="settings">सेटिंग्स</string>
+    <string name="profile">प्रोफाइल</string>
+
+    <!-- Form Preview -->
+    <string name="form_guide">फॉर्म गाइड</string>
+    <string name="current_field">वर्तमान फ़ील्ड</string>
+    <string name="ai_guidance">एआई मार्गदर्शन</string>
+    <string name="listen_again">दोबारा सुनें</string>
+    <string name="ai_analyzing">एआई विश्लेषण कर रहा है…</string>
+
+    <!-- Profile -->
+    <string name="premium_member">प्रीमियम सदस्य</string>
+    <string name="personal_info">व्यक्तिगत जानकारी</string>
+    <string name="phone_number">फ़ोन नंबर</string>
+    <string name="lang_pref">भाषा की प्राथमिकता</string>
+    <string name="edit_profile">प्रोफ़ाइल संपादित करें</string>
+    <string name="change_password">पासवर्ड बदलें</string>
+    <string name="logout">लॉग आउट</string>
+    <string name="change_photo">फोटो बदलें</string>
+
+    <!-- Settings -->
+    <string name="voice_guidance">आवाज मार्गदर्शन</string>
+    <string name="voice_speed">आवाज की गति</string>
+    <string name="accessibility">अभिगम्यता</string>
+    <string name="high_contrast">उच्च कंट्रास्ट</string>
+    <string name="high_contrast_desc">टेक्स्ट और बटन के लिए बेहतर दृश्यता</string>
+    <string name="display">डिस्प्ले</string>
+    <string name="dark_mode">डार्क मोड</string>
+    <string name="dark_mode_desc">कम रोशनी में आंखों के तनाव को कम करें</string>
+    <string name="speed_slow">धीमी (Slow)</string>
+    <string name="speed_normal">सामान्य (Normal)</string>
+    <string name="speed_fast">तेज (Fast)</string>
+
+    <!-- How To Use -->
+    <string name="how_to_use">कैसे उपयोग करें</string>
+    <string name="htu_welcome">FormSahayak में आपका स्वागत है!</string>
+    <string name="htu_subtitle">अपने बैंक फॉर्म आसानी से भरने के लिए इन सरल चरणों का पालन करें</string>
+    <string name="htu_video_title">वीडियो ट्यूटोरियल</string>
+    <string name="htu_video_desc">FormSahayak का उपयोग करना सीखने के लिए यह उपयोगी वीडियो गाइड देखें।</string>
+    <string name="htu_video_tap">पूरा वीडियो ट्यूटोरियल देखने के लिए टैप करें</string>
+    <string name="htu_step1_title">फॉर्म इमेज अपलोड करें</string>
+    <string name="htu_step1_desc">अपने बैंक फॉर्म का फोटो लें या गैलरी से अपलोड करें। सुनिश्चित करें कि चित्र स्पष्ट और अच्छी रोशनी वाला हो।</string>
+    <string name="htu_step2_title">ऐप फ़ील्ड पहचानता है</string>
+    <string name="htu_step2_desc">FormSahayak स्वचालित रूप से उन सभी फ़ील्ड की पहचान करता है और हाइलाइट करता है जिन्हें आपको फॉर्म में भरना है।</string>
+    <string name="htu_step3_title">ध्वनि निर्देशों का पालन करें</string>
+    <string name="htu_step3_desc">अपनी भाषा में ध्वनि मार्गदर्शन सुनें जो बताता है कि प्रत्येक फ़ील्ड में क्या लिखना है।</string>
+    <string name="htu_step4_title">फॉर्म सही ढंग से भरें</string>
+    <string name="htu_step4_desc">सभी फ़ील्ड को सटीक रूप से भरने और अपना बैंक फॉर्म पूरा करने के लिए ऐप के मार्गदर्शन का उपयोग करें।</string>
+    <string name="htu_need_help">अधिक सहायता चाहिए?</string>
+    <string name="htu_contact_support">सहायता के लिए हमारी सहायता टीम से संपर्क करें</string>
+    <string name="htu_share_exp">अपना अनुभव साझा करें</string>
+    <string name="htu_share_desc">आपकी बहुमूल्य प्रतिक्रिया के साथ FormSahayak को बेहतर बनाने में हमारी सहायता करें।</string>
+    <string name="htu_give_feedback">प्रतिक्रिया दें</string>
+    <string name="htu_got_it">समझ गया!</string>
+
+    <!-- Upload Form Screen -->
+    <string name="upload_subtitle">स्पष्ट फोटो लें या गैलरी से अपलोड करें</string>
+    <string name="camera">कैमरा</string>
+    <string name="gallery">गैलरी</string>
+    <string name="tips_title">बेहतर परिणामों के लिए टिप्स</string>
+    <string name="tip_lighting">अच्छी रोशनी सुनिश्चित करें</string>
+    <string name="tip_flat">फॉर्म को सीधा और स्पष्ट रखें</string>
+    <string name="tip_shadows">परछाई और चमक से बचें</string>
+    <string name="camera_denied_scan">फॉर्म स्कैन करने के लिए कैमरा अनुमति की आवश्यकता है</string>
+    <string name="storage_denied_select">फॉर्म चुनने के लिए स्टोरेज अनुमति की आवश्यकता है</string>
+
+    <!-- Forms History -->
+    <string name="my_forms">मेरे फॉर्म्स</string>
+    <string name="search_forms">फॉर्म खोजें…</string>
+    <string name="forms_history">फॉर्म्स इतिहास</string>
+    <string name="no_history">कोई इतिहास नहीं मिला</string>
+
+    <!-- Feedback -->
+    <string name="feedback_title">प्रतिक्रिया</string>
+    <string name="question_label">प्रश्न</string>
+    <string name="of_label">का</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="next_q">अगला प्रश्न →</string>
+    <string name="prev_q">← पिछला प्रश्न</string>
+    <string name="submit_feedback">प्रतिक्रिया भेजें</string>
+    <string name="back_to_home">होम पर जाएं</string>
+    <string name="q1_title">आप अपने समग्र अनुभव को कैसे रेट करेंगे?</string>
+    <string name="q1_desc">कृपया अपने अनुभव के अनुसार सितारों की संख्या चुनें।</string>
+    <string name="q1_hint">रेट करने के लिए सितारों को टैप करें</string>
+    <string name="q2_title">ऐप का उपयोग करना कितना आसान है?</string>
+    <string name="q2_desc">उस विकल्प को चुनें जो आपके अनुभव का सबसे अच्छा वर्णन करता है।</string>
+    <string name="q3_title">आवाज मार्गदर्शन कितना सहायक है?</string>
+    <string name="q3_desc">आवाज मार्गदर्शन सुविधा के साथ अपने अनुभव का वर्णन करें।</string>
+    <string name="q4_title">क्या आप दूसरों को FormSahayak की सिफारिश करेंगे?</string>
+    <string name="q4_desc">हमें यह जानने में मदद करें कि क्या आप अपने दोस्तों और परिवार को इस ऐप का सुझाव देंगे।</string>
+    <string name="q5_title">अतिरिक्त टिप्पणियाँ</string>
+    <string name="q5_desc">कोई अतिरिक्त विचार या सुझाव साझा करें (वैकल्पिक)।</string>
+    <string name="q5_hint">हमें बताएं कि आपको क्या पसंद आया या हम क्या सुधार सकते हैं…</string>
+    <string name="feedback_success">धन्यवाद!</string>
+    <string name="feedback_submitted">आपकी प्रतिक्रिया सबमिट कर दी गई है</string>
+    <string name="feedback_appreciation">हम वास्तव में आपके विचारों को साझा करने के लिए समय निकालने की सराहना करते हैं। आपकी प्रतिक्रिया हमें FormSahayak को सभी के लिए बेहतर बनाने में मदद करती है।</string>
+    <string name="submit_another">एक और प्रतिक्रिया सबमिट करें</string>
+    <string name="rating_warning">जारी रखने के लिए कृपया रेटिंग चुनें</string>
+    <string name="feedback_recorded">प्रतिक्रिया सफलतापूर्वक प्राप्त और रिकॉर्ड की गई</string>
+
+    <!-- Feedback Options -->
+    <string name="ease_very_easy">बहुत आसान</string>
+    <string name="ease_easy">आसान</string>
+    <string name="ease_moderate">सामान्य</string>
+    <string name="ease_difficult">कठिन</string>
+    <string name="voice_very_helpful">बहुत सहायक</string>
+    <string name="voice_helpful">सहायक</string>
+    <string name="voice_somewhat_helpful">कुछ हद तक सहायक</string>
+    <string name="voice_not_helpful">सहायक नहीं</string>
+    <string name="rec_yes">हाँ, निश्चित रूप से</string>
+    <string name="rec_probably">शायद हाँ</string>
+    <string name="rec_maybe">हो सकता है</string>
+    <string name="rec_no">नहीं</string>
+
+    <!-- Image Enhancement -->
+    <string name="enhance_image">छवि सुधारें</string>
+    <string name="reset">रीसेट</string>
+    <string name="brightness">चमक</string>
+    <string name="contrast">कंट्रास्ट</string>
+    <string name="rotation">रोटेशन</string>
+    <string name="rotate_90">90° घुमाएँ</string>
+    <string name="apply_continue">लागू करें और जारी रखें</string>
+
+    <!-- Form Detected -->
+    <string name="form_detected_title">फॉर्म का पता चला</string>
+    <string name="page_detected_title">पेज %1$d का पता चला</string>
+    <string name="fd_subtitle">हमने आपके द्वारा अपलोड किए गए फॉर्म के प्रकार की पहचान की है</string>
+    <string name="fd_detected_label">पहचाना गया फॉर्म प्रकार:</string>
+    <string name="fd_listen_label">फॉर्म का प्रकार सुनें</string>
+    <string name="fd_proceed_q">क्या हम इस फॉर्म के साथ आगे बढ़ सकते हैं?</string>
+    <string name="fd_proceed_desc">यदि फॉर्म का प्रकार सही है, तो जारी रखने के लिए \'आगे बढ़ें\' पर क्लिक करें। अन्यथा, फिर से अपलोड करने के लिए \'फॉर्म को फिर से स्कैन करें\' पर क्लिक करें।</string>
+    <string name="fd_bank_type">बैंक का प्रकार</string>
+    <string name="fd_doc_pages">दस्तावेज़ पेज</string>
+    <string name="fd_confidence">विश्वास (Confidence)</string>
+    <string name="fd_status">स्थिति</string>
+    <string name="fd_pages_suffix">पेज</string>
+    <string name="fd_yes_proceed">हाँ, इस फॉर्म के साथ आगे बढ़ें</string>
+    <string name="fd_no_rescan">नहीं, फॉर्म को फिर से स्कैन करें</string>
+    <string name="fd_excellent">उत्कृष्ट</string>
+    <string name="fd_ready">तैयार</string>
+    <string name="fd_fair">ठीक</string>
+    <string name="fd_unclear">अस्पष्ट</string>
+
+    <!-- Form Details -->
+    <string name="form_details">फॉर्म विवरण</string>
+    <string name="no_details_found">कोई विवरण नहीं मिला</string>
+    <string name="no_image_url">कोई इमेज URL नहीं दिया गया</string>
+    <string name="extracted_text">निकाला गया टेक्स्ट</string>
+    <string name="no_text_extracted">कोई टेक्स्ट नहीं निकाला गया</string>
+    <string name="stop_audio">ऑडियो बंद करें</string>
+    <string name="play_audio_guidance">ऑडियो मार्गदर्शन चलाएं</string>
+    <string name="no_guidance_available">कोई मार्गदर्शन उपलब्ध नहीं है</string>
+
+    <!-- Form Completion -->
+    <string name="success">सफलता!</string>
+    <string name="completion_desc">फॉर्म गाइड सफलतापूर्वक पूरी हुई। अब आप अपने फॉर्म के सभी फ़ील्ड भरना जानते हैं।</string>
+    <string name="next_steps">अगले कदम:</string>
+    <string name="step_fill_physical">भौतिक फॉर्म को ध्यान से भरें</string>
+    <string name="step_double_check">सभी जानकारी दोबारा जांचें</string>
+    <string name="step_sign">निर्दिष्ट स्थान पर हस्ताक्षर करें</string>
+    <string name="step_submit">बैंक में जमा करें</string>
+    <string name="return_home">होम पर वापस जाएं</string>
+    <string name="download_pdf">PDF डाउनलोड करें</string>
+    <string name="upload_another">एक और फॉर्म अपलोड करें</string>
+    <string name="share_fs">क्या यह मददगार था? दोस्तों और परिवार के साथ FormSahayak शेयर करें! 💚</string>
+    <string name="processing">प्रसंस्करण हो रहा है…</string>
+
+    <!-- Scanning Progress -->
+    <string name="scanning">स्कैनिंग…</string>
+    <string name="detecting_edges">दस्तावेज़ के किनारों का पता लगाना…</string>
+    <string name="analyzing_doc">दस्तावेज़ का विश्लेषण</string>
+    <string name="extracting_fields">पेज %1$d के लिए फ़ील्ड और टेक्स्ट निकाला जा रहा है…</string>
+
+    <!-- Errors Found -->
+    <string name="errors_found">त्रुटियाँ मिलीं</string>
+    <string name="check_fix_errors">कृपया उन्हें जांचें और ठीक करें</string>
+    <string name="fix_errors">त्रुटियां सुधारें</string>
+    <string name="need_help">सहायता चाहिए?</string>
+
+    <!-- Toasts / Permissions Denied -->
+    <string name="camera_denied">प्रोफ़ाइल फ़ोटो लेने के लिए कैमरा अनुमति की आवश्यकता है</string>
+    <string name="storage_denied">फ़ोटो चुनने के लिए स्टोरेज अनुमति की आवश्यकता है</string>
+    <string name="audio_denied">आवाज मार्गदर्शन के लिए ऑडियो अनुमति की आवश्यकता है</string>
+    <string name="failed_load_details">फॉर्म विवरण लोड करने में विफल</string>
+    <string name="pdf_not_available">पीडीएफ उपलब्ध नहीं है</string>
+    <string name="downloading_pdf">पीडीएफ डाउनलोड हो रहा है…</string>
+    <string name="pdf_downloaded">पीडीएफ सफलतापूर्वक डाउनलोड हो गया</string>
+    <string name="perm_required_title">अनुमति आवश्यक है</string>
+    <string name="perm_permanently_denied">यह अनुमति स्थायी रूप से अस्वीकार कर दी गई है। कृपया इसे मैन्युअल रूप से देने के लिए सेटिंग्स खोलें।</string>
+</resources>

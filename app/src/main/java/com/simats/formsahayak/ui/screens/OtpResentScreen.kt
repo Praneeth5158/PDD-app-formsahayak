@@ -38,8 +38,9 @@ fun OtpResentScreen(
     selectedLanguage: Language?,
     isDarkMode: Boolean,
     isHighContrast: Boolean,
-    onVerifyClick: (Boolean) -> Unit,
-    onBackToVerification: () -> Unit
+    onVerifyClick: (String) -> Unit,
+    onBackToVerification: () -> Unit,
+    onResendOtp: () -> Unit
 ) {
     val otpValues = remember { mutableStateListOf("", "", "", "", "", "") }
     val focusRequesters = remember { List(6) { FocusRequester() } }
@@ -239,7 +240,11 @@ fun OtpResentScreen(
                 Spacer(modifier = Modifier.height(24.dp))
 
                 Button(
-                    onClick = { onVerifyClick(otpValues.all { it.isNotEmpty() }) },
+                    onClick = { 
+                        if (otpValues.all { it.isNotEmpty() }) {
+                            onVerifyClick(otpValues.joinToString(""))
+                        }
+                    },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(56.dp),
@@ -258,7 +263,7 @@ fun OtpResentScreen(
                     color = if (timeLeft > 0) Color.LightGray else Color(0xFF2196F3),
                     modifier = Modifier.clickable(enabled = timeLeft == 0) { 
                         timeLeft = 45 // Reset timer if resending
-                        // Logic to resend OTP
+                        onResendOtp()
                     }
                 )
 

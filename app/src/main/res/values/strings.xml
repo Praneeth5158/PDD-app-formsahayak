@@ -1,3 +1,324 @@
 <resources>
-    <string name="app_name">formsahayak</string>
+    <string name="app_name">Praneeth FormSahayak</string>
+    <string name="welcome_back">Welcome back!</string>
+    <string name="get_started">Get Started</string>
+    <string name="tap_to_get_started">Tap to get started</string>
+    <string name="smart_guidance">Smart Form Guidance for Everyone</string>
+    <string name="select_language">Select Language</string>
+    <string name="continue_btn">Continue</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="finish">Finish</string>
+    <string name="back">Back</string>
+    <string name="home">Home</string>
+
+    <!-- Onboarding -->
+    <string name="ob_scan_title">Scan Bank Forms</string>
+    <string name="ob_scan_desc">Use your phone camera to scan bank forms easily</string>
+    <string name="ob_highlight_title">Highlighted Fields</string>
+    <string name="ob_highlight_desc">App highlights important fields you need to fill</string>
+    <string name="ob_voice_title">Voice Guidance</string>
+    <string name="ob_voice_desc">Get voice instructions in your regional language</string>
+
+    <!-- Permissions -->
+    <string name="grant_permissions">Grant Permissions</string>
+    <string name="perm_desc">FormSahayak needs these permissions to help you fill forms</string>
+    <string name="privacy_first">Privacy First: </string>
+    <string name="privacy_desc">Your data stays on your device. We only use these permissions to help you.</string>
+    <string name="camera_access">Camera Access</string>
+    <string name="camera_desc">Required to scan documents</string>
+    <string name="storage_access">Storage Access</string>
+    <string name="storage_desc">Required to save documents</string>
+    <string name="mic_access">Microphone Access</string>
+    <string name="mic_desc">Required for voice guidance</string>
+    <string name="perm_required_warning">All permissions are required for the app to work properly</string>
+    <string name="grant_all_perm">Grant All Permissions</string>
+    <string name="open_settings">Can\'t see pop-up? Open Settings</string>
+    <string name="go_back">Go Back</string>
+    <string name="perm_granted">Permission Granted ✅</string>
+    <string name="grant_perm_btn">Grant Permission</string>
+    <string name="perm_required_toast">All permissions are required to continue</string>
+    <string name="all_perm_set">All Permissions Set!</string>
+    <string name="all_perm_granted_desc">All Permissions Granted Successfully</string>
+    <string name="continue_dashboard">Continue to Dashboard</string>
+
+    <!-- Login/Signup -->
+    <string name="welcome_title">Welcome Back</string>
+    <string name="login_sub">Login to continue</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="no_account">Don\'t have an account? </string>
+    <string name="create_account">Create Account</string>
+    <string name="signup_sub">Sign up to get started</string>
+    <string name="full_name">Full Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="already_have_account">Already have an account? </string>
+    <string name="enter_full_name">Enter your full name</string>
+    <string name="enter_email">Enter your email</string>
+    <string name="create_password">Create a password</string>
+    <string name="register">Register</string>
+    <string name="enter_email_phone">Enter your email or phone number</string>
+    <string name="email_phone_label">Email or Phone Number</string>
+    <string name="send_otp">Send OTP</string>
+    <string name="back_to_login">Back to Login</string>
+    <string name="registered_successfully">Registered\nSuccessfully! 🎉</string>
+    <string name="account_created">Your account has been created</string>
+
+    <!-- OTP / Verification -->
+    <string name="verify_otp">Verify OTP</string>
+    <string name="code_sent_to">Code sent to: </string>
+    <string name="didnt_receive_code">Didn\'t receive code? Resend OTP</string>
+    <string name="verified_successfully">Verified\nSuccessfully! 🎉</string>
+    <string name="otp_verified">Your OTP has been verified</string>
+    <string name="verification_complete">Verification Complete</string>
+    <string name="verification_desc">Your phone number has been successfully verified. You can now access all features of FormSahayak.</string>
+    <string name="account_active">Your account is now active</string>
+    <string name="login_anytime">You can now login anytime</string>
+    <string name="welcome_fs_msg">Welcome to FormSahayak!\nLet\'s make form filling easier together</string>
+    <string name="go_back_login">Go Back to Login Page</string>
+    <string name="go_to_home">Go to Home</string>
+    <string name="verification_failed">Verification Failed</string>
+    <string name="otp_not_verified">OTP could not be verified</string>
+    <string name="unable_verify_otp">Unable to Verify OTP</string>
+    <string name="otp_error_desc">The verification code you entered is incorrect or has expired. Please try again.</string>
+    <string name="common_reasons">Common Reasons:</string>
+    <string name="otp_expired">OTP Expired</string>
+    <string name="otp_expired_desc">The OTP might have expired (valid for 10 minutes)</string>
+    <string name="incorrect_code">Incorrect Code</string>
+    <string name="incorrect_code_desc">Double-check the 6-digit code you entered</string>
+    <string name="network_issue">Network Issue</string>
+    <string name="network_issue_desc">Poor connection may have caused verification fail</string>
+    <string name="need_help_contact">Contact support or try requesting a new OTP</string>
+    <string name="try_again_otp">Try Again with New OTP</string>
+    <string name="otp_resent">OTP Resent</string>
+    <string name="otp_resent_desc">A new 6-digit code has been sent to your phone</string>
+    <string name="new_otp_sent">New OTP Sent Successfully</string>
+    <string name="otp_expires_in">OTP expires in: %1$d seconds</string>
+    <string name="enter_new_otp">Please enter the new OTP you just received</string>
+    <string name="verify_new_otp">Verify New OTP</string>
+    <string name="still_no_code">Still didn\'t receive code?</string>
+    <string name="resend_otp_in">You can resend OTP in %1$d seconds</string>
+    <string name="resend_otp_now">Resend OTP now</string>
+    <string name="back_verification">Back to Verification</string>
+
+    <!-- Reset Password -->
+    <string name="reset_password">Reset Password</string>
+    <string name="create_new_password">Create a new password for your account</string>
+    <string name="new_password">New Password</string>
+    <string name="enter_new_password">Enter new password</string>
+    <string name="confirm_new_password">Confirm new password</string>
+    <string name="update_password">Update Password</string>
+    <string name="back_to_profile">Back to Profile</string>
+    <string name="change_password_title">Change Password</string>
+
+    <!-- Dashboard -->
+    <string name="language">Language</string>
+    <string name="change">Change</string>
+    <string name="welcome_to_fs">🙏 Welcome to FormSahayak</string>
+    <string name="upload_form">Upload a Form</string>
+    <string name="help">Help</string>
+    <string name="forms">Forms</string>
+    <string name="settings">Settings</string>
+    <string name="profile">Profile</string>
+
+    <!-- Form Preview -->
+    <string name="form_guide">Form Guide</string>
+    <string name="current_field">Current Field</string>
+    <string name="ai_guidance">AI Guidance</string>
+    <string name="listen_again">Listen Again</string>
+    <string name="ai_analyzing">AI Analyzing…</string>
+
+    <!-- Profile -->
+    <string name="premium_member">Premium Member</string>
+    <string name="personal_info">Personal Information</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="lang_pref">Language Preference</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="change_password">Change Password</string>
+    <string name="logout">Logout</string>
+    <string name="change_photo">Change Photo</string>
+
+    <!-- Settings -->
+    <string name="voice_guidance">Voice Guidance</string>
+    <string name="voice_speed">Voice Speed</string>
+    <string name="accessibility">Accessibility</string>
+    <string name="high_contrast">High Contrast</string>
+    <string name="high_contrast_desc">Better visibility for text and buttons</string>
+    <string name="display">Display</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="dark_mode_desc">Reduce eye strain in low light</string>
+    <string name="speed_slow">Slow</string>
+    <string name="speed_normal">Normal</string>
+    <string name="speed_fast">Fast</string>
+
+    <!-- How To Use -->
+    <string name="how_to_use">How to Use</string>
+    <string name="htu_welcome">Welcome to FormSahayak!</string>
+    <string name="htu_subtitle">Follow these simple steps to fill your bank forms easily</string>
+    <string name="htu_video_title">Video Tutorial</string>
+    <string name="htu_video_desc">Watch this helpful video guide to learn how to use FormSahayak.</string>
+    <string name="htu_video_tap">Tap to watch full video tutorial</string>
+    <string name="htu_step1_title">Upload Form Image</string>
+    <string name="htu_step1_desc">Take a photo of your bank form or upload from gallery. Make sure the image is clear and well-lit.</string>
+    <string name="htu_step2_title">App Detects Fields</string>
+    <string name="htu_step2_desc">FormSahayak automatically identifies and highlights all the fields you need to fill in the form.</string>
+    <string name="htu_step3_title">Follow Voice Instructions</string>
+    <string name="htu_step3_desc">Listen to voice guidance in your language that explains what to write in each field.</string>
+    <string name="htu_step4_title">Fill Form Correctly</string>
+    <string name="htu_step4_desc">Use the app\'s guidance to fill all fields accurately and complete your bank form.</string>
+    <string name="htu_need_help">Need More Help?</string>
+    <string name="htu_contact_support">Contact our support team for assistance</string>
+    <string name="htu_share_exp">Share Your Experience</string>
+    <string name="htu_share_desc">Help us improve FormSahayak with your valuable feedback.</string>
+    <string name="htu_give_feedback">Give Feedback</string>
+    <string name="htu_got_it">Got It!</string>
+
+    <!-- Upload Form Screen -->
+    <string name="upload_subtitle">Take a clear photo or upload\nfrom gallery</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="tips_title">Tips for best results</string>
+    <string name="tip_lighting">Ensure good lighting</string>
+    <string name="tip_flat">Keep form flat and clear</string>
+    <string name="tip_shadows">Avoid shadows and glare</string>
+    <string name="camera_denied_scan">Camera permission is required to scan forms</string>
+    <string name="storage_denied_select">Storage permission is required to select forms</string>
+
+    <!-- Forms History -->
+    <string name="my_forms">My Forms</string>
+    <string name="search_forms">Search forms…</string>
+    <string name="forms_history">Forms History</string>
+    <string name="no_history">No history found</string>
+
+    <!-- Feedback -->
+    <string name="feedback_title">Feedback</string>
+    <string name="question_label">Question</string>
+    <string name="of_label">of</string>
+    <string name="cancel">Cancel</string>
+    <string name="next_q">Next Question →</string>
+    <string name="prev_q">← Previous Question</string>
+    <string name="submit_feedback">Submit Feedback</string>
+    <string name="back_to_home">Go to Home</string>
+    <string name="q1_title">How would you rate your overall experience?</string>
+    <string name="q1_desc">Please select the number of stars that match your experience.</string>
+    <string name="q1_hint">Tap stars to rate</string>
+    <string name="q2_title">How easy is the app to use?</string>
+    <string name="q2_desc">Select the option that best describes your experience.</string>
+    <string name="q3_title">How helpful is the voice guidance?</string>
+    <string name="q3_desc">What describe your experience with the voice guidance feature.</string>
+    <string name="q4_title">Would you recommend FormSahayak to others?</string>
+    <string name="q4_desc">Help us know if you\'d suggest this app to your friends and family.</string>
+    <string name="q5_title">Additional Comments</string>
+    <string name="q5_desc">Share any additional thoughts or suggestions (Optional).</string>
+    <string name="q5_hint">Tell us what you liked or what we can improve…</string>
+    <string name="feedback_success">Thank You!</string>
+    <string name="feedback_submitted">Your Feedback Has Been Submitted</string>
+    <string name="feedback_appreciation">We truly appreciate you taking the time to share your thoughts. Your feedback helps us make FormSahayak better for everyone.</string>
+    <string name="submit_another">Submit another feedback</string>
+    <string name="rating_warning">Please select a rating to continue</string>
+    <string name="feedback_recorded">Feedback received and recorded successfully</string>
+
+    <!-- Feedback Options -->
+    <string name="ease_very_easy">Very Easy</string>
+    <string name="ease_easy">Easy</string>
+    <string name="ease_moderate">Moderate</string>
+    <string name="ease_difficult">Difficult</string>
+    <string name="voice_very_helpful">Very Helpful</string>
+    <string name="voice_helpful">Helpful</string>
+    <string name="voice_somewhat_helpful">Somewhat Helpful</string>
+    <string name="voice_not_helpful">Not Helpful</string>
+    <string name="rec_yes">Yes, Definitely</string>
+    <string name="rec_probably">Probably Yes</string>
+    <string name="rec_maybe">Maybe</string>
+    <string name="rec_no">No</string>
+
+    <!-- Image Enhancement -->
+    <string name="enhance_image">Enhance Image</string>
+    <string name="reset">Reset</string>
+    <string name="brightness">Brightness</string>
+    <string name="contrast">Contrast</string>
+    <string name="rotation">Rotation</string>
+    <string name="rotate_90">Rotate 90°</string>
+    <string name="apply_continue">Apply &amp; Continue</string>
+
+    <!-- Form Detected -->
+    <string name="form_detected_title">Form Detected</string>
+    <string name="page_detected_title">Page %1$d Detected</string>
+    <string name="fd_subtitle">We identified the type of form you uploaded</string>
+    <string name="fd_detected_label">Detected Form Type:</string>
+    <string name="fd_listen_label">Listen to Form Type</string>
+    <string name="fd_proceed_q">Can we proceed with this form?</string>
+    <string name="fd_proceed_desc">If the form type is correct, click \'Proceed\' to continue. Otherwise, click \'Re-scan Form\' to upload again.</string>
+    <string name="fd_bank_type">Bank Type</string>
+    <string name="fd_doc_pages">Document Pages</string>
+    <string name="fd_confidence">Confidence</string>
+    <string name="fd_status">Status</string>
+    <string name="fd_pages_suffix">Pages</string>
+    <string name="fd_yes_proceed">Yes, Proceed with this Form</string>
+    <string name="fd_no_rescan">No, Re-scan Form</string>
+    <string name="fd_excellent">Excellent</string>
+    <string name="fd_ready">Ready</string>
+    <string name="fd_fair">Fair</string>
+    <string name="fd_unclear">Unclear</string>
+
+    <!-- Form Details -->
+    <string name="form_details">Form Details</string>
+    <string name="no_details_found">No details found</string>
+    <string name="no_image_url">No image URL provided</string>
+    <string name="extracted_text">Extracted Text</string>
+    <string name="no_text_extracted">No text extracted</string>
+    <string name="stop_audio">Stop Audio</string>
+    <string name="play_audio_guidance">Play Audio Guidance</string>
+    <string name="no_guidance_available">No guidance available</string>
+
+    <!-- Form Completion -->
+    <string name="success">Success!</string>
+    <string name="completion_desc">Form guidance completed successfully. You now know how to fill all the fields in your form.</string>
+    <string name="next_steps">Next Steps:</string>
+    <string name="step_fill_physical">Fill the physical form carefully</string>
+    <string name="step_double_check">Double-check all information</string>
+    <string name="step_sign">Sign in the designated area</string>
+    <string name="step_submit">Submit to the bank</string>
+    <string name="return_home">Return to Home</string>
+    <string name="download_pdf">Download PDF</string>
+    <string name="upload_another">Upload Another Form</string>
+    <string name="share_fs">Found this helpful? Share FormSahayak with friends and family! 💚</string>
+    <string name="processing">Processing…</string>
+
+    <!-- Scanning Progress -->
+    <string name="scanning">Scanning…</string>
+    <string name="detecting_edges">Detecting document edges…</string>
+    <string name="analyzing_doc">Analyzing Document</string>
+    <string name="extracting_fields">Extracting fields and text for Page %1$d…</string>
+
+    <!-- Errors Found -->
+    <string name="errors_found">Errors Found</string>
+    <string name="errors_count">%1$d Errors Found</string>
+    <string name="check_fix_errors">Please check and fix them</string>
+    <string name="fix_errors">Fix Errors</string>
+    <string name="need_help">Need Help?</string>
+    <string name="signature">Signature</string>
+    <string name="signature_error">Signature missing. Please sign in the designated box.</string>
+    <string name="name_error">Name not clear. Write your full name clearly in CAPITAL letters.</string>
+    <string name="date_error">Invalid date format. Use DD/MM/YYYY format as specified.</string>
+    <string name="date">Date</string>
+
+    <!-- Verifying Form -->
+    <string name="verifying_form">Verifying Form</string>
+    <string name="please_wait">Please wait…</string>
+
+    <!-- Toasts / Permissions Denied -->
+    <string name="camera_denied">Camera permission is required to take a profile photo</string>
+    <string name="storage_denied">Storage permission is required to select a photo</string>
+    <string name="audio_denied">Audio permission is required for voice guidance</string>
+    <string name="failed_load_details">Failed to load form details</string>
+    <string name="pdf_not_available">PDF not available</string>
+    <string name="downloading_pdf">Downloading PDF…</string>
+    <string name="pdf_downloaded">PDF Downloaded Successfully</string>
+    <string name="perm_required_title">Permission Required</string>
+    <string name="perm_permanently_denied">This permission has been permanently denied. Please open Settings to grant it manually.</string>
 </resources>

@@ -1,0 +1,237 @@
+<resources>
+    <string name="app_name">FormSahayak</string>
+    <string name="welcome_back">மீண்டும் வருக!</string>
+    <string name="get_started">தொடங்குங்கள்</string>
+    <string name="tap_to_get_started">தொடங்க தட்டவும்</string>
+    <string name="smart_guidance">அனைவருக்கும் ஸ்மார்ட் படிவ வழிகாட்டுதல்</string>
+    <string name="select_language">மொழியைத் தேர்ந்தெடுக்கவும்</string>
+    <string name="continue_btn">தொடரவும்</string>
+    <string name="skip">தவிர்</string>
+    <string name="next">அடுத்து</string>
+    <string name="previous">முந்தைய</string>
+    <string name="finish">முடிந்தது</string>
+    <string name="back">திரும்பி</string>
+    <string name="home">முகப்பு</string>
+
+    <!-- Onboarding -->
+    <string name="ob_scan_title">வங்கி படிவங்களை ஸ்கேன் செய்யுங்கள்</string>
+    <string name="ob_scan_desc">வங்கி படிவங்களை எளிதாக ஸ்கேன் செய்ய உங்கள் தொலைபேசி கேமராவைப் பயன்படுத்தவும்</string>
+    <string name="ob_highlight_title">சிறப்பம்சங்கள்</string>
+    <string name="ob_highlight_desc">நீங்கள் நிரப்ப வேண்டிய முக்கியமான புலங்களை ஆப்ஸ் சிறப்பித்துக் காட்டுகிறது</string>
+    <string name="ob_voice_title">குரல் வழிகாட்டுதல்</string>
+    <string name="ob_voice_desc">உங்கள் பிராந்திய மொழியில் குரல் வழிமுறைகளைப் பெறுங்கள்</string>
+
+    <!-- Permissions -->
+    <string name="grant_permissions">அனுமதிகளை வழங்கவும்</string>
+    <string name="perm_desc">படிவங்களை நிரப்ப உங்களுக்கு உதவ FormSahayak-க்கு இந்த அனுமதிகள் தேவை</string>
+    <string name="privacy_first">தனியுரிமை முதலில்: </string>
+    <string name="privacy_desc">உங்கள் தரவு உங்கள் சாதனத்திலேயே இருக்கும். உங்களுக்கு உதவ மட்டுமே இந்த அனுமதிகளைப் பயன்படுத்துகிறோம்.</string>
+    <string name="camera_access">கேமரா அணுகல்</string>
+    <string name="camera_desc">ஆவணங்களை ஸ்கேன் செய்ய தேவை</string>
+    <string name="storage_access">சேமிப்பக அணுகல்</string>
+    <string name="storage_desc">ஆவணங்களைச் சேமிக்க தேவை</string>
+    <string name="mic_access">மைக்ரோஃபோன் அணுகல்</string>
+    <string name="mic_desc">குரல் வழிகாட்டுதலுக்கு தேவை</string>
+    <string name="perm_required_warning">பயன்பாடு செயல்பட அனைத்து அனுமதிகளும் தேவை</string>
+    <string name="grant_all_perm">அனைத்து அனுமதிகளையும் வழங்கவும்</string>
+    <string name="open_settings">அமைப்புகளிலிருந்து அனுமதிக்கவும்</string>
+    <string name="go_back">திரும்பி செல்</string>
+    <string name="perm_granted">அனுமதி வழங்கப்பட்டது ✅</string>
+    <string name="grant_perm_btn">அனுமதி வழங்கவும்</string>
+    <string name="perm_required_toast">தொடர அனைத்து அனுமதிகளும் தேவை</string>
+    <string name="all_perm_set">எல்லாம் தயார்! 🎉</string>
+    <string name="all_perm_granted_desc">அனுமதிகள் வெற்றிகரமாகப் பெறப்பட்டன</string>
+    <string name="continue_dashboard">டாஷ்போர்டுக்குத் தொடரவும்</string>
+
+    <!-- Login/Signup -->
+    <string name="welcome_title">வரவேற்கிறோம்</string>
+    <string name="login_sub">தொடர உள்நுழையவும்</string>
+    <string name="login">உள்நுழை</string>
+    <string name="signup">பதிவுபெறு</string>
+    <string name="email">மின்னஞ்சல்</string>
+    <string name="password">கடவுச்சொல்</string>
+    <string name="forgot_password">கடவுச்சொல்லை மறந்துவிட்டீர்களா?</string>
+    <string name="no_account">கணக்கு இல்லையா? </string>
+    <string name="create_account">கணக்கை உருவாக்கவும்</string>
+    <string name="signup_sub">தொடங்க பதிவுபெறுங்கள்</string>
+    <string name="full_name">முழு பெயர்</string>
+    <string name="confirm_password">கடவுச்சொல்லை உறுதிப்படுத்தவும்</string>
+    <string name="already_have_account">ஏற்கனவே கணக்கு உள்ளதா? </string>
+    <string name="enter_full_name">உங்கள் முழு பெயரை உள்ளிடவும்</string>
+    <string name="enter_email">உங்கள் மின்னஞ்சலை உள்ளிடவும்</string>
+    <string name="create_password">கடவுச்சொல்லை உருவாக்கவும்</string>
+    <string name="register">பதிவு செய்</string>
+    <string name="enter_email_phone">உங்கள் மின்னஞ்சல் அல்லது தொலைபேசி எண்ணை உள்ளிடவும்</string>
+    <string name="email_phone_label">மின்னஞ்சல் அல்லது தொலைபேசி எண்</string>
+    <string name="send_otp">OTP ஐ அனுப்பு</string>
+    <string name="back_to_login">உள்நுழைவுக்குத் திரும்பு</string>
+
+    <!-- OTP / Verification -->
+    <string name="verify_otp">OTP ஐச் சரிபார்க்கவும்</string>
+    <string name="code_sent_to">குறியீடு அனுப்பப்பட்டது: </string>
+    <string name="didnt_receive_code">குறியீடு வரவில்லையா? மீண்டும் அனுப்பவும்</string>
+
+    <!-- Reset Password -->
+    <string name="reset_password">கடவுச்சொல்லை மீட்டமைக்கவும்</string>
+    <string name="create_new_password">உங்கள் கணக்கிற்கு புதிய கடவுச்சொல்லை உருவாக்கவும்</string>
+    <string name="new_password">புதிய கடவுச்சொல்</string>
+    <string name="enter_new_password">புதிய கடவுச்சொல்லை உள்ளிடவும்</string>
+    <string name="confirm_new_password">புதிய கடவுச்சொல்லை உறுதிப்படுத்தவும்</string>
+    <string name="update_password">கடவுச்சொல்லை மாற்றவும்</string>
+    <string name="back_to_profile">சுயவிவரத்திற்குத் திரும்பு</string>
+
+    <!-- Dashboard -->
+    <string name="language">மொழி</string>
+    <string name="change">மாற்றவும்</string>
+    <string name="welcome_to_fs">🙏 FormSahayak-க்கு வரவேற்கிறோம்</string>
+    <string name="upload_form">படிவத்தைப் பதிவேற்றவும்</string>
+    <string name="help">உதவி</string>
+    <string name="forms">படிவங்கள்</string>
+    <string name="settings">அமைப்புகள்</string>
+    <string name="profile">சுயவிவரம்</string>
+
+    <!-- Form Preview -->
+    <string name="form_guide">படிவ வழிகாட்டி</string>
+    <string name="current_field">தற்போதைய புலம்</string>
+    <string name="ai_guidance">AI வழிகாட்டுதல்</string>
+    <string name="listen_again">மீண்டும் கேளுங்கள்</string>
+    <string name="ai_analyzing">AI பகுப்பாய்வு செய்கிறது…</string>
+
+    <!-- Profile -->
+    <string name="premium_member">பிரீமியம் உறுப்பினர்</string>
+    <string name="personal_info">தனிப்பட்ட தகவல்</string>
+    <string name="phone_number">தொலைபேசி எண்</string>
+    <string name="lang_pref">மொழி விருப்பம்</string>
+    <string name="edit_profile">சுயவிவரத்தைத் திருத்து</string>
+    <string name="change_password">கடவுச்சொல்லை மாற்றவும்</string>
+    <string name="logout">வெளியேறு</string>
+    <string name="change_photo">புகைப்படத்தை மாற்றவும்</string>
+
+    <!-- Settings -->
+    <string name="voice_guidance">குரல் வழிகாட்டுதல்</string>
+    <string name="voice_speed">குரல் வேகம்</string>
+    <string name="accessibility">அணுகல்தன்மை</string>
+    <string name="high_contrast">உயர் மாறுபாடு</string>
+    <string name="high_contrast_desc">உரை மற்றும் பொத்தான்களுக்கு சிறந்த பார்வை</string>
+    <string name="display">காட்சி</string>
+    <string name="dark_mode">இருண்ட பயன்முறை</string>
+    <string name="dark_mode_desc">குறைந்த ஒளியில் கண் சோர்வைக் குறைக்கவும்</string>
+    <string name="speed_slow">மெதுவாக (Slow)</string>
+    <string name="speed_normal">சாதாரணமானது (Normal)</string>
+    <string name="speed_fast">வேகமாக (Fast)</string>
+
+    <!-- How To Use -->
+    <string name="how_to_use">எப்படி பயன்படுத்துவது</string>
+    <string name="htu_welcome">FormSahayak-க்கு வரவேற்கிறோம்!</string>
+    <string name="htu_subtitle">உங்கள் வங்கி படிவங்களை எளிதாக நிரப்ப இந்த எளிய வழிமுறைகளை பின்பற்றவும்</string>
+    <string name="htu_video_title">வீடியோ டுடோரியல்</string>
+    <string name="htu_video_desc">FormSahayak ஐ எவ்வாறு பயன்படுத்துவது என்பதை அறிய இந்த பயனுள்ள வீடியோ வழிகாட்டியைப் பார்க்கவும்.</string>
+    <string name="htu_video_tap">முழு வீடியோ டுடோரியலைப் பார்க்க தட்டவும்</string>
+    <string name="htu_step1_title">படிவப் படத்தைப் பதிவேற்றவும்</string>
+    <string name="htu_step1_desc">உங்கள் வங்கி படிவத்தின் புகைப்படத்தை எடுக்கவும் அல்லது கேலரியில் இருந்து பதிவேற்றவும். படம் தெளிவாகவும் வெளிச்சமாகவும் இருப்பதை உறுதி செய்யவும்.</string>
+    <string name="htu_step2_title">ஆப் புலங்களைக் கண்டறியும்</string>
+    <string name="htu_step2_desc">FormSahayak நீங்கள் படிவத்தில் நிரப்ப வேண்டிய அனைத்து புலங்களையும் தானாகவே கண்டறிந்து முன்னிலைப்படுத்தும்.</string>
+    <string name="htu_step3_title">குரல் வழிமுறைகளைப் பின்பற்றவும்</string>
+    <string name="htu_step3_desc">ஒவ்வொரு புலத்திலும் என்ன எழுத வேண்டும் என்பதை விளக்கும் உங்கள் மொழியில் குரல் வழிகாட்டுதலைக் கேளுங்கள்.</string>
+    <string name="htu_step4_title">படிவத்தை சரியாக நிரப்பவும்</string>
+    <string name="htu_step4_desc">அனைத்து புலங்களையும் துல்லியமாக நிரப்பவும் உங்கள் வங்கி படிவத்தை பூர்த்தி செய்யவும் பயன்பாட்டின் வழிகாட்டுதலைப் பயன்படுத்தவும்.</string>
+    <string name="htu_need_help">மேலும் உதவி வேண்டுமா?</string>
+    <string name="htu_contact_support">உதவிக்கு எங்கள் ஆதரவு குழுவை தொடர்பு கொள்ளவும்</string>
+    <string name="htu_share_exp">உங்கள் அனுபவத்தைப் பகிரவும்</string>
+    <string name="htu_share_desc">உங்கள் மதிப்புமிக்க கருத்துக்களுடன் FormSahayak ஐ மேம்படுத்த எங்களுக்கு உதவுங்கள்.</string>
+    <string name="htu_give_feedback">கருத்து தெரிவிக்கவும்</string>
+    <string name="htu_got_it">புரிந்தது!</string>
+
+    <!-- Upload Form Screen -->
+    <string name="upload_subtitle">தெளிவான புகைப்படத்தை எடுக்கவும் அல்லது கேலரியில் இருந்து பதிவேற்றவும்</string>
+    <string name="camera">கேமரா</string>
+    <string name="gallery">கேலரி</string>
+    <string name="tips_title">சிறந்த முடிவுகளுக்கான உதவிக்குறிப்புகள்</string>
+    <string name="tip_lighting">நல்ல வெளிச்சத்தை உறுதி செய்யுங்கள்</string>
+    <string name="tip_flat">படிவத்தை தட்டையாகவும் தெளிவாகவும் வைக்கவும்</string>
+    <string name="tip_shadows">நிழல்கள் மற்றும் ஒளிர்வைத் தவிர்க்கவும்</string>
+    <string name="camera_denied_scan">படிவங்களை ஸ்கேன் செய்ய கேமரா அனுமதி தேவை</string>
+    <string name="storage_denied_select">படிவங்களைத் தேர்ந்தெடுக்க சேமிப்பக அனுமதி தேவை</string>
+
+    <!-- Forms History -->
+    <string name="my_forms">எனது படிவங்கள்</string>
+    <string name="search_forms">படிவங்களைத் தேடுங்கள்…</string>
+    <string name="forms_history">படிவ வரலாறு</string>
+    <string name="no_history">வரலாறு எதுவும் இல்லை</string>
+
+    <!-- Feedback -->
+    <string name="feedback_title">கருத்து</string>
+    <string name="question_label">கேள்வி</string>
+    <string name="of_label">/</string>
+    <string name="cancel">ரத்துசெய்</string>
+    <string name="next_q">அடுத்த கேள்வி →</string>
+    <string name="prev_q">முந்தைய கேள்வி</string>
+    <string name="submit_feedback">கருத்தைச் சமர்ப்பிக்கவும்</string>
+    <string name="back_to_home">முகப்புக்குச் செல்லவும்</string>
+    <string name="q1_title">உங்கள் ஒட்டுமொத்த அனுபவத்தை எப்படி மதிப்பிடுவீர்கள்?</string>
+    <string name="q1_desc">உங்கள் அனுபவத்திற்குப் பொருத்தமான நட்சத்திரங்களின் எண்ணிக்கையைத் தேர்ந்தெடுக்கவும்.</string>
+    <string name="q1_hint">மதிப்பிட நட்சத்திரங்களைத் தட்டவும்</string>
+    <string name="q2_title">இந்தச் செயலியைப் பயன்படுத்துவது எவ்வளவு எளிது?</string>
+    <string name="q2_desc">உங்கள் அனுபவத்தை சிறப்பாக விளக்கும் விருப்பத்தைத் தேர்ந்தெடுக்கவும்.</string>
+    <string name="q3_title">குரல் வழிகாட்டுதல் எவ்வளவு உதவியாக இருந்தது?</string>
+    <string name="q3_desc">குரல் வழிகாட்டுதல் அம்சத்தைப் பற்றிய உங்கள் அனுபவத்தை விவரிக்கவும்.</string>
+    <string name="q4_title">FormSahayak-ஐ மற்றவர்களுக்குப் பரிந்துரைப்பீர்களா?</string>
+    <string name="q4_desc">உங்கள் நண்பர்கள் மற்றும் குடும்பத்தினருக்கு இந்தச் செயலியைப் பரிந்துரைப்பீர்களா என்பதை எங்களுக்குத் தெரிவிக்கவும்.</string>
+    <string name="q5_title">கூடுதல் கருத்துகள்</string>
+    <string name="q5_desc">கூடுதல் எண்ணங்கள் அல்லது பரிந்துரைகளைப் பகிரவும் (விருப்பத்தேர்வு).</string>
+    <string name="q5_hint">நீங்கள் விரும்புவதை அல்லது நாங்கள் மேம்படுத்த வேண்டியதை எங்களுக்குத் தெரிவிக்கவும்…</string>
+    <string name="feedback_success">நன்றி!</string>
+    <string name="feedback_submitted">உங்கள் கருத்து சமர்ப்பிக்கப்பட்டது</string>
+    <string name="feedback_appreciation">உங்கள் கருத்துக்களைப் பகிர நேரம் ஒதுக்கியமைக்கு நாங்கள் உங்களைப் பாராட்டுகிறோம். உங்கள் கருத்து FormSahayak-ஐ அனைவருக்கும் சிறந்ததாக மாற்ற உதவும்.</string>
+    <string name="submit_another">மற்றொரு கருத்தைச் சமர்ப்பிக்கவும்</string>
+    <string name="rating_warning">தொடர மதிப்பீட்டைத் தேர்ந்தெடுக்கவும்</string>
+    <string name="feedback_recorded">கருத்து வெற்றிகரமாகப் பெறப்பட்டு பதிவு செய்யப்பட்டது</string>
+
+    <!-- Feedback Options -->
+    <string name="ease_very_easy">மிகவும் எளிது</string>
+    <string name="ease_easy">எளிது</string>
+    <string name="ease_moderate">மிதமானது</string>
+    <string name="ease_difficult">கடினம்</string>
+    <string name="voice_very_helpful">மிகவும் உதவியாக இருந்தது</string>
+    <string name="voice_helpful">உதவியாக இருந்தது</string>
+    <string name="voice_somewhat_helpful">ஓரளவு உதவியாக இருந்தது</string>
+    <string name="voice_not_helpful">உதவியாக இல்லை</string>
+    <string name="rec_yes">நிச்சயமாக ஆம்</string>
+    <string name="rec_probably">அநேகமாக ஆம்</string>
+    <string name="rec_maybe">இருக்கலாம்</string>
+    <string name="rec_no">இல்லை</string>
+
+    <!-- Image Enhancement -->
+    <string name="enhance_image">படத்தை மேம்படுத்தவும்</string>
+    <string name="reset">மீட்டமை</string>
+    <string name="brightness">ஒளிர்வு (Brightness)</string>
+    <string name="contrast">மாறுபாடு (Contrast)</string>
+    <string name="rotation">சுழற்சி (Rotation)</string>
+    <string name="rotate_90">90° சுழற்று</string>
+    <string name="apply_continue">பயன்படுத்தித் தொடரவும்</string>
+
+    <!-- Form Detected -->
+    <string name="form_detected_title">படிவம் கண்டறியப்பட்டது</string>
+    <string name="page_detected_title">பக்கம் %1$d கண்டறியப்பட்டது</string>
+    <string name="fd_subtitle">நீங்கள் பதிவேற்றிய படிவத்தின் வகையை நாங்கள் கண்டறிந்தோம்</string>
+    <string name="fd_detected_label">கண்டறியப்பட்ட படிவ வகை:</string>
+    <string name="fd_listen_label">படிவ வகையைக் கேளுங்கள்</string>
+    <string name="fd_proceed_q">நாங்கள் இந்தப் படிவத்தைத் தொடரலாமா?</string>
+    <string name="fd_proceed_desc">படிவ வகை சரியாக இருந்தால், தொடர \'ஆம்\' என்பதைக் கிளிக் செய்யவும். இல்லையெனில், \'மீண்டும் ஸ்கேன் செய்\' என்பதைக் கிளிக் செய்யவும்.</string>
+    <string name="fd_bank_type">வங்கி வகை</string>
+    <string name="fd_doc_pages">ஆவணப் பக்கங்கள்</string>
+    <string name="fd_confidence">துல்லியம்</string>
+    <string name="fd_status">நிலை</string>
+    <string name="fd_pages_suffix">பக்கங்கள்</string>
+    <string name="fd_yes_proceed">ஆம், இந்தப் படிவத்தைத் தொடரவும்</string>
+    <string name="fd_no_rescan">இல்லை, படிவத்தை மீண்டும் ஸ்கேன் செய்யவும்</string>
+    <string name="fd_excellent">மிகச்சிறந்தது</string>
+    <string name="fd_ready">தயார்</string>
+    <string name="fd_fair">பரவாயில்லை</string>
+    <string name="fd_unclear">தெளிவற்றது</string>
+
+    <!-- Toasts / Permissions Denied -->
+    <string name="camera_denied">சுயவிவரப் புகைப்படத்தை எடுக்க கேமரா அனுமதி தேவை</string>
+    <string name="storage_denied">புகைப்படத்தைத் தேர்ந்தெடுக்க சேமிப்பக அனுமதி தேவை</string>
+    <string name="audio_denied">குரல் வழிகாட்டுதலுக்கு ஆடியோ அனுமதி தேவை</string>
+</resources>

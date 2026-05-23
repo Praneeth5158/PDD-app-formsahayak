@@ -12,10 +12,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.simats.formsahayak.R
 
 @Composable
 fun RegistrationSuccessScreen(
@@ -29,23 +31,6 @@ fun RegistrationSuccessScreen(
     val cardColor = if (isHighContrast) Color.Black else if (isDarkMode) Color(0xFF1E1E1E) else Color.White
     val textColor = if (isDark) Color.White else Color.Black
     val secondaryTextColor = if (isDark) Color.LightGray else Color.Gray
-
-    // Translation logic
-    val title = when (selectedLanguage?.code) {
-        "te" -> "విజయవంతంగా\nనమోదయ్యారు! 🎉"
-        "ta" -> "வெற்றிகரமாக\nபதிவு செய்யப்பட்டது! 🎉"
-        else -> "Registered\nSuccessfully! 🎉"
-    }
-    val subtitle = when (selectedLanguage?.code) {
-        "te" -> "మీ ఖాతా సృష్టించబడింది"
-        "ta" -> "உங்கள் கணக்கு உருவாக்கப்பட்டது"
-        else -> "Your account has been created"
-    }
-    val buttonText = when (selectedLanguage?.code) {
-        "te" -> "లాగిన్‌కి తిరిగి వెళ్లండి"
-        "ta" -> "உள்நுழைவுக்குத் திரும்பு"
-        else -> "Back to Login"
-    }
 
     Box(
         modifier = Modifier
@@ -90,7 +75,7 @@ fun RegistrationSuccessScreen(
                 Spacer(modifier = Modifier.height(24.dp))
 
                 Text(
-                    text = title,
+                    text = stringResource(R.string.registered_successfully),
                     fontSize = 26.sp,
                     fontWeight = FontWeight.ExtraBold,
                     color = if (isHighContrast) Color.Yellow else textColor,
@@ -101,7 +86,7 @@ fun RegistrationSuccessScreen(
                 Spacer(modifier = Modifier.height(12.dp))
 
                 Text(
-                    text = subtitle,
+                    text = stringResource(R.string.account_created),
                     fontSize = 14.sp,
                     color = secondaryTextColor,
                     textAlign = TextAlign.Center
@@ -131,7 +116,7 @@ fun RegistrationSuccessScreen(
                         )
                         Spacer(modifier = Modifier.width(12.dp))
                         Text(
-                            text = buttonText,
+                            text = stringResource(R.string.back_to_login),
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
                         )

@@ -19,13 +19,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.simats.formsahayak.R
 import com.simats.formsahayak.ui.components.BottomNavigationBar
 import com.simats.formsahayak.ui.components.InfoRow
 import com.simats.formsahayak.ui.components.ProfileActionItem
 import com.simats.formsahayak.ui.viewmodel.FormViewModel
+import coil.compose.AsyncImage
+import com.simats.formsahayak.logic.RetrofitClient
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -51,59 +55,12 @@ fun ProfileScreen(
     val cardColor = if (isDark) Color(0xFF1E1E1E) else Color.White
     val textColor = if (isDark) Color.White else Color.Black
 
-    // Translation logic
-    val title = when (selectedLanguage?.code) {
-        "te" -> "ప్రొఫైల్"
-        "ta" -> "சுயவிவரம்"
-        else -> "Profile"
-    }
-    val memberStatus = when (selectedLanguage?.code) {
-        "te" -> "ప్రీమియం సభ్యుడు"
-        "ta" -> "பிரீமியம் உறுப்பினர்"
-        else -> "Premium Member"
-    }
-    val personalInfoTitle = when (selectedLanguage?.code) {
-        "te" -> "వ్యక్తిగత సమాచారం"
-        "ta" -> "தனிப்பட்ட தகவல்"
-        else -> "Personal Information"
-    }
-    val emailLabel = when (selectedLanguage?.code) {
-        "te" -> "ఇమెయిల్"
-        "ta" -> "மின்னஞ்சல்"
-        else -> "Email"
-    }
-    val phoneLabel = when (selectedLanguage?.code) {
-        "te" -> "ఫోన్ నంబర్"
-        "ta" -> "தொலைபேசி எண்"
-        else -> "Phone Number"
-    }
-    val languageLabel = when (selectedLanguage?.code) {
-        "te" -> "భాషా ప్రాధాన్యత"
-        "ta" -> "மொழி விருப்பம்"
-        else -> "Language Preference"
-    }
-    val editProfileLabel = when (selectedLanguage?.code) {
-        "te" -> "ప్రొఫైల్ సవరించు"
-        "ta" -> "சுயவிவரத்தைத் திருத்து"
-        else -> "Edit Profile"
-    }
-    val changePasswordLabel = when (selectedLanguage?.code) {
-        "te" -> "పాస్‌వర్డ్ మార్చండి"
-        "ta" -> "கடவுச்சொல்லை மாற்றவும்"
-        else -> "Change Password"
-    }
-    val logoutLabel = when (selectedLanguage?.code) {
-        "te" -> "లాగ్ అవుట్"
-        "ta" -> "வெளியேறு"
-        else -> "Logout"
-    }
-
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
                 title = { 
                     Text(
-                        title, 
+                        stringResource(R.string.profile), 
                         fontWeight = FontWeight.ExtraBold, 
                         fontSize = 22.sp, 
                         color = textColor
@@ -158,7 +115,30 @@ fun ProfileScreen(
                             color = Color(0xFFE3F2FD)
                         ) {
                             Box(contentAlignment = Alignment.Center) {
-                                if (viewModel.profilePicture != null) {
+                                if (viewModel.loggedInUser?.profileImageUrl != null && viewModel.loggedInUser!!.profileImageUrl!!.isNotEmpty()) {
+                                    val rawUrl = viewModel.loggedInUser!!.profileImageUrl!!
+                                    val fullUrl = if (rawUrl.startsWith("http")) {
+                                        try {
+                                            RetrofitClient.BASE_URL + java.net.URL(rawUrl).path.replace("\\", "/").removePrefix("/")
+                                        } catch(e: Exception) {
+                                            rawUrl
+                                        }
+                                    } else {
+                                        RetrofitClient.BASE_URL + rawUrl.replace("\\", "/").removePrefix("/")
+                                    }
+                                    val cacheBusterUrl = fullUrl + if (fullUrl.contains("?")) "&t=${System.currentTimeMillis()}" else "?t=${System.currentTimeMillis()}"
+                                    AsyncImage(
+                                        model = coil.request.ImageRequest.Builder(androidx.compose.ui.platform.LocalContext.current)
+                                            .data(cacheBusterUrl)
+                                            .crossfade(true)
+                                            .memoryCachePolicy(coil.request.CachePolicy.DISABLED)
+                                            .diskCachePolicy(coil.request.CachePolicy.DISABLED)
+                                            .build(),
+                                        contentDescription = "Profile Photo",
+                                        modifier = Modifier.fillMaxSize().clip(CircleShape),
+                                        contentScale = ContentScale.Crop
+                                    )
+                                } else if (viewModel.profilePicture != null) {
                                     Image(
                                         bitmap = viewModel.profilePicture!!.asImageBitmap(),
                                         contentDescription = "Profile Photo",
@@ -204,7 +184,7 @@ fun ProfileScreen(
                         color = textColor
                     )
                     Text(
-                        text = memberStatus, 
+                        text = stringResource(R.string.premium_member), 
                         fontSize = 14.sp, 
                         color = if (isDark) Color.LightGray else Color.Gray
                     )
@@ -223,18 +203,18 @@ fun ProfileScreen(
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     Text(
-                        text = personalInfoTitle, 
+                        text = stringResource(R.string.personal_info), 
                         fontSize = 16.sp, 
                         fontWeight = FontWeight.ExtraBold, 
                         color = textColor
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     
-                    InfoRow(icon = Icons.Default.Email, label = emailLabel, value = userEmail, iconColor = Color(0xFF2196F3), isDarkMode = isDark)
+                    InfoRow(icon = Icons.Default.Email, label = stringResource(R.string.email), value = userEmail, iconColor = Color(0xFF2196F3), isDarkMode = isDark)
                     HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp), color = if (isDark) Color(0xFF333333) else Color(0xFFF0F0F0))
-                    InfoRow(icon = Icons.Default.Phone, label = phoneLabel, value = userPhone, iconColor = Color(0xFF4CAF50), isDarkMode = isDark)
+                    InfoRow(icon = Icons.Default.Phone, label = stringResource(R.string.phone_number), value = userPhone, iconColor = Color(0xFF4CAF50), isDarkMode = isDark)
                     HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp), color = if (isDark) Color(0xFF333333) else Color(0xFFF0F0F0))
-                    InfoRow(icon = Icons.Default.Translate, label = languageLabel, value = selectedLanguage?.name ?: "English", iconColor = Color(0xFF9C27B0), isDarkMode = isDark)
+                    InfoRow(icon = Icons.Default.Translate, label = stringResource(R.string.lang_pref), value = selectedLanguage?.name ?: "English", iconColor = Color(0xFF9C27B0), isDarkMode = isDark)
                 }
             }
 
@@ -251,21 +231,21 @@ fun ProfileScreen(
                 Column {
                     ProfileActionItem(
                         icon = Icons.Default.Edit, 
-                        label = editProfileLabel, 
+                        label = stringResource(R.string.edit_profile), 
                         isDarkMode = isDark,
                         onClick = onEditProfileClick
                     )
                     HorizontalDivider(color = if (isDark) Color(0xFF333333) else Color(0xFFF5F5F5))
                     ProfileActionItem(
                         icon = Icons.Default.Lock, 
-                        label = changePasswordLabel, 
+                        label = stringResource(R.string.change_password), 
                         isDarkMode = isDark,
                         onClick = onChangePasswordClick
                     )
                     HorizontalDivider(color = if (isDark) Color(0xFF333333) else Color(0xFFF5F5F5))
                     ProfileActionItem(
                         icon = Icons.AutoMirrored.Filled.Logout, 
-                        label = logoutLabel, 
+                        label = stringResource(R.string.logout),
                         color = Color.Red, 
                         isDarkMode = isDark,
                         onClick = onLogoutClick

@@ -227,6 +227,7 @@ fun MainApp(
                     selectedLanguage = selectedLanguage,
                     isDarkMode = isDarkMode,
                     isHighContrast = isHighContrast,
+                    viewModel = viewModel,
                     onFillAnotherClick = { 
                         viewModel.reset()
                         currentScreen = "upload_form" 

@@ -21,11 +21,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.simats.formsahayak.R
 import com.simats.formsahayak.ui.viewmodel.FormViewModel
 
 @Composable
@@ -69,12 +71,12 @@ fun SignupScreen(
             IconButton(onClick = onNavigateToLogin) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "Back",
+                    contentDescription = stringResource(R.string.back),
                     tint = textColor
                 )
             }
             Text(
-                text = "Form sahayak app",
+                text = stringResource(R.string.app_name),
                 fontSize = 16.sp,
                 color = if (isHighContrast) Color.Yellow else secondaryTextColor,
             )
@@ -101,14 +103,14 @@ fun SignupScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         Text(
-            text = "Create Account",
+            text = stringResource(R.string.create_account),
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
             color = if (isHighContrast) Color.Yellow else if (isDarkMode) Color.White else Color(0xFF1A237E)
         )
 
         Text(
-            text = "Sign up to get started",
+            text = stringResource(R.string.signup_sub),
             fontSize = 16.sp,
             color = secondaryTextColor
         )
@@ -138,7 +140,7 @@ fun SignupScreen(
 
                 // Full Name Field
                 Text(
-                    text = "Full Name",
+                    text = stringResource(R.string.full_name),
                     fontWeight = FontWeight.Medium,
                     fontSize = 14.sp,
                     color = textColor
@@ -147,7 +149,7 @@ fun SignupScreen(
                 TextField(
                     value = fullName,
                     onValueChange = { fullName = it },
-                    placeholder = { Text("Enter your full name", color = Color.Gray) },
+                    placeholder = { Text(stringResource(R.string.enter_full_name), color = Color.Gray) },
                     leadingIcon = { Icon(Icons.Default.Person, contentDescription = null, tint = Color.LightGray) },
                     modifier = Modifier.fillMaxWidth(),
                     enabled = !isLoading,
@@ -166,7 +168,7 @@ fun SignupScreen(
 
                 // Email Field
                 Text(
-                    text = "Email",
+                    text = stringResource(R.string.email),
                     fontWeight = FontWeight.Medium,
                     fontSize = 14.sp,
                     color = textColor
@@ -175,7 +177,7 @@ fun SignupScreen(
                 TextField(
                     value = emailOrPhone,
                     onValueChange = { emailOrPhone = it },
-                    placeholder = { Text("Enter your email", color = Color.Gray) },
+                    placeholder = { Text(stringResource(R.string.enter_email), color = Color.Gray) },
                     leadingIcon = { Icon(Icons.Default.Email, contentDescription = null, tint = Color.LightGray) },
                     modifier = Modifier.fillMaxWidth(),
                     enabled = !isLoading,
@@ -194,7 +196,7 @@ fun SignupScreen(
 
                 // Password Field
                 Text(
-                    text = "Password",
+                    text = stringResource(R.string.password),
                     fontWeight = FontWeight.Medium,
                     fontSize = 14.sp,
                     color = textColor
@@ -203,7 +205,7 @@ fun SignupScreen(
                 TextField(
                     value = password,
                     onValueChange = { password = it },
-                    placeholder = { Text("Create a password", color = Color.Gray) },
+                    placeholder = { Text(stringResource(R.string.create_password), color = Color.Gray) },
                     leadingIcon = { Icon(Icons.Default.Lock, contentDescription = null, tint = Color.LightGray) },
                     trailingIcon = {
                         IconButton(onClick = { passwordVisible = !passwordVisible }) {
@@ -232,7 +234,7 @@ fun SignupScreen(
 
                 // Confirm Password Field
                 Text(
-                    text = "Confirm Password",
+                    text = stringResource(R.string.confirm_password),
                     fontWeight = FontWeight.Medium,
                     fontSize = 14.sp,
                     color = textColor
@@ -241,7 +243,7 @@ fun SignupScreen(
                 TextField(
                     value = confirmPassword,
                     onValueChange = { confirmPassword = it },
-                    placeholder = { Text("Confirm your password", color = Color.Gray) },
+                    placeholder = { Text(stringResource(R.string.confirm_password), color = Color.Gray) },
                     leadingIcon = { Icon(Icons.Default.Lock, contentDescription = null, tint = Color.LightGray) },
                     trailingIcon = {
                         IconButton(onClick = { confirmPasswordVisible = !confirmPasswordVisible }) {
@@ -291,7 +293,7 @@ fun SignupScreen(
                     if (isLoading) {
                         CircularProgressIndicator(color = Color.White, modifier = Modifier.size(24.dp))
                     } else {
-                        Text("Register", fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.register), fontSize = 16.sp, fontWeight = FontWeight.Bold)
                     }
                 }
 
@@ -302,14 +304,14 @@ fun SignupScreen(
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text("Already have an account?", color = secondaryTextColor, fontSize = 14.sp)
+                    Text(stringResource(R.string.already_have_account), color = secondaryTextColor, fontSize = 14.sp)
                     TextButton(
                         onClick = onNavigateToLogin,
                         enabled = !isLoading,
                         contentPadding = PaddingValues(horizontal = 4.dp)
                     ) {
                         Text(
-                            "Login", 
+                            stringResource(R.string.login),
                             color = if (isHighContrast) Color.Yellow else Color(0xFF2196F3), 
                             fontWeight = FontWeight.Bold, 
                             fontSize = 14.sp

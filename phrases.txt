@@ -1,0 +1,129 @@
+1.0x
+3 Errors Found
+Account Number
+Address
+All Permissions Granted Successfully
+All Permissions Set!
+All permissions are required for the app to work properly
+All permissions are required to continue
+App highlights important fields you need to fill
+Avoid shadows on the form
+Back to Home
+Back to Login
+Bank Type
+Camera
+Camera Access
+Can we proceed with this form?
+Can't see pop-up? Open Settings
+Cancel
+Change
+Change Password
+Change Photo
+Code sent to: 
+Confidence
+Confirm Password
+Confirm new password
+Continue
+Continue to Dashboard
+Create a new password for your account
+Detected Form Type:
+Didn't receive code? Resend OTP
+Document Pages
+Don't have an account? 
+Edit Profile
+Email
+Ensure all fields are visible
+Enter new password
+Errors Found
+Finish
+Fix Errors
+Forgot Password?
+Form Guide
+FormSahayak needs these permissions to help you fill forms
+Forms
+Forms History
+Full Name
+Gallery
+Get Started
+Get Started >
+Get voice instructions in your regional language
+Go Back
+Grant All Permissions
+Grant Permission
+Grant Permissions
+Guide
+Help
+Highlighted Fields
+Hold your phone steady
+If the form type is correct, click 'Proceed' to continue. Otherwise, click 'Re-scan Form' to upload again.
+Image is Unclear
+Language
+Language Preference
+Listen to Form Type
+Login
+Login to continue
+Logout
+Make sure the form is well-lit
+Microphone
+Microphone Access
+My Forms
+NEED HELP?
+Navigate Fields
+New Password
+Next
+Next >
+No, Re-scan Form
+Pages
+Password
+Password Reset\nSuccessfully!
+Permission Granted ✅
+Personal Information
+Phone Number
+Please check and fix them
+Please wait...
+Premium Member
+Previous
+Privacy First: 
+Profile
+Recommended: Normal speed provides a good balance between clarity and efficiency
+Registered\nSuccessfully! 🎉
+Required for voice guidance
+Required to save documents
+Required to scan documents
+Save Changes
+Scan Bank Forms
+Search forms...
+Select Language
+Settings
+Sign Up
+Signature
+Skip
+Smart Form Guidance for Everyone
+Standard speaking speed for most users
+Status
+Storage
+Storage Access
+Take a clear photo or upload\nfrom gallery
+Tap to get started
+The uploaded image is blurry or unclear. Please upload a clear photo of the form.
+Tips for best results
+Tips for better images:
+Try Again
+Unclear
+Upload Form
+Upload a Form
+Use your phone camera to scan bank forms easily
+Verify OTP
+Verifying Form
+Voice Guidance
+We identified the type of form you uploaded
+Welcome Back
+Welcome back!
+Yes, Proceed with this Form
+You can now login with your new\npassword
+Your account has been created
+Your data stays on your device. We only use these permissions to help you.
+Your password has been changed
+தெளிவற்றது
+అస్పష్టంగా ఉంది
+🙏 Welcome to FormSahayak

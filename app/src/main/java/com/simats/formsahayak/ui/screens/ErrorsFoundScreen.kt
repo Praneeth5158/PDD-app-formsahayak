@@ -17,9 +17,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.simats.formsahayak.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -35,39 +37,12 @@ fun ErrorsFoundScreen(
     val cardColor = if (isHighContrast) Color.Black else if (isDarkMode) Color(0xFF1E1E1E) else Color.White
     val textColor = if (isDark) Color.White else Color.Black
 
-    // Translation logic
-    val title = when (selectedLanguage?.code) {
-        "te" -> "లోపాలు కనుగొనబడ్డాయి"
-        "ta" -> "பிழைகள் கண்டறியப்பட்டன"
-        else -> "Errors Found"
-    }
-    val errorSummary = when (selectedLanguage?.code) {
-        "te" -> "3 లోపాలు కనుగొనబడ్డాయి"
-        "ta" -> "3 பிழைகள் கண்டறியப்பட்டன"
-        else -> "3 Errors Found"
-    }
-    val checkFixText = when (selectedLanguage?.code) {
-        "te" -> "దయచేసి వాటిని తనిఖీ చేసి సరిదిద్దండి"
-        "ta" -> "அவற்றைச் சரிபார்த்து சரிசெய்யவும்"
-        else -> "Please check and fix them"
-    }
-    val fixErrorsButton = when (selectedLanguage?.code) {
-        "te" -> "లోపాలను సరిదిద్దండి"
-        "ta" -> "பிழைகளைச் சரிசெய்யவும்"
-        else -> "Fix Errors"
-    }
-    val needHelpText = when (selectedLanguage?.code) {
-        "te" -> "సహాయం కావాలా?"
-        "ta" -> "உதவி தேவையா?"
-        else -> "NEED HELP?"
-    }
-
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
                 title = { 
                     Text(
-                        title, 
+                        stringResource(R.string.errors_found), 
                         fontWeight = FontWeight.ExtraBold, 
                         color = textColor
                     ) 
@@ -76,7 +51,7 @@ fun ErrorsFoundScreen(
                     IconButton(onClick = onBackClick) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack, 
-                            contentDescription = "Back", 
+                            contentDescription = stringResource(R.string.back), 
                             tint = textColor
                         )
                     }
@@ -120,8 +95,8 @@ fun ErrorsFoundScreen(
                     Icon(imageVector = Icons.Default.Error, contentDescription = null, tint = Color.White, modifier = Modifier.size(32.dp))
                     Spacer(modifier = Modifier.width(16.dp))
                     Column {
-                        Text(text = errorSummary, color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.Bold)
-                        Text(text = checkFixText, color = Color.White.copy(alpha = 0.9f), fontSize = 12.sp)
+                        Text(text = stringResource(R.string.errors_count, 3), color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                        Text(text = stringResource(R.string.check_fix_errors), color = Color.White.copy(alpha = 0.9f), fontSize = 12.sp)
                     }
                 }
             }
@@ -129,8 +104,8 @@ fun ErrorsFoundScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             ErrorItem(
-                title = if (selectedLanguage?.code == "te") "సంతకం" else if (selectedLanguage?.code == "ta") "கையெழுத்து" else "Signature",
-                description = if (selectedLanguage?.code == "te") "సంతకం లేదు. దయచేసి నిర్దేశించిన పెట్టెలో సంతకం చేయండి." else if (selectedLanguage?.code == "ta") "கையெழுத்து இல்லை. ஒதுக்கப்பட்ட பெட்டியில் கையெழுத்திடவும்." else "Signature missing. Please sign in the designated box.",
+                title = stringResource(R.string.signature),
+                description = stringResource(R.string.signature_error),
                 iconColor = Color(0xFFFF5252),
                 textColor = textColor,
                 cardColor = cardColor,
@@ -140,8 +115,8 @@ fun ErrorsFoundScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             ErrorItem(
-                title = if (selectedLanguage?.code == "te") "పేరు" else if (selectedLanguage?.code == "ta") "பெயர்" else "Name",
-                description = if (selectedLanguage?.code == "te") "పేరు స్పష్టంగా లేదు. మీ పూర్తి పేరును స్పష్టంగా CAPITAL అక్షరాలలో రాయండి." else if (selectedLanguage?.code == "ta") "பெயர் தெளிவாக இல்லை. உங்கள் முழுப் பெயரையும் பெரிய எழுத்துக்களில் (CAPITAL letters) தெளிவாக எழுதவும்." else "Name not clear. Write your full name clearly in CAPITAL letters.",
+                title = stringResource(R.string.full_name),
+                description = stringResource(R.string.name_error),
                 iconColor = Color(0xFFFF9800),
                 textColor = textColor,
                 cardColor = cardColor,
@@ -151,8 +126,8 @@ fun ErrorsFoundScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             ErrorItem(
-                title = if (selectedLanguage?.code == "te") "తేదీ" else if (selectedLanguage?.code == "ta") "தேதி" else "Date",
-                description = if (selectedLanguage?.code == "te") "చెల్లని తేదీ ఫార్మాట్. పేర్కొన్న విధంగా DD/MM/YYYY ఫార్మాట్‌ను ఉపయోగించండి." else if (selectedLanguage?.code == "ta") "தவறான தேதி வடிவம். குறிப்பிட்டபடி DD/MM/YYYY வடிவத்தைப் பயன்படுத்தவும்." else "Invalid date format. Use DD/MM/YYYY format as specified.",
+                title = stringResource(R.string.date),
+                description = stringResource(R.string.date_error),
                 iconColor = Color(0xFFFF5252),
                 textColor = textColor,
                 cardColor = cardColor,
@@ -172,7 +147,7 @@ fun ErrorsFoundScreen(
                     contentColor = if (isHighContrast) Color.Black else Color.White
                 )
             ) {
-                Text(fixErrorsButton, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.fix_errors), fontSize = 16.sp, fontWeight = FontWeight.Bold)
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -181,7 +156,7 @@ fun ErrorsFoundScreen(
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(Icons.Default.Info, contentDescription = null, modifier = Modifier.size(18.dp), tint = if (isDark) Color.LightGray else Color.Gray)
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text(needHelpText, color = if (isDark) Color.LightGray else Color.Gray, fontWeight = FontWeight.ExtraBold)
+                    Text(stringResource(R.string.need_help), color = if (isDark) Color.LightGray else Color.Gray, fontWeight = FontWeight.ExtraBold)
                 }
             }
         }

@@ -19,10 +19,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.simats.formsahayak.R
 import com.simats.formsahayak.ui.viewmodel.FormViewModel
+import coil.compose.AsyncImage
+import com.simats.formsahayak.logic.RetrofitClient
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -47,62 +51,21 @@ fun EditProfileScreen(
     val languages = listOf(
         Language("English", "English", "en"),
         Language("Telugu", "తెలుగు", "te"),
-        Language("Tamil", "தமிழ்", "ta")
+        Language("Tamil", "தமிழ்", "ta"),
+        Language("Hindi", "हिन्दी", "hi")
     )
 
     var fullName by remember { mutableStateOf(currentName) }
     var email by remember { mutableStateOf(currentEmail) }
     var phone by remember { mutableStateOf(currentPhone) }
 
-    // Translation logic
-    val titleText = when (selectedLanguage?.code) {
-        "te" -> "ప్రొఫైల్ సవరించు"
-        "ta" -> "சுயவிவரத்தைத் திருத்து"
-        else -> "Edit Profile"
-    }
-    val fullNameLabel = when (selectedLanguage?.code) {
-        "te" -> "పూర్తి పేరు"
-        "ta" -> "முழு பெயர்"
-        else -> "Full Name"
-    }
-    val emailLabel = when (selectedLanguage?.code) {
-        "te" -> "ఇమెయిల్"
-        "ta" -> "மின்னஞ்சல்"
-        else -> "Email"
-    }
-    val phoneLabel = when (selectedLanguage?.code) {
-        "te" -> "ఫోన్ నంబర్"
-        "ta" -> "தொலைபேசி எண்"
-        else -> "Phone Number"
-    }
-    val languageLabel = when (selectedLanguage?.code) {
-        "te" -> "భాషా ప్రాధాన్యత"
-        "ta" -> "மொழி விருப்பம்"
-        else -> "Language Preference"
-    }
-    val saveButtonText = when (selectedLanguage?.code) {
-        "te" -> "మార్పులను సేవ్ చేయండి"
-        "ta" -> "மாற்றங்களைச் சேமிக்கவும்"
-        else -> "Save Changes"
-    }
-    val cancelButtonText = when (selectedLanguage?.code) {
-        "te" -> "రద్దు చేయండి"
-        "ta" -> "ரத்துசெய்"
-        else -> "Cancel"
-    }
-    val changePhotoText = when (selectedLanguage?.code) {
-        "te" -> "ఫోటో మార్చండి"
-        "ta" -> "புகைப்படத்தை மாற்றவும்"
-        else -> "Change Photo"
-    }
-
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(titleText, fontWeight = FontWeight.ExtraBold, fontSize = 20.sp, color = textColor) },
+                title = { Text(stringResource(R.string.edit_profile), fontWeight = FontWeight.ExtraBold, fontSize = 20.sp, color = textColor) },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
-                        Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back", tint = textColor)
+                        Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.back), tint = textColor)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = if (isDark) Color.Black else Color.White)
@@ -131,7 +94,30 @@ fun EditProfileScreen(
                     border = if (isHighContrast) androidx.compose.foundation.BorderStroke(2.dp, Color.White) else null
                 ) {
                     Box(contentAlignment = Alignment.Center) {
-                        if (viewModel.profilePicture != null) {
+                        if (viewModel.loggedInUser?.profileImageUrl != null && viewModel.loggedInUser!!.profileImageUrl!!.isNotEmpty()) {
+                            val rawUrl = viewModel.loggedInUser!!.profileImageUrl!!
+                            val fullUrl = if (rawUrl.startsWith("http")) {
+                                        try {
+                                            RetrofitClient.BASE_URL + java.net.URL(rawUrl).path.replace("\\", "/").removePrefix("/")
+                                        } catch(e: Exception) {
+                                            rawUrl
+                                        }
+                                    } else {
+                                        RetrofitClient.BASE_URL + rawUrl.replace("\\", "/").removePrefix("/")
+                                    }
+                            val cacheBusterUrl = fullUrl + if (fullUrl.contains("?")) "&t=${System.currentTimeMillis()}" else "?t=${System.currentTimeMillis()}"
+                            AsyncImage(
+                                model = coil.request.ImageRequest.Builder(androidx.compose.ui.platform.LocalContext.current)
+                                    .data(cacheBusterUrl)
+                                    .crossfade(true)
+                                    .memoryCachePolicy(coil.request.CachePolicy.DISABLED)
+                                    .diskCachePolicy(coil.request.CachePolicy.DISABLED)
+                                    .build(),
+                                contentDescription = "Profile Photo",
+                                modifier = Modifier.fillMaxSize().clip(CircleShape),
+                                contentScale = ContentScale.Crop
+                            )
+                        } else if (viewModel.profilePicture != null) {
                             Image(
                                 bitmap = viewModel.profilePicture!!.asImageBitmap(),
                                 contentDescription = "Profile Photo",
@@ -170,7 +156,7 @@ fun EditProfileScreen(
             }
 
             TextButton(onClick = onChangePhotoClick) {
-                Text(text = changePhotoText, color = Color(0xFF2196F3), fontWeight = FontWeight.Bold)
+                Text(text = stringResource(R.string.change_photo), color = Color(0xFF2196F3), fontWeight = FontWeight.Bold)
             }
             
             Spacer(modifier = Modifier.height(24.dp))
@@ -183,16 +169,16 @@ fun EditProfileScreen(
                 border = if (isHighContrast) androidx.compose.foundation.BorderStroke(2.dp, Color.White) else null
             ) {
                 Column(modifier = Modifier.padding(20.dp)) {
-                    EditField(label = fullNameLabel, value = fullName, onValueChange = { fullName = it }, icon = Icons.Default.Person, isDarkMode = isDark)
+                    EditField(label = stringResource(R.string.full_name), value = fullName, onValueChange = { fullName = it }, icon = Icons.Default.Person, isDarkMode = isDark)
                     Spacer(modifier = Modifier.height(20.dp))
-                    EditField(label = emailLabel, value = email, onValueChange = { email = it }, icon = Icons.Default.Email, isDarkMode = isDark)
+                    EditField(label = stringResource(R.string.email), value = email, onValueChange = { email = it }, icon = Icons.Default.Email, isDarkMode = isDark)
                     Spacer(modifier = Modifier.height(20.dp))
-                    EditField(label = phoneLabel, value = phone, onValueChange = { phone = it }, icon = Icons.Default.Phone, isDarkMode = isDark)
+                    EditField(label = stringResource(R.string.phone_number), value = phone, onValueChange = { phone = it }, icon = Icons.Default.Phone, isDarkMode = isDark)
                     
                     Spacer(modifier = Modifier.height(24.dp))
                     
                     // Language Selection Toggle (Segmented-like)
-                    Text(text = languageLabel, fontSize = 14.sp, fontWeight = FontWeight.Bold, color = textColor)
+                    Text(text = stringResource(R.string.lang_pref), fontSize = 14.sp, fontWeight = FontWeight.Bold, color = textColor)
                     Spacer(modifier = Modifier.height(12.dp))
                     
                     Row(
@@ -235,7 +221,7 @@ fun EditProfileScreen(
                         shape = RoundedCornerShape(12.dp),
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2196F3))
                     ) {
-                        Text(saveButtonText, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.update_password), fontSize = 16.sp, fontWeight = FontWeight.Bold)
                     }
 
                     Spacer(modifier = Modifier.height(12.dp))
@@ -248,7 +234,7 @@ fun EditProfileScreen(
                         shape = RoundedCornerShape(12.dp),
                         border = androidx.compose.foundation.BorderStroke(1.dp, if (isDark) Color.White else Color.LightGray)
                     ) {
-                        Text(cancelButtonText, fontSize = 16.sp, color = if (isDark) Color.White else Color.Gray)
+                        Text(stringResource(R.string.cancel), fontSize = 16.sp, color = if (isDark) Color.White else Color.Gray)
                     }
                 }
             }

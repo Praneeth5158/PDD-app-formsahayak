@@ -34,46 +34,55 @@ fun ImageUnclearScreen(
     val title = when (selectedLanguage?.code) {
         "te" -> "చిత్రం అస్పష్టంగా ఉంది"
         "ta" -> "படம் தெளிவாக இல்லை"
+        "hi" -> "छवि अस्पष्ट है"
         else -> "Image is Unclear"
     }
     val subtitle = when (selectedLanguage?.code) {
         "te" -> "అప్‌లోడ్ చేసిన చిత్రం మసకగా లేదా అస్పష్టంగా ఉంది. దయచేసి ఫారమ్ యొక్క స్పష్టమైన ఫోటోను అప్‌లోడ్ చేయండి."
         "ta" -> "பதிவேற்றப்பட்ட படம் மங்கலாக அல்லது தெளிவாக இல்லை. படிவத்தின் தெளிவான புகைப்படத்தைப் பதிவேற்றவும்."
+        "hi" -> "अपलोड की गई छवि धुंधली या अस्पष्ट है। कृपया फॉर्म की स्पष्ट फोटो अपलोड करें।"
         else -> "The uploaded image is blurry or unclear. Please upload a clear photo of the form."
     }
     val tipsTitle = when (selectedLanguage?.code) {
         "te" -> "మెరుగైన చిత్రాల కోసం చిట్కాలు:"
         "ta" -> "சிறந்த படங்களுக்கான உதவிக்குறிப்புகள்:"
+        "hi" -> "बेहतर छवियों के लिए टिप्स:"
         else -> "Tips for better images:"
     }
     val tip1 = when (selectedLanguage?.code) {
         "te" -> "ఫారమ్ బాగా వెలిగి ఉండేలా చూసుకోండి"
         "ta" -> "படிவம் வெளிச்சமாக இருப்பதை உறுதி செய்யவும்"
+        "hi" -> "सुनिश्चित करें कि फॉर्म पर पर्याप्त रोशनी है"
         else -> "Make sure the form is well-lit"
     }
     val tip2 = when (selectedLanguage?.code) {
         "te" -> "మీ ఫోన్‌ను నిలకడగా పట్టుకోండి"
         "ta" -> "உங்கள் தொலைபேசியை நிலையாக வைத்திருக்கவும்"
+        "hi" -> "अपने फ़ोन को स्थिर रखें"
         else -> "Hold your phone steady"
     }
     val tip3 = when (selectedLanguage?.code) {
         "te" -> "అన్ని ఫీల్డ్‌లు కనిపిస్తున్నాయని నిర్ధారించుకోండి"
         "ta" -> "அனைத்து புலங்களும் தெரிவதை உறுதி செய்யவும்"
+        "hi" -> "सुनिश्चित करें कि सभी फ़ील्ड दिखाई दे रहे हैं"
         else -> "Ensure all fields are visible"
     }
     val tip4 = when (selectedLanguage?.code) {
         "te" -> "ఫారమ్‌పై నీడలు పడకుండా చూసుకోండి"
         "ta" -> "படிவத்தில் நிழல்கள் விழுவதைத் தவிர்க்கவும்"
+        "hi" -> "फॉर्म पर परछाई से बचें"
         else -> "Avoid shadows on the form"
     }
     val tryAgainText = when (selectedLanguage?.code) {
         "te" -> "మళ్లీ ప్రయత్నించండి"
         "ta" -> "மீண்டும் முயற்சிக்கவும்"
+        "hi" -> "पुनः प्रयास करें"
         else -> "Try Again"
     }
     val backToHomeText = when (selectedLanguage?.code) {
         "te" -> "హోమ్‌కి తిరిగి వెళ్ళు"
         "ta" -> "முகப்புக்குத் திரும்பு"
+        "hi" -> "होम पर वापस जाएं"
         else -> "Back to Home"
     }
 

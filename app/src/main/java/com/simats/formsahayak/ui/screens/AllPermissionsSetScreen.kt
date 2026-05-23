@@ -62,7 +62,8 @@ fun AllPermissionsSetScreen(
         val titleText = when (selectedLanguage?.code) {
             "te" -> "అన్నీ సిద్ధం! 🎉"
             "ta" -> "எல்லாம் தயார்! 🎉"
-            else -> "All Permissions Set!"
+        "hi" -> "सभी अनुमतियाँ सेट हो गईं!"
+        else -> "All Permissions Set!"
         }
         Text(
             text = titleText,
@@ -75,7 +76,8 @@ fun AllPermissionsSetScreen(
         val subTitleText = when (selectedLanguage?.code) {
             "te" -> "అనుమతులు విజయవంతంగా పొందబడ్డాయి"
             "ta" -> "அனுமதிகள் வெற்றிகரமாகப் பெறப்பட்டன"
-            else -> "All Permissions Granted Successfully"
+        "hi" -> "सभी अनुमतियाँ सफलतापूर्वक दी गईं"
+        else -> "All Permissions Granted Successfully"
         }
         Text(
             text = subTitleText,
@@ -96,11 +98,11 @@ fun AllPermissionsSetScreen(
             shadowElevation = if (isHighContrast) 0.dp else 2.dp
         ) {
             Column(modifier = Modifier.padding(20.dp)) {
-                PermissionSummaryItem(Icons.Default.PhotoCamera, when(selectedLanguage?.code) {"te" -> "కెమెరా"; "ta" -> "கேமரா"; else -> "Camera"}, textColor)
+                PermissionSummaryItem(Icons.Default.PhotoCamera, when(selectedLanguage?.code) {"hi" -> "कैमरा"; "te" -> "కెమెరా"; "ta" -> "கேமரா"; else -> "Camera"}, textColor)
                 Spacer(modifier = Modifier.height(16.dp))
-                PermissionSummaryItem(Icons.Default.Folder, when(selectedLanguage?.code) {"te" -> "స్టోరేజ్"; "ta" -> "சேமிப்பகம்"; else -> "Storage"}, textColor)
+                PermissionSummaryItem(Icons.Default.Folder, when(selectedLanguage?.code) {"hi" -> "स्टोरेज"; "te" -> "స్టోరేజ్"; "ta" -> "சேமிப்பகம்"; else -> "Storage"}, textColor)
                 Spacer(modifier = Modifier.height(16.dp))
-                PermissionSummaryItem(Icons.Default.Mic, when(selectedLanguage?.code) {"te" -> "మైక్రోఫోన్"; "ta" -> "மைக்ரோஃபோன்"; else -> "Microphone"}, textColor)
+                PermissionSummaryItem(Icons.Default.Mic, when(selectedLanguage?.code) {"hi" -> "माइक्रोफ़ोन"; "te" -> "మైక్రోఫోన్"; "ta" -> "மைக்ரோஃபோன்"; else -> "Microphone"}, textColor)
             }
         }
 
@@ -121,7 +123,8 @@ fun AllPermissionsSetScreen(
                 val btnText = when (selectedLanguage?.code) {
                     "te" -> "డ్యాష్‌బోర్డ్‌కు కొనసాగండి"
                     "ta" -> "டாஷ்போர்டுக்குத் தொடரவும்"
-                    else -> "Continue to Dashboard"
+        "hi" -> "डैशबोर्ड पर जारी रखें"
+        else -> "Continue to Dashboard"
                 }
                 Text(text = btnText, fontSize = 16.sp, fontWeight = FontWeight.Bold)
                 Spacer(modifier = Modifier.width(8.dp))

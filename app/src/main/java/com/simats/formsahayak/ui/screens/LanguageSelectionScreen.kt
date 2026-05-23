@@ -14,10 +14,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.simats.formsahayak.R
 
 data class Language(
     val name: String,
@@ -31,14 +33,14 @@ fun LanguageSelectionScreen(
     isHighContrast: Boolean,
     onContinueClick: (Language) -> Unit
 ) {
-    val isDark = isDarkMode || isHighContrast
     val backgroundColor = if (isHighContrast) Color.Black else if (isDarkMode) Color(0xFF121212) else Color(0xFFF0F7FF)
     val cardColor = if (isHighContrast) Color.Black else if (isDarkMode) Color(0xFF1E1E1E) else Color.White
 
     val languages = listOf(
         Language("English", "English", "en"),
         Language("Telugu", "తెలుగు", "te"),
-        Language("Tamil", "தமிழ்", "ta")
+        Language("Tamil", "தமிழ்", "ta"),
+        Language("Hindi", "हिन्दी", "hi")
     )
 
     var selectedLanguage by remember { mutableStateOf(languages[0]) }
@@ -71,11 +73,7 @@ fun LanguageSelectionScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         Text(
-            text = when(selectedLanguage.code) {
-                "te" -> "భాషను ఎంచుకోండి"
-                "ta" -> "மொழியைத் தேர்ந்தெடுக்கவும்"
-                else -> "Select Language"
-            },
+            text = stringResource(R.string.select_language),
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             color = if (isHighContrast) Color.Yellow else if (isDarkMode) Color.White else Color(0xFF1A237E),
@@ -121,12 +119,7 @@ fun LanguageSelectionScreen(
                 contentColor = if (isHighContrast) Color.Black else Color.White
             )
         ) {
-            val buttonText = when(selectedLanguage.code) {
-                "te" -> "కొనసాగండి"
-                "ta" -> "தொடரவும்"
-                else -> "Continue"
-            }
-            Text(buttonText, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+            Text(stringResource(R.string.continue_btn), fontSize = 16.sp, fontWeight = FontWeight.Bold)
         }
         
         Spacer(modifier = Modifier.height(16.dp))

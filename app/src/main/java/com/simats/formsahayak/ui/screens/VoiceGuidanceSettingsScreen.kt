@@ -1,5 +1,10 @@
 package com.simats.formsahayak.ui.screens
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -16,9 +21,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import com.simats.formsahayak.ui.viewmodel.FormViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -34,6 +41,18 @@ fun VoiceGuidanceDetailScreen(
         "Slow" -> Color(0xFFE67E22) // Orange
         "Fast" -> Color(0xFF2E7D32) // Green
         else -> Color(0xFF1A73E8)   // Blue
+    }
+
+    val context = LocalContext.current
+    val audioPermissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            val sampleText = "Welcome to Form Sahayak. Let me help you fill this form step by step. Please follow the instructions on screen."
+            viewModel.speak(sampleText, "en")
+        } else {
+            Toast.makeText(context, "Audio permission is required to play the sample", Toast.LENGTH_SHORT).show()
+        }
     }
 
     val bgColor = if (isHighContrast) Color.Black else if (isDarkMode) Color(0xFF121212) else Color(0xFFF8FBFF)
@@ -201,8 +220,12 @@ fun VoiceGuidanceDetailScreen(
                         Text("Try Voice Sample", fontWeight = FontWeight.Bold, color = textColor)
                         Button(
                             onClick = { 
-                                val sampleText = "Welcome to Form Sahayak. Let me help you fill this form step by step. Please follow the instructions on screen."
-                                viewModel.speak(sampleText, "en")
+                                if (ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+                                    val sampleText = "Welcome to Form Sahayak. Let me help you fill this form step by step. Please follow the instructions on screen."
+                                    viewModel.speak(sampleText, "en")
+                                } else {
+                                    audioPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
+                                }
                             },
                             colors = ButtonDefaults.buttonColors(containerColor = themeColor),
                             contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp),

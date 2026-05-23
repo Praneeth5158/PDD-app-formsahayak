@@ -1,9 +1,16 @@
 package com.simats.formsahayak
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.compose.LocalActivityResultRegistryOwner
+import androidx.activity.result.ActivityResultRegistryOwner
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -32,22 +39,53 @@ class MainActivity : ComponentActivity() {
             var selectedLanguage by remember { mutableStateOf<Language?>(null) }
             val viewModel: FormViewModel = viewModel()
 
-            LaunchedEffect(Unit) {
-                viewModel.initTts(this@MainActivity)
+            LaunchedEffect(viewModel.loggedInUser?.language) {
+                viewModel.loggedInUser?.language?.let { langCode ->
+                    val languages = listOf(
+                        Language("English", "English", "en"),
+                        Language("Telugu", "తెలుగు", "te"),
+                        Language("Tamil", "தமிழ்", "ta"),
+                        Language("Hindi", "हिन्दी", "hi")
+                    )
+                    val matched = languages.find { it.code == langCode }
+                    if (matched != null) {
+                        selectedLanguage = matched
+                    }
+                }
             }
 
-            FormsahayakTheme(
-                darkTheme = isDarkMode || isHighContrast
+            val context = LocalContext.current
+            val activityResultRegistryOwner = remember(context) { context as ActivityResultRegistryOwner }
+            val localizedContext = remember(selectedLanguage) {
+                val localeCode = selectedLanguage?.code ?: "en"
+                val locale = java.util.Locale(localeCode)
+                java.util.Locale.setDefault(locale)
+                val config = android.content.res.Configuration(context.resources.configuration)
+                config.setLocale(locale)
+                context.createConfigurationContext(config)
+            }
+
+            CompositionLocalProvider(
+                LocalContext provides localizedContext,
+                LocalActivityResultRegistryOwner provides activityResultRegistryOwner
             ) {
-                MainApp(
-                    isDarkMode = isDarkMode,
-                    isHighContrast = isHighContrast,
-                    selectedLanguage = selectedLanguage,
-                    viewModel = viewModel,
-                    onThemeChange = { isDarkMode = it },
-                    onHighContrastChange = { isHighContrast = it },
-                    onLanguageChange = { selectedLanguage = it }
-                )
+                LaunchedEffect(selectedLanguage) {
+                    viewModel.initTts(localizedContext)
+                }
+
+                FormsahayakTheme(
+                    darkTheme = isDarkMode || isHighContrast
+                ) {
+                    MainApp(
+                        isDarkMode = isDarkMode,
+                        isHighContrast = isHighContrast,
+                        selectedLanguage = selectedLanguage,
+                        viewModel = viewModel,
+                        onThemeChange = { isDarkMode = it },
+                        onHighContrastChange = { isHighContrast = it },
+                        onLanguageChange = { selectedLanguage = it }
+                    )
+                }
             }
         }
     }
@@ -67,10 +105,11 @@ fun MainApp(
     var currentScreen by remember { mutableStateOf("welcome") }
     var isLanguageChangeFromDashboard by remember { mutableStateOf(false) }
     
-    // User Profile State
-    var userName by remember { mutableStateOf("Rajesh Kumar") }
-    var userEmail by remember { mutableStateOf("rajesh.kumar@email.com") }
-    var userPhone by remember { mutableStateOf("+91 98765 43210") }
+    // User Profile State derived from ViewModel
+    val user = viewModel.loggedInUser
+    val userName = user?.fullName ?: "Guest User"
+    val userEmail = user?.emailOrPhone ?: ""
+    val userPhone = user?.phone ?: ""
 
     // Navigation and Flow State
     var userAuthInput by remember { mutableStateOf("") }
@@ -94,6 +133,44 @@ fun MainApp(
         uri?.let {
             pickedImageBitmap = viewModel.getBitmapFromUri(context, it)
             currentScreen = "crop_photo"
+        }
+    }
+
+    val profileCameraPermissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            profileCameraLauncher.launch(tempProfileUri)
+        } else {
+            val deniedMsg = when (selectedLanguage?.code) {
+                "te" -> "ప్రొఫైల్ ఫోటో తీయడానికి కెమెరా అనుమతి అవసరం"
+                "ta" -> "சுயவிவரப் புகைப்படத்தை எடுக்க கேமரா அனுமதி தேவை"
+                "hi" -> "प्रोफ़ाइल फ़ोटो लेने के लिए कैमरा अनुमति की आवश्यकता है"
+                else -> "Camera permission is required to take a profile photo"
+            }
+            Toast.makeText(context, deniedMsg, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    val profileStoragePermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        Manifest.permission.READ_MEDIA_IMAGES
+    } else {
+        Manifest.permission.READ_EXTERNAL_STORAGE
+    }
+
+    val profileGalleryPermissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            profileGalleryLauncher.launch("image/*")
+        } else {
+            val deniedMsg = when (selectedLanguage?.code) {
+                "te" -> "ఫోటోను ఎంచుకోవడానికి స్టోరేజ్ అనుమతి అవసరం"
+                "ta" -> "புகைப்படத்தைத் தேர்ந்தெடுக்க சேமிப்பக அனுமதி தேவை"
+                "hi" -> "फ़ोटो चुनने के लिए स्टोरेज अनुमति की आवश्यकता है"
+                else -> "Storage permission is required to select a photo"
+            }
+            Toast.makeText(context, deniedMsg, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -147,8 +224,14 @@ fun MainApp(
                     isDarkMode = isDarkMode,
                     isHighContrast = isHighContrast,
                     onSendOtpClick = { input ->
-                        userAuthInput = input
-                        currentScreen = "verify_otp"
+                        viewModel.sendOtp(input) { success, msg ->
+                            if (success) {
+                                userAuthInput = input
+                                currentScreen = "verify_otp"
+                            } else {
+                                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                            }
+                        }
                     },
                     onBackToLogin = { currentScreen = "login" }
                 )
@@ -157,20 +240,44 @@ fun MainApp(
                     selectedLanguage = selectedLanguage,
                     isDarkMode = isDarkMode,
                     isHighContrast = isHighContrast,
-                    onVerifyClick = { isSuccess ->
-                        currentScreen = if (isSuccess) "verification_success" else "verification_failed"
+                    onVerifyClick = { otpString ->
+                        viewModel.verifyOtp(userAuthInput, otpString) { success, msg ->
+                            if (success) {
+                                currentScreen = "reset_password"
+                            } else {
+                                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                            }
+                        }
                     },
-                    onResendOtpClick = { currentScreen = "otp_resent" }
+                    onResendOtpClick = { 
+                        viewModel.sendOtp(userAuthInput) { success, msg ->
+                            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                            if (success) {
+                                currentScreen = "otp_resent"
+                            }
+                        }
+                    }
                 )
                 "otp_resent" -> OtpResentScreen(
                     userInput = userAuthInput,
                     selectedLanguage = selectedLanguage,
                     isDarkMode = isDarkMode,
                     isHighContrast = isHighContrast,
-                    onVerifyClick = { isSuccess ->
-                        currentScreen = if (isSuccess) "verification_success" else "verification_failed"
+                    onVerifyClick = { otpString ->
+                        viewModel.verifyOtp(userAuthInput, otpString) { success, msg ->
+                            if (success) {
+                                currentScreen = "reset_password"
+                            } else {
+                                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                            }
+                        }
                     },
-                    onBackToVerification = { currentScreen = "verify_otp" }
+                    onBackToVerification = { currentScreen = "verify_otp" },
+                    onResendOtp = {
+                        viewModel.sendOtp(userAuthInput) { success, msg ->
+                            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 )
                 "verification_success" -> VerificationSuccessScreen(
                     selectedLanguage = selectedLanguage,
@@ -352,6 +459,7 @@ fun MainApp(
                     selectedLanguage = selectedLanguage,
                     isDarkMode = isDarkMode,
                     isHighContrast = isHighContrast,
+                    viewModel = viewModel,
                     onFillAnotherClick = { currentScreen = "upload_form" },
                     onBackToHomeClick = { 
                         viewModel.reset()
@@ -360,6 +468,7 @@ fun MainApp(
                 )
                 "feedback" -> FeedbackScreen(
                     selectedLanguage = selectedLanguage,
+                    viewModel = viewModel,
                     onFinished = { currentScreen = "dashboard" },
                     onCancel = { currentScreen = "dashboard" }
                 )
@@ -390,7 +499,22 @@ fun MainApp(
                     onHomeClick = { currentScreen = "dashboard" },
                     onHelpClick = { currentScreen = "how_to_use" },
                     onSettingsClick = { currentScreen = "settings" },
-                    onProfileClick = { currentScreen = "profile" }
+                    onProfileClick = { currentScreen = "profile" },
+                    onFormDetailsClick = { docId ->
+                        viewModel.fetchFormDetails(docId) { success ->
+                            if (success) {
+                                currentScreen = "form_details"
+                            } else {
+                                Toast.makeText(context, "Failed to load form details", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                )
+                "form_details" -> FormDetailsScreen(
+                    viewModel = viewModel,
+                    isDarkMode = isDarkMode,
+                    isHighContrast = isHighContrast,
+                    onBack = { currentScreen = "forms" }
                 )
                 "settings" -> SettingsScreen(
                     currentLanguage = selectedLanguage,
@@ -455,10 +579,17 @@ fun MainApp(
                     onLanguageChange = onLanguageChange,
                     onBackClick = { currentScreen = "profile" },
                     onSaveClick = { name, email, phone ->
-                        userName = name
-                        userEmail = email
-                        userPhone = phone
-                        currentScreen = "profile"
+                        viewModel.updateProfile(
+                            context = context,
+                            phone = phone,
+                            language = selectedLanguage?.code ?: "en",
+                            imageBitmap = null // Update without changing photo here
+                        ) { success, message ->
+                            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                            if (success) {
+                                currentScreen = "profile"
+                            }
+                        }
                     },
                     onChangePhotoClick = { currentScreen = "update_photo_popup" }
                 )
@@ -468,8 +599,20 @@ fun MainApp(
                     onDismiss = { 
                         currentScreen = "profile"
                     },
-                    onTakePhoto = { profileCameraLauncher.launch(tempProfileUri) },
-                    onUploadPhoto = { profileGalleryLauncher.launch("image/*") }
+                    onTakePhoto = {
+                        if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                            profileCameraLauncher.launch(tempProfileUri)
+                        } else {
+                            profileCameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+                        }
+                    },
+                    onUploadPhoto = {
+                        if (ContextCompat.checkSelfPermission(context, profileStoragePermission) == PackageManager.PERMISSION_GRANTED) {
+                            profileGalleryLauncher.launch("image/*")
+                        } else {
+                            profileGalleryPermissionLauncher.launch(profileStoragePermission)
+                        }
+                    }
                 )
                 "crop_photo" -> CropPhotoScreen(
                     pickedBitmap = pickedImageBitmap,
@@ -477,8 +620,19 @@ fun MainApp(
                     isHighContrast = isHighContrast,
                     onCancel = { currentScreen = "profile" },
                     onSave = { croppedBitmap: Bitmap ->
-                        viewModel.updateProfilePicture(croppedBitmap)
-                        currentScreen = "photo_updated"
+                        viewModel.updateProfile(
+                            context = context,
+                            phone = userPhone,
+                            language = selectedLanguage?.code ?: "en",
+                            imageBitmap = croppedBitmap
+                        ) { success, message ->
+                            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                            if (success) {
+                                currentScreen = "photo_updated"
+                            } else {
+                                currentScreen = "profile"
+                            }
+                        }
                     }
                 )
                 "photo_updated" -> ProfilePhotoUpdatedScreen(
@@ -491,7 +645,14 @@ fun MainApp(
                     selectedLanguage = selectedLanguage,
                     isDarkMode = isDarkMode,
                     isHighContrast = isHighContrast,
-                    onResetPasswordClick = { _, _ -> currentScreen = "login" },
+                    onResetPasswordClick = { newPass, confirmPass -> 
+                        viewModel.resetPassword(userAuthInput, newPass, confirmPass) { success, msg ->
+                            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                            if (success) {
+                                currentScreen = "login"
+                            }
+                        }
+                    },
                     onBackClick = { currentScreen = "login" },
                     isChangePassword = false
                 )
@@ -499,9 +660,25 @@ fun MainApp(
                     selectedLanguage = selectedLanguage,
                     isDarkMode = isDarkMode,
                     isHighContrast = isHighContrast,
-                    onResetPasswordClick = { _, _ -> currentScreen = "profile" },
+                    onResetPasswordClick = { newPass, confirmPass -> 
+                        viewModel.changePassword(userEmail, newPass, confirmPass) { success, message ->
+                            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                            if (success) {
+                                currentScreen = "password_updated_success"
+                            }
+                        }
+                    },
                     onBackClick = { currentScreen = "profile" },
                     isChangePassword = true
+                )
+                "password_updated_success" -> PasswordUpdatedSuccessScreen(
+                    selectedLanguage = selectedLanguage,
+                    isDarkMode = isDarkMode,
+                    isHighContrast = isHighContrast,
+                    onBackToLogin = { 
+                        viewModel.logout()
+                        currentScreen = "login" 
+                    }
                 )
             }
         }

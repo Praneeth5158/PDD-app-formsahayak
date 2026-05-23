@@ -31,6 +31,7 @@ class TtsHelper(context: Context) {
         val locale = when (languageCode) {
             "te" -> Locale("te", "IN")
             "ta" -> Locale("ta", "IN")
+            "hi" -> Locale("hi", "IN")
             else -> Locale.US
         }
 
