@@ -36,7 +36,8 @@ fun LoginScreen(
     viewModel: FormViewModel,
     onLoginSuccess: () -> Unit,
     onNavigateToSignup: () -> Unit,
-    onForgotPassword: () -> Unit
+    onForgotPassword: () -> Unit,
+    onNavigateToAdminLogin: () -> Unit
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -236,6 +237,27 @@ fun LoginScreen(
                             stringResource(R.string.signup),
                             color = if (isHighContrast) Color.Yellow else Color(0xFF2196F3), 
                             fontWeight = FontWeight.ExtraBold, 
+                            fontSize = 14.sp
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    TextButton(
+                        onClick = onNavigateToAdminLogin,
+                        enabled = !isLoading,
+                        contentPadding = PaddingValues(0.dp)
+                    ) {
+                        Text(
+                            text = "Admin Panel",
+                            color = if (isHighContrast) Color.Yellow else Color(0xFF2196F3), 
+                            fontWeight = FontWeight.Bold, 
                             fontSize = 14.sp
                         )
                     }

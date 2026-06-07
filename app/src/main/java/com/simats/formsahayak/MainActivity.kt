@@ -26,6 +26,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.simats.formsahayak.ui.screens.*
 import com.simats.formsahayak.ui.theme.FormsahayakTheme
 import com.simats.formsahayak.ui.viewmodel.FormViewModel
+import com.simats.formsahayak.logic.SecureStore
 import kotlinx.coroutines.delay
 import java.io.File
 
@@ -203,7 +204,8 @@ fun MainApp(
                     viewModel = viewModel,
                     onLoginSuccess = { currentScreen = "language" },
                     onNavigateToSignup = { currentScreen = "signup" },
-                    onForgotPassword = { currentScreen = "forgot_password" }
+                    onForgotPassword = { currentScreen = "forgot_password" },
+                    onNavigateToAdminLogin = { currentScreen = "admin_login" }
                 )
                 "signup" -> SignupScreen(
                     selectedLanguage = selectedLanguage,
@@ -574,6 +576,22 @@ fun MainApp(
                     isDarkMode = isDarkMode,
                     isHighContrast = isHighContrast,
                     onBackClick = { currentScreen = "profile" }
+                )
+                "admin_login" -> AdminLoginScreen(
+                    isDarkMode = isDarkMode,
+                    isHighContrast = isHighContrast,
+                    onLoginSuccess = { currentScreen = "admin_dashboard" },
+                    onBackClick = { currentScreen = "login" }
+                )
+                "admin_dashboard" -> AdminDashboardScreen(
+                    isDarkMode = isDarkMode,
+                    isHighContrast = isHighContrast,
+                    viewModel = viewModel,
+                    onLogoutClick = {
+                        SecureStore.clearToken(context)
+                        viewModel.stopAudio()
+                        currentScreen = "login"
+                    }
                 )
                 "edit_profile" -> EditProfileScreen(
                     currentName = userName,
