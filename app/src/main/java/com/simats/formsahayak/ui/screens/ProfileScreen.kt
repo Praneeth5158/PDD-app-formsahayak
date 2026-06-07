@@ -43,6 +43,7 @@ fun ProfileScreen(
     viewModel: FormViewModel,
     onEditProfileClick: () -> Unit,
     onChangePasswordClick: () -> Unit,
+    onAboutDeveloperClick: () -> Unit,
     onLogoutClick: () -> Unit,
     onHomeClick: () -> Unit,
     onFormsClick: () -> Unit,
@@ -241,6 +242,13 @@ fun ProfileScreen(
                         label = stringResource(R.string.change_password), 
                         isDarkMode = isDark,
                         onClick = onChangePasswordClick
+                    )
+                    HorizontalDivider(color = if (isDark) Color(0xFF333333) else Color(0xFFF5F5F5))
+                    ProfileActionItem(
+                        icon = Icons.Default.Info, 
+                        label = stringResource(R.string.about_developer), 
+                        isDarkMode = isDark,
+                        onClick = onAboutDeveloperClick
                     )
                     HorizontalDivider(color = if (isDark) Color(0xFF333333) else Color(0xFFF5F5F5))
                     ProfileActionItem(

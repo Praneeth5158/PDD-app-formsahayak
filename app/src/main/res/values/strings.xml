@@ -321,4 +321,18 @@
     <string name="pdf_downloaded">PDF Downloaded Successfully</string>
     <string name="perm_required_title">Permission Required</string>
     <string name="perm_permanently_denied">This permission has been permanently denied. Please open Settings to grant it manually.</string>
+
+    <!-- About Developer -->
+    <string name="about_developer">About Developer</string>
+    <string name="developer_name">Yamanuri Praneeth</string>
+    <string name="developer_father_name">s/o Yamanuri Ramesh</string>
+    <string name="developer_role">Developer &amp; Creator of FormSahayak</string>
+    <string name="developer_desc">Computer Science Engineering student passionate about AI, Mobile Application Development, and solving real-world problems through technology.</string>
+    <string name="future_updates">Future Updates</string>
+    <string name="connect">Connect</string>
+    <string name="voice_guidance_opt">Voice Guidance</string>
+    <string name="more_regional_languages">More Regional Languages</string>
+    <string name="offline_form_assistance">Offline Form Assistance</string>
+    <string name="government_form_templates">Government Form Templates</string>
+    <string name="ai_chat_support">AI Chat Support</string>
 </resources>

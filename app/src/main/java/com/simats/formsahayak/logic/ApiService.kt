@@ -186,15 +186,12 @@ interface ApiService {
     @POST("change-password")
     suspend fun changePassword(@Body request: ChangePasswordRequest): Response<ChangePasswordResponse>
 
-    @Headers("Connection: close")
     @POST("send-otp")
     suspend fun sendOtp(@Body request: SendOtpRequest): Response<SendOtpResponse>
 
-    @Headers("Connection: close")
     @POST("verify-otp")
     suspend fun verifyOtp(@Body request: VerifyOtpRequest): Response<VerifyOtpResponse>
 
-    @Headers("Connection: close")
     @POST("reset-password")
     suspend fun resetPassword(@Body request: ResetPasswordRequest): Response<ResetPasswordResponse>
 

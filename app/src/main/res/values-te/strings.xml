@@ -234,4 +234,18 @@
     <string name="camera_denied">ప్రొఫైల్ ఫోటో తీయడానికి కెమెరా అనుమతి అవసరం</string>
     <string name="storage_denied">ఫోటోను ఎంచుకోవడానికి స్టోరేజ్ అనుమతి అవసరం</string>
     <string name="audio_denied">వాయిస్ గైడెన్స్ కోసం ఆడియో అనుమతి అవసరం</string>
+
+    <!-- About Developer -->
+    <string name="about_developer">డెవలపర్ గురించి</string>
+    <string name="developer_name">యమనూరి ప్రణీత్</string>
+    <string name="developer_father_name">S/o యమనూరి రమేష్</string>
+    <string name="developer_role">డెవలపర్ &amp; ఫారమ్ సహాయక్ సృష్టికర్త</string>
+    <string name="developer_desc">కంప్యూటర్ సైన్స్ ఇంజనీరింగ్ విద్యార్థి, AI, మొబైల్ అప్లికేషన్ డెవలప్‌మెంట్ మరియు సాంకేతికత ద్వారా నిజ-ప్రపంచ సమస్యలను పరిష్కరించడం పట్ల ఆసక్తి గలవారు.</string>
+    <string name="future_updates">భవిష్యత్తు నవీకరణలు</string>
+    <string name="connect">కనెక్ట్ అవ్వండి</string>
+    <string name="voice_guidance_opt">వాయిస్ గైడెన్స్</string>
+    <string name="more_regional_languages">మరిన్ని ప్రాంతీయ భాషలు</string>
+    <string name="offline_form_assistance">ఆఫ్‌లైన్ ఫారమ్ సహాయం</string>
+    <string name="government_form_templates">ప్రభుత్వ ఫారమ్ టెంప్లేట్‌లు</string>
+    <string name="ai_chat_support">AI చాట్ సపోర్ట్</string>
 </resources>

@@ -234,4 +234,18 @@
     <string name="camera_denied">சுயவிவரப் புகைப்படத்தை எடுக்க கேமரா அனுமதி தேவை</string>
     <string name="storage_denied">புகைப்படத்தைத் தேர்ந்தெடுக்க சேமிப்பக அனுமதி தேவை</string>
     <string name="audio_denied">குரல் வழிகாட்டுதலுக்கு ஆடியோ அனுமதி தேவை</string>
+
+    <!-- About Developer -->
+    <string name="about_developer">டெவலப்பர் பற்றி</string>
+    <string name="developer_name">யமநூரி பிரணீத்</string>
+    <string name="developer_father_name">S/o யமநூரி ரமேஷ்</string>
+    <string name="developer_role">FormSahayak இன் டெவலப்பர் &amp; உருவாக்கியவர்</string>
+    <string name="developer_desc">தொழில்நுட்பத்தின் மூலம் எளிய மற்றும் நடைமுறை தீர்வுகளை உருவாக்க விரும்பும் கணினி அறிவியல் பொறியியல் மாணவர்.</string>
+    <string name="future_updates">எதிர்கால புதுப்பிப்புகள்</string>
+    <string name="connect">தொடர்பு கொள்ள</string>
+    <string name="voice_guidance_opt">குரல் வழிகாட்டுதல்</string>
+    <string name="more_regional_languages">மேலும் பிராந்திய மொழிகள்</string>
+    <string name="offline_form_assistance">ஆஃப்லைன் படிவ உதவி</string>
+    <string name="government_form_templates">அரசு படிவ வார்ப்புருக்கள்</string>
+    <string name="ai_chat_support">AI அரட்டை ஆதரவு</string>
 </resources>

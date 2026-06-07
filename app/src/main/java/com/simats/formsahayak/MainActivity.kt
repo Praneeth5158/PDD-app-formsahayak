@@ -558,6 +558,7 @@ fun MainApp(
                     viewModel = viewModel,
                     onEditProfileClick = { currentScreen = "edit_profile" },
                     onChangePasswordClick = { currentScreen = "change_password" },
+                    onAboutDeveloperClick = { currentScreen = "about_developer" },
                     onLogoutClick = { 
                         viewModel.logout()
                         currentScreen = "login" 
@@ -567,6 +568,12 @@ fun MainApp(
                     onHelpClick = { currentScreen = "how_to_use" },
                     onSettingsClick = { currentScreen = "settings" },
                     onCameraIconClick = { currentScreen = "update_photo_popup" }
+                )
+                "about_developer" -> AboutDeveloperScreen(
+                    selectedLanguage = selectedLanguage,
+                    isDarkMode = isDarkMode,
+                    isHighContrast = isHighContrast,
+                    onBackClick = { currentScreen = "profile" }
                 )
                 "edit_profile" -> EditProfileScreen(
                     currentName = userName,

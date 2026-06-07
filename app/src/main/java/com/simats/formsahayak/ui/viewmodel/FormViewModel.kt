@@ -242,22 +242,26 @@ class FormViewModel : ViewModel() {
             isLoading = true
             errorMessage = null
             Log.d("FormViewModel", "sendOtp Request: email=$cleanEmail")
+            Log.d("FORGOT_PASSWORD_FLOW", "SEND_OTP_API_START")
             try {
                 val request = SendOtpRequest(cleanEmail)
                 val response = RetrofitClient.apiService.sendOtp(request)
                 Log.d("FormViewModel", "sendOtp Response Code: ${response.code()}")
                 if (response.isSuccessful) {
                     val body = response.body()
+                    Log.d("FORGOT_PASSWORD_FLOW", "SEND_OTP_SUCCESS")
                     Log.d("FormViewModel", "sendOtp Success Body: $body")
                     onResult(true, body?.message ?: "OTP sent")
                 } else {
                     val errorString = response.errorBody()?.string()
+                    Log.d("FORGOT_PASSWORD_FLOW", "SEND_OTP_ERROR")
                     Log.e("FormViewModel", "sendOtp Error Body: $errorString")
                     val message = parseError(errorString)
                     errorMessage = message
                     onResult(false, message)
                 }
             } catch (e: Exception) {
+                Log.d("FORGOT_PASSWORD_FLOW", "SEND_OTP_EXCEPTION")
                 Log.e("FormViewModel", "sendOtp Exception: ${e.message}", e)
                 errorMessage = "Connection error: ${e.message}"
                 onResult(false, errorMessage!!)

@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import android.util.Log
 import com.simats.formsahayak.R
 
 @Composable
@@ -159,6 +160,7 @@ fun ForgotPasswordScreen(
                 Button(
                     onClick = { 
                         if (validate()) {
+                            Log.d("FORGOT_PASSWORD_FLOW", "FORGOT_PASSWORD_CLICKED")
                             onSendOtpClick(emailOrPhone)
                         } else {
                             showError = true

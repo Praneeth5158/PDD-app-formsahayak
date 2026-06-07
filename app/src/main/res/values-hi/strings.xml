@@ -277,4 +277,18 @@
     <string name="pdf_downloaded">पीडीएफ सफलतापूर्वक डाउनलोड हो गया</string>
     <string name="perm_required_title">अनुमति आवश्यक है</string>
     <string name="perm_permanently_denied">यह अनुमति स्थायी रूप से अस्वीकार कर दी गई है। कृपया इसे मैन्युअल रूप से देने के लिए सेटिंग्स खोलें।</string>
+
+    <!-- About Developer -->
+    <string name="about_developer">डेवलपर के बारे में</string>
+    <string name="developer_name">यमनूरी प्रणीत</string>
+    <string name="developer_father_name">S/o यमनूरी रमेश</string>
+    <string name="developer_role">FormSahayak के डेवलपर और निर्माता</string>
+    <string name="developer_desc">कंप्यूटर साइंस इंजीनियरिंग के छात्र जो तकनीक के माध्यम से वास्तविक दुनिया की समस्याओं को हल करने, मोबाइल एप्लिकेशन डेवलपमेंट और एआई के लिए जुनूनी हैं।</string>
+    <string name="future_updates">भविष्य के अपडेट</string>
+    <string name="connect">जुड़ें</string>
+    <string name="voice_guidance_opt">आवाज मार्गदर्शन</string>
+    <string name="more_regional_languages">अधिक क्षेत्रीय भाषाएं</string>
+    <string name="offline_form_assistance">ऑफ़लाइन फॉर्म सहायता</string>
+    <string name="government_form_templates">सरकारी फॉर्म टेम्पलेट</string>
+    <string name="ai_chat_support">एआई चैट सपोर्ट</string>
 </resources>

@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -104,6 +105,17 @@ fun FormPreviewScreen(
         label = "boxPulse"
     )
 
+    // Animation for the box pulse alpha
+    val boxAlpha by infiniteTransition.animateFloat(
+        initialValue = 0.4f,
+        targetValue = 1.0f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(1000, easing = FastOutSlowInEasing),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "boxAlpha"
+    )
+
     // Auto-speak instructions when field changes
     LaunchedEffect(currentFieldIndex) {
         if (detectedFields.isNotEmpty()) {
@@ -140,6 +152,83 @@ fun FormPreviewScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = backgroundColor)
             )
         },
+        bottomBar = {
+            Surface(
+                modifier = Modifier.fillMaxWidth(),
+                color = cardColor,
+                tonalElevation = 8.dp,
+                shadowElevation = 8.dp
+            ) {
+                Column(
+                    modifier = Modifier
+                        .navigationBarsPadding()
+                        .padding(horizontal = 16.dp, vertical = 12.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    // Navigation Row
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        OutlinedButton(
+                            onClick = { if (currentFieldIndex > 0) currentFieldIndex-- },
+                            enabled = currentFieldIndex > 0,
+                            modifier = Modifier.weight(1f).height(56.dp),
+                            shape = RoundedCornerShape(12.dp),
+                            colors = ButtonDefaults.outlinedButtonColors(contentColor = Color(0xFF3F51B5))
+                        ) {
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, null)
+                            Spacer(Modifier.width(4.dp))
+                            Text(stringResource(R.string.previous), fontWeight = FontWeight.Bold)
+                        }
+                        
+                        Button(
+                            onClick = { 
+                                if (currentFieldIndex < detectedFields.size - 1) {
+                                    currentFieldIndex++ 
+                                } else {
+                                    onContinueClick()
+                                }
+                            },
+                            modifier = Modifier.weight(1f).height(56.dp),
+                            shape = RoundedCornerShape(12.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = if (currentFieldIndex == (detectedFields.size - 1).coerceAtLeast(0)) Color(0xFF4CAF50) else Color(0xFF2196F3)
+                            )
+                        ) {
+                            Text(if (currentFieldIndex == (detectedFields.size - 1).coerceAtLeast(0)) stringResource(R.string.finish) else stringResource(R.string.next), fontWeight = FontWeight.Bold)
+                            Spacer(Modifier.width(4.dp))
+                            Icon(if (currentFieldIndex == (detectedFields.size - 1).coerceAtLeast(0)) Icons.Default.Check else Icons.AutoMirrored.Filled.ArrowForward, null)
+                        }
+                    }
+
+                    // Repeat Voice Instruction
+                    Button(
+                        onClick = { 
+                            if (ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+                                if (detectedFields.isNotEmpty()) {
+                                    viewModel.speakFieldInstruction(detectedFields[currentFieldIndex], selectedLanguage?.code ?: "en")
+                                } else if (viewModel.backendGuidance.isNotEmpty()) {
+                                    viewModel.speak(viewModel.backendGuidance, selectedLanguage?.code ?: "en")
+                                }
+                            } else {
+                                audioPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
+                            }
+                        },
+                        modifier = Modifier.fillMaxWidth().height(48.dp),
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF7986CB)),
+                        shape = RoundedCornerShape(12.dp)
+                    ) {
+                        Icon(Icons.AutoMirrored.Filled.VolumeUp, null)
+                        Spacer(Modifier.width(8.dp))
+                        Text(
+                            stringResource(R.string.listen_again),
+                            fontWeight = FontWeight.Medium
+                        )
+                    }
+                }
+            }
+        },
         containerColor = backgroundColor
     ) { paddingValues ->
         Column(
@@ -147,48 +236,68 @@ fun FormPreviewScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
                 .verticalScroll(rememberScrollState())
-                .padding(16.dp),
+                .padding(horizontal = 16.dp, vertical = 8.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Field Info Card
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = cardColor),
-                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-            ) {
-                Row(
-                    modifier = Modifier.padding(16.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Surface(
-                        modifier = Modifier.size(48.dp),
-                        shape = CircleShape,
-                        color = Color(0xFFE8EAF6)
-                    ) {
-                        Box(contentAlignment = Alignment.Center) {
-                            Text(
-                                text = "${currentFieldIndex + 1}",
-                                fontWeight = FontWeight.ExtraBold,
-                                color = Color(0xFF3F51B5),
-                                fontSize = 20.sp
-                            )
-                        }
-                    }
-                    Spacer(Modifier.width(16.dp))
-                    Column {
-                        Text(
-                            text = stringResource(R.string.current_field),
-                            fontSize = 12.sp,
-                            color = if (isDark) Color.LightGray else Color.Gray
+            // Animated field transition
+            AnimatedContent(
+                targetState = currentFieldIndex,
+                transitionSpec = {
+                    if (targetState > initialState) {
+                        (slideInHorizontally { width -> width } + fadeIn()).togetherWith(
+                            slideOutHorizontally { width -> -width } + fadeOut()
                         )
-                        if (detectedFields.isNotEmpty()) {
+                    } else {
+                        (slideInHorizontally { width -> -width } + fadeIn()).togetherWith(
+                            slideOutHorizontally { width -> width } + fadeOut()
+                        )
+                    }.using(
+                        SizeTransform(clip = false)
+                    )
+                },
+                label = "fieldCardTransition"
+            ) { targetIndex ->
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = CardDefaults.cardColors(containerColor = cardColor),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                    border = if (isHighContrast) androidx.compose.foundation.BorderStroke(2.dp, Color.White) else null
+                ) {
+                    Row(
+                        modifier = Modifier.padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Surface(
+                            modifier = Modifier.size(48.dp),
+                            shape = CircleShape,
+                            color = if (isHighContrast) Color.Yellow else Color(0xFFE8EAF6)
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Text(
+                                    text = "${targetIndex + 1}",
+                                    fontWeight = FontWeight.ExtraBold,
+                                    color = if (isHighContrast) Color.Black else Color(0xFF3F51B5),
+                                    fontSize = 20.sp
+                                )
+                            }
+                        }
+                        Spacer(Modifier.width(16.dp))
+                        Column {
                             Text(
-                                text = detectedFields[currentFieldIndex].name,
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = textColor
+                                text = stringResource(R.string.current_field),
+                                fontSize = 12.sp,
+                                color = if (isDark) Color.LightGray else Color.Gray,
+                                fontWeight = FontWeight.Medium
                             )
+                            if (detectedFields.isNotEmpty() && targetIndex in detectedFields.indices) {
+                                Text(
+                                    text = detectedFields[targetIndex].name,
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = if (isHighContrast) Color.Yellow else textColor
+                                )
+                            }
                         }
                     }
                 }
@@ -228,18 +337,27 @@ fun FormPreviewScreen(
                                 val offsetX = (canvasWidth - bitmapWidth * scale) / 2f
                                 val offsetY = (canvasHeight - bitmapHeight * scale) / 2f
  
-                                // Draw the box for the CURRENT field
-                                val rectWidth = field.bounds.width() * scale
-                                val rectHeight = field.bounds.height() * scale
-                                val rectLeft = field.bounds.left * scale + offsetX
-                                val rectTop = field.bounds.top * scale + offsetY
+                                // Draw the box for the CURRENT field with float precision
+                                val rectWidth = field.bounds.width().toFloat() * scale
+                                val rectHeight = field.bounds.height().toFloat() * scale
+                                val rectLeft = field.bounds.left.toFloat() * scale + offsetX
+                                val rectTop = field.bounds.top.toFloat() * scale + offsetY
  
-                                // Pulsing red box
-                                drawRect(
-                                    color = Color.Red,
+                                // Glowing semi-transparent background fill (pulsing opacity)
+                                drawRoundRect(
+                                    color = Color.Red.copy(alpha = 0.12f * boxAlpha),
                                     topLeft = Offset(rectLeft, rectTop),
                                     size = Size(rectWidth, rectHeight),
-                                    style = Stroke(width = 8f * boxPulseScale)
+                                    cornerRadius = androidx.compose.ui.geometry.CornerRadius(6.dp.toPx(), 6.dp.toPx())
+                                )
+
+                                // Glowing razor-sharp borders (pulsing opacity)
+                                drawRoundRect(
+                                    color = Color.Red.copy(alpha = boxAlpha),
+                                    topLeft = Offset(rectLeft, rectTop),
+                                    size = Size(rectWidth, rectHeight),
+                                    cornerRadius = androidx.compose.ui.geometry.CornerRadius(6.dp.toPx(), 6.dp.toPx()),
+                                    style = Stroke(width = 3.dp.toPx())
                                 )
                             }
  
@@ -271,106 +389,66 @@ fun FormPreviewScreen(
             if (viewModel.isLoading) {
                 LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
                 Text(stringResource(R.string.ai_analyzing), fontSize = 12.sp, color = textColor)
-            } else if (viewModel.backendGuidance.isNotEmpty()) {
-                Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(16.dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = if (isDark) Color(0xFF2C2C2C) else Color(0xFFE8EAF6)
-                    ),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+            } else {
+                AnimatedVisibility(
+                    visible = viewModel.backendGuidance.isNotEmpty(),
+                    enter = slideInVertically { it } + fadeIn(),
+                    exit = slideOutVertically { it } + fadeOut()
                 ) {
-                    Column(modifier = Modifier.padding(16.dp)) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Icon(
-                                imageVector = Icons.Default.Stars,
-                                contentDescription = null,
-                                tint = Color(0xFFFFD600),
-                                modifier = Modifier.size(20.dp)
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(16.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = if (isDark) Color(0xFF252525) else Color(0xFFF3F5FF)
+                        ),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                        border = if (isHighContrast) androidx.compose.foundation.BorderStroke(2.dp, Color.White) else androidx.compose.foundation.BorderStroke(1.dp, Color(0xFF3F51B5).copy(alpha = 0.15f))
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(IntrinsicSize.Max)
+                        ) {
+                            // Left accent colored stripe
+                            Box(
+                                modifier = Modifier
+                                    .width(6.dp)
+                                    .fillMaxHeight()
+                                    .background(if (isHighContrast) Color.Yellow else Color(0xFF3F51B5))
                             )
-                            Spacer(Modifier.width(8.dp))
-                            Text(
-                                text = stringResource(R.string.ai_guidance),
-                                fontWeight = FontWeight.Bold,
-                                color = textColor,
-                                fontSize = 16.sp
-                            )
+                            Column(
+                                modifier = Modifier.padding(16.dp)
+                            ) {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Icon(
+                                        imageVector = Icons.Default.Stars,
+                                        contentDescription = null,
+                                        tint = if (isHighContrast) Color.Yellow else Color(0xFFFFC107),
+                                        modifier = Modifier.size(20.dp)
+                                    )
+                                    Spacer(Modifier.width(8.dp))
+                                    Text(
+                                        text = stringResource(R.string.ai_guidance),
+                                        fontWeight = FontWeight.ExtraBold,
+                                        color = if (isHighContrast) Color.Yellow else Color(0xFF1A237E),
+                                        fontSize = 16.sp
+                                    )
+                                }
+                                Spacer(Modifier.height(8.dp))
+                                Text(
+                                    text = viewModel.backendGuidance,
+                                    fontSize = 14.sp,
+                                    color = if (isDark) Color.White.copy(alpha = 0.9f) else Color(0xFF2C3E50),
+                                    lineHeight = 20.sp,
+                                    fontWeight = FontWeight.Normal
+                                )
+                            }
                         }
-                        Spacer(Modifier.height(8.dp))
-                        Text(
-                            text = viewModel.backendGuidance,
-                            fontSize = 13.sp,
-                            color = textColor.copy(alpha = 0.8f),
-                            lineHeight = 18.sp
-                        )
                     }
                 }
-                Spacer(modifier = Modifier.height(16.dp))
             }
-
-            // Navigation Row
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                OutlinedButton(
-                    onClick = { if (currentFieldIndex > 0) currentFieldIndex-- },
-                    enabled = currentFieldIndex > 0,
-                    modifier = Modifier.weight(1f).height(56.dp),
-                    shape = RoundedCornerShape(12.dp),
-                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color(0xFF3F51B5))
-                ) {
-                    Icon(Icons.AutoMirrored.Filled.ArrowBack, null)
-                    Spacer(Modifier.width(4.dp))
-                    Text(stringResource(R.string.previous), fontWeight = FontWeight.Bold)
-                }
-                
-                Button(
-                    onClick = { 
-                        if (currentFieldIndex < detectedFields.size - 1) {
-                            currentFieldIndex++ 
-                        } else {
-                            onContinueClick()
-                        }
-                    },
-                    modifier = Modifier.weight(1f).height(56.dp),
-                    shape = RoundedCornerShape(12.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = if (currentFieldIndex == (detectedFields.size - 1).coerceAtLeast(0)) Color(0xFF4CAF50) else Color(0xFF2196F3)
-                    )
-                ) {
-                    Text(if (currentFieldIndex == (detectedFields.size - 1).coerceAtLeast(0)) stringResource(R.string.finish) else stringResource(R.string.next), fontWeight = FontWeight.Bold)
-                    Spacer(Modifier.width(4.dp))
-                    Icon(if (currentFieldIndex == (detectedFields.size - 1).coerceAtLeast(0)) Icons.Default.Check else Icons.AutoMirrored.Filled.ArrowForward, null)
-                }
-            }
-
-            Spacer(modifier = Modifier.height(12.dp))
-
-            // Repeat Voice Instruction
-            Button(
-                onClick = { 
-                    if (ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
-                        if (detectedFields.isNotEmpty()) {
-                            viewModel.speakFieldInstruction(detectedFields[currentFieldIndex], selectedLanguage?.code ?: "en")
-                        } else if (viewModel.backendGuidance.isNotEmpty()) {
-                            viewModel.speak(viewModel.backendGuidance, selectedLanguage?.code ?: "en")
-                        }
-                    } else {
-                        audioPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
-                    }
-                },
-                modifier = Modifier.fillMaxWidth().height(48.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF7986CB)),
-                shape = RoundedCornerShape(12.dp)
-            ) {
-                Icon(Icons.AutoMirrored.Filled.VolumeUp, null)
-                Spacer(Modifier.width(8.dp))
-                Text(
-                    stringResource(R.string.listen_again),
-                    fontWeight = FontWeight.Medium
-                )
-            }
+            
+            Spacer(modifier = Modifier.height(24.dp))
         }
     }
 }

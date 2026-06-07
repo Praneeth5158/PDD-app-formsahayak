@@ -3,6 +3,8 @@ package com.simats.formsahayak.ui.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -52,61 +54,68 @@ fun LanguageSelectionScreen(
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(60.dp))
-
-        // Top Icon
-        Surface(
-            modifier = Modifier.size(80.dp),
-            shape = CircleShape,
-            color = if (isHighContrast) Color.Yellow else Color(0xFF7C4DFF) // Purple
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Box(contentAlignment = Alignment.Center) {
-                Icon(
-                    imageVector = Icons.Default.Translate,
-                    contentDescription = null,
-                    tint = if (isHighContrast) Color.Black else Color.White,
-                    modifier = Modifier.size(40.dp)
-                )
-            }
-        }
+            Spacer(modifier = Modifier.height(60.dp))
 
-        Spacer(modifier = Modifier.height(24.dp))
-
-        Text(
-            text = stringResource(R.string.select_language),
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold,
-            color = if (isHighContrast) Color.Yellow else if (isDarkMode) Color.White else Color(0xFF1A237E),
-            textAlign = TextAlign.Center
-        )
-
-        Spacer(modifier = Modifier.height(32.dp))
-
-        // Language Options Card
-        Surface(
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(24.dp),
-            color = cardColor,
-            shadowElevation = if (isHighContrast) 0.dp else 4.dp,
-            border = if (isHighContrast) androidx.compose.foundation.BorderStroke(2.dp, Color.White) else null
-        ) {
-            Column(
-                modifier = Modifier.padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+            // Top Icon
+            Surface(
+                modifier = Modifier.size(80.dp),
+                shape = CircleShape,
+                color = if (isHighContrast) Color.Yellow else Color(0xFF7C4DFF) // Purple
             ) {
-                languages.forEach { language ->
-                    LanguageOption(
-                        language = language,
-                        isSelected = selectedLanguage == language,
-                        isDarkMode = isDarkMode,
-                        isHighContrast = isHighContrast,
-                        onClick = { selectedLanguage = language }
+                Box(contentAlignment = Alignment.Center) {
+                    Icon(
+                        imageVector = Icons.Default.Translate,
+                        contentDescription = null,
+                        tint = if (isHighContrast) Color.Black else Color.White,
+                        modifier = Modifier.size(40.dp)
                     )
                 }
             }
-        }
 
-        Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.height(24.dp))
+
+            Text(
+                text = stringResource(R.string.select_language),
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                color = if (isHighContrast) Color.Yellow else if (isDarkMode) Color.White else Color(0xFF1A237E),
+                textAlign = TextAlign.Center
+            )
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            // Language Options Card
+            Surface(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(24.dp),
+                color = cardColor,
+                shadowElevation = if (isHighContrast) 0.dp else 4.dp,
+                border = if (isHighContrast) androidx.compose.foundation.BorderStroke(2.dp, Color.White) else null
+            ) {
+                Column(
+                    modifier = Modifier.padding(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    languages.forEach { language ->
+                        LanguageOption(
+                            language = language,
+                            isSelected = selectedLanguage == language,
+                            isDarkMode = isDarkMode,
+                            isHighContrast = isHighContrast,
+                            onClick = { selectedLanguage = language }
+                        )
+                    }
+                }
+            }
+            
+            Spacer(modifier = Modifier.height(24.dp))
+        }
 
         Button(
             onClick = { onContinueClick(selectedLanguage) },
