@@ -17,7 +17,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,7 +28,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.simats.formsahayak.R
+import com.simats.formsahayak.logic.RetrofitClient
+import com.simats.formsahayak.logic.UrlHelper
 
 /**
  * Configurable Constants for Developer Links
@@ -54,6 +57,61 @@ fun AboutDeveloperScreen(
     val textColor = if (isDark) Color.White else Color.Black
     val secondaryTextColor = if (isDark) Color.LightGray else Color.Gray
     val uriHandler = LocalUriHandler.current
+
+    var name by remember { mutableStateOf("") }
+    var fatherName by remember { mutableStateOf("") }
+    var role by remember { mutableStateOf("") }
+    var description by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var github by remember { mutableStateOf("") }
+    var linkedin by remember { mutableStateOf("") }
+    var portfolio by remember { mutableStateOf("") }
+    var profileImageUrl by remember { mutableStateOf<String?>(null) }
+    var isLoading by remember { mutableStateOf(true) }
+
+    val defaultName = stringResource(R.string.developer_name)
+    val defaultFatherName = stringResource(R.string.developer_father_name)
+    val defaultRole = stringResource(R.string.developer_role)
+    val defaultDesc = stringResource(R.string.developer_desc)
+
+    LaunchedEffect(Unit) {
+        try {
+            val res = RetrofitClient.apiService.getDeveloperDetails()
+            if (res.isSuccessful && res.body() != null) {
+                val details = res.body()!!
+                name = details.name ?: defaultName
+                fatherName = details.fatherName ?: defaultFatherName
+                role = details.role ?: defaultRole
+                description = details.description ?: defaultDesc
+                email = details.email ?: DeveloperConfig.EMAIL
+                github = details.github ?: DeveloperConfig.GITHUB
+                linkedin = details.linkedin ?: DeveloperConfig.LINKEDIN
+                portfolio = details.portfolio ?: DeveloperConfig.PORTFOLIO
+                profileImageUrl = details.profileImage
+            } else {
+                name = defaultName
+                fatherName = defaultFatherName
+                role = defaultRole
+                description = defaultDesc
+                email = DeveloperConfig.EMAIL
+                github = DeveloperConfig.GITHUB
+                linkedin = DeveloperConfig.LINKEDIN
+                portfolio = DeveloperConfig.PORTFOLIO
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            name = defaultName
+            fatherName = defaultFatherName
+            role = defaultRole
+            description = defaultDesc
+            email = DeveloperConfig.EMAIL
+            github = DeveloperConfig.GITHUB
+            linkedin = DeveloperConfig.LINKEDIN
+            portfolio = DeveloperConfig.PORTFOLIO
+        } finally {
+            isLoading = false
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -110,18 +168,33 @@ fun AboutDeveloperScreen(
                         color = if (isDark) Color(0xFF333333) else Color(0xFFE3F2FD),
                         border = if (isHighContrast) BorderStroke(3.dp, Color.White) else BorderStroke(3.dp, Color(0xFF2196F3))
                     ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.developer_profile),
-                            contentDescription = stringResource(R.string.developer_name),
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .clip(RoundedCornerShape(16.dp)),
-                            contentScale = ContentScale.Crop
-                        )
+                        if (isLoading) {
+                            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                                CircularProgressIndicator(color = if (isHighContrast) Color.White else Color(0xFF2196F3))
+                            }
+                        } else if (!profileImageUrl.isNullOrEmpty()) {
+                            AsyncImage(
+                                model = UrlHelper.cleanUrl(profileImageUrl),
+                                contentDescription = name,
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .clip(RoundedCornerShape(16.dp)),
+                                contentScale = ContentScale.Crop
+                            )
+                        } else {
+                            Image(
+                                painter = painterResource(id = R.drawable.developer_profile),
+                                contentDescription = name,
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .clip(RoundedCornerShape(16.dp)),
+                                contentScale = ContentScale.Crop
+                            )
+                        }
                     }
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = stringResource(R.string.developer_name), 
+                        text = if (isLoading) "..." else name, 
                         fontSize = 22.sp, 
                         fontWeight = FontWeight.ExtraBold, 
                         color = textColor,
@@ -129,7 +202,7 @@ fun AboutDeveloperScreen(
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = stringResource(R.string.developer_father_name), 
+                        text = if (isLoading) "..." else fatherName, 
                         fontSize = 14.sp, 
                         fontWeight = FontWeight.Medium, 
                         color = secondaryTextColor,
@@ -137,7 +210,7 @@ fun AboutDeveloperScreen(
                     )
                     Spacer(modifier = Modifier.height(6.dp))
                     Text(
-                        text = stringResource(R.string.developer_role), 
+                        text = if (isLoading) "..." else role, 
                         fontSize = 14.sp, 
                         fontWeight = FontWeight.SemiBold,
                         color = if (isHighContrast) Color.White else Color(0xFF2196F3),
@@ -145,7 +218,7 @@ fun AboutDeveloperScreen(
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = stringResource(R.string.developer_desc), 
+                        text = if (isLoading) "..." else description, 
                         fontSize = 13.sp, 
                         color = secondaryTextColor,
                         lineHeight = 18.sp,
@@ -157,73 +230,87 @@ fun AboutDeveloperScreen(
             Spacer(modifier = Modifier.height(20.dp))
 
             // Connect Section Card
-            Surface(
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(24.dp),
-                color = cardColor,
-                shadowElevation = if (isHighContrast) 0.dp else 4.dp,
-                border = if (isHighContrast) BorderStroke(2.dp, Color.White) else null
-            ) {
-                Column(modifier = Modifier.padding(20.dp)) {
-                    Text(
-                        text = stringResource(R.string.connect), 
-                        fontSize = 16.sp, 
-                        fontWeight = FontWeight.ExtraBold, 
-                        color = textColor
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
-                    
-                    // Email Row
-                    ContactRow(
-                        icon = Icons.Default.Email,
-                        label = "Email",
-                        value = DeveloperConfig.EMAIL,
-                        iconColor = Color(0xFF2196F3),
-                        textColor = textColor,
-                        secondaryTextColor = secondaryTextColor,
-                        isHighContrast = isHighContrast,
-                        onClick = { uriHandler.openUri("mailto:${DeveloperConfig.EMAIL}") }
-                    )
-                    HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp), color = if (isDark) Color(0xFF333333) else Color(0xFFF0F0F0))
-                    
-                    // GitHub Row
-                    ContactRow(
-                        icon = Icons.Default.Code,
-                        label = "GitHub",
-                        value = DeveloperConfig.GITHUB.removePrefix("https://").removePrefix("www."),
-                        iconColor = Color(0xFF333333),
-                        textColor = textColor,
-                        secondaryTextColor = secondaryTextColor,
-                        isHighContrast = isHighContrast,
-                        onClick = { uriHandler.openUri(DeveloperConfig.GITHUB) }
-                    )
-                    HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp), color = if (isDark) Color(0xFF333333) else Color(0xFFF0F0F0))
-
-                    // LinkedIn Row
-                    ContactRow(
-                        icon = Icons.Default.Link,
-                        label = "LinkedIn",
-                        value = DeveloperConfig.LINKEDIN.removePrefix("https://").removePrefix("www.").removePrefix("linkedin.com/in/"),
-                        iconColor = Color(0xFF0077B5),
-                        textColor = textColor,
-                        secondaryTextColor = secondaryTextColor,
-                        isHighContrast = isHighContrast,
-                        onClick = { uriHandler.openUri(DeveloperConfig.LINKEDIN) }
-                    )
-                    
-                    // Portfolio Row (Optional)
-                    if (DeveloperConfig.PORTFOLIO.isNotEmpty()) {
-                        HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp), color = if (isDark) Color(0xFF333333) else Color(0xFFF0F0F0))
-                        ContactRow(
-                            icon = Icons.Default.Language,
-                            label = "Portfolio",
-                            value = DeveloperConfig.PORTFOLIO.removePrefix("https://").removePrefix("www."),
-                            iconColor = Color(0xFF4CAF50),
-                            textColor = textColor,
-                            secondaryTextColor = secondaryTextColor,
-                            isHighContrast = isHighContrast,
-                            onClick = { uriHandler.openUri(DeveloperConfig.PORTFOLIO) }
+            if (!isLoading) {
+                Surface(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(24.dp),
+                    color = cardColor,
+                    shadowElevation = if (isHighContrast) 0.dp else 4.dp,
+                    border = if (isHighContrast) BorderStroke(2.dp, Color.White) else null
+                ) {
+                    Column(modifier = Modifier.padding(20.dp)) {
+                        Text(
+                            text = stringResource(R.string.connect), 
+                            fontSize = 16.sp, 
+                            fontWeight = FontWeight.ExtraBold, 
+                            color = textColor
                         )
+                        Spacer(modifier = Modifier.height(16.dp))
+                        
+                        // Email Row
+                        if (email.isNotEmpty()) {
+                            ContactRow(
+                                icon = Icons.Default.Email,
+                                label = "Email",
+                                value = email,
+                                iconColor = Color(0xFF2196F3),
+                                textColor = textColor,
+                                secondaryTextColor = secondaryTextColor,
+                                isHighContrast = isHighContrast,
+                                onClick = { uriHandler.openUri("mailto:$email") }
+                            )
+                        }
+                        
+                        // GitHub Row
+                        if (github.isNotEmpty()) {
+                            if (email.isNotEmpty()) {
+                                HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp), color = if (isDark) Color(0xFF333333) else Color(0xFFF0F0F0))
+                            }
+                            ContactRow(
+                                icon = Icons.Default.Code,
+                                label = "GitHub",
+                                value = github.removePrefix("https://").removePrefix("www."),
+                                iconColor = Color(0xFF333333),
+                                textColor = textColor,
+                                secondaryTextColor = secondaryTextColor,
+                                isHighContrast = isHighContrast,
+                                onClick = { uriHandler.openUri(github) }
+                            )
+                        }
+                        
+                        // LinkedIn Row
+                        if (linkedin.isNotEmpty()) {
+                            if (email.isNotEmpty() || github.isNotEmpty()) {
+                                HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp), color = if (isDark) Color(0xFF333333) else Color(0xFFF0F0F0))
+                            }
+                            ContactRow(
+                                icon = Icons.Default.Link,
+                                label = "LinkedIn",
+                                value = linkedin.removePrefix("https://").removePrefix("www.").removePrefix("linkedin.com/in/"),
+                                iconColor = Color(0xFF0077B5),
+                                textColor = textColor,
+                                secondaryTextColor = secondaryTextColor,
+                                isHighContrast = isHighContrast,
+                                onClick = { uriHandler.openUri(linkedin) }
+                            )
+                        }
+                        
+                        // Portfolio Row (Optional)
+                        if (portfolio.isNotEmpty()) {
+                            if (email.isNotEmpty() || github.isNotEmpty() || linkedin.isNotEmpty()) {
+                                HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp), color = if (isDark) Color(0xFF333333) else Color(0xFFF0F0F0))
+                            }
+                            ContactRow(
+                                icon = Icons.Default.Language,
+                                label = "Portfolio",
+                                value = portfolio.removePrefix("https://").removePrefix("www."),
+                                iconColor = Color(0xFF4CAF50),
+                                textColor = textColor,
+                                secondaryTextColor = secondaryTextColor,
+                                isHighContrast = isHighContrast,
+                                onClick = { uriHandler.openUri(portfolio) }
+                            )
+                        }
                     }
                 }
             }

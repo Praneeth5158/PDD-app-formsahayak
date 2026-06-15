@@ -11,6 +11,10 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Query
+import retrofit2.http.Multipart
+import retrofit2.http.Part
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import java.util.concurrent.TimeUnit
 
 // Request / Response models:
@@ -97,7 +101,26 @@ interface AdminApiService {
 
     @GET("api/admin/feedback")
     suspend fun getFeedback(@Header("Authorization") authHeader: String): Response<AdminFeedbackResponse>
+
+    @Multipart
+    @POST("api/admin/developer")
+    suspend fun updateDeveloperDetails(
+        @Header("Authorization") authHeader: String,
+        @Part("name") name: RequestBody,
+        @Part("father_name") fatherName: RequestBody,
+        @Part("role") role: RequestBody,
+        @Part("description") description: RequestBody,
+        @Part("email") email: RequestBody,
+        @Part("github") github: RequestBody,
+        @Part("linkedin") linkedin: RequestBody,
+        @Part("portfolio") portfolio: RequestBody,
+        @Part profile_image: MultipartBody.Part?
+    ): Response<UpdateDeveloperResponse>
 }
+
+data class UpdateDeveloperResponse(
+    val message: String
+)
 
 val adminApiService: AdminApiService by lazy {
     val logging = HttpLoggingInterceptor().apply {

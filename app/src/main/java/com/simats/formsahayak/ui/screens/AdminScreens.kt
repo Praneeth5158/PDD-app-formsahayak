@@ -50,6 +50,22 @@ import com.simats.formsahayak.logic.*
 import com.simats.formsahayak.ui.viewmodel.FormViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
+import android.net.Uri
+import android.provider.MediaStore
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.ui.graphics.asImageBitmap
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.ByteArrayOutputStream
+import java.io.FileOutputStream
+import java.io.File
+import android.os.Build
+import androidx.compose.foundation.Image
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -277,7 +293,7 @@ fun AdminDashboardScreen(
     onLogoutClick: () -> Unit
 ) {
     var selectedTab by remember { mutableStateOf(0) }
-    val tabs = listOf("Overview", "Users", "Form Logs", "Feedback")
+    val tabs = listOf("Overview", "Users", "Form Logs", "Feedback", "Developer")
 
     val isDark = isDarkMode || isHighContrast
     val backgroundColor = if (isDark) Color.Black else Color(0xFFF8FBFF)
@@ -338,6 +354,7 @@ fun AdminDashboardScreen(
                 1 -> AdminUsersTab(isDarkMode, isHighContrast)
                 2 -> AdminFormsTab(isDarkMode, isHighContrast, viewModel)
                 3 -> AdminFeedbackTab(isDarkMode, isHighContrast)
+                4 -> AdminDeveloperTab(isDarkMode, isHighContrast)
             }
         }
     }
@@ -1215,5 +1232,280 @@ fun LineChart(
                 )
             }
         }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun AdminDeveloperTab(isDarkMode: Boolean, isHighContrast: Boolean) {
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+
+    var name by remember { mutableStateOf("") }
+    var fatherName by remember { mutableStateOf("") }
+    var role by remember { mutableStateOf("") }
+    var description by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var github by remember { mutableStateOf("") }
+    var linkedin by remember { mutableStateOf("") }
+    var portfolio by remember { mutableStateOf("") }
+    var currentProfileImageUrl by remember { mutableStateOf<String?>(null) }
+    
+    var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
+    var selectedImageBitmap by remember { mutableStateOf<Bitmap?>(null) }
+    var isLoading by remember { mutableStateOf(true) }
+    var isSaving by remember { mutableStateOf(false) }
+
+    val isDark = isDarkMode || isHighContrast
+    val textColor = if (isDark) Color.White else Color.Black
+    val secondaryTextColor = if (isDark) Color.LightGray else Color.Gray
+    val cardColor = if (isDark) Color(0xFF1E1E1E) else Color.White
+
+    // File pickers
+    val galleryLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent()
+    ) { uri ->
+        uri?.let {
+            selectedImageUri = it
+            try {
+                val source = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    ImageDecoder.createSource(context.contentResolver, it)
+                } else {
+                    null
+                }
+                selectedImageBitmap = if (source != null) {
+                    ImageDecoder.decodeBitmap(source)
+                } else {
+                    @Suppress("DEPRECATION")
+                    MediaStore.Images.Media.getBitmap(context.contentResolver, it)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        try {
+            val res = RetrofitClient.apiService.getDeveloperDetails()
+            if (res.isSuccessful && res.body() != null) {
+                val details = res.body()!!
+                name = details.name ?: ""
+                fatherName = details.fatherName ?: ""
+                role = details.role ?: ""
+                description = details.description ?: ""
+                email = details.email ?: ""
+                github = details.github ?: ""
+                linkedin = details.linkedin ?: ""
+                portfolio = details.portfolio ?: ""
+                currentProfileImageUrl = details.profileImage
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            isLoading = false
+        }
+    }
+
+    if (isLoading) {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            CircularProgressIndicator(color = if (isHighContrast) Color.White else Color(0xFF2196F3))
+        }
+    } else {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Text(
+                text = "Edit Developer Details",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                color = textColor
+            )
+
+            // Image Selection Card
+            Surface(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(16.dp),
+                color = cardColor,
+                shadowElevation = if (isHighContrast) 0.dp else 2.dp,
+                border = if (isHighContrast) BorderStroke(1.dp, Color.White) else null
+            ) {
+                Row(
+                    modifier = Modifier.padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    // Avatar Image
+                    Surface(
+                        modifier = Modifier.size(80.dp),
+                        shape = RoundedCornerShape(12.dp),
+                        color = if (isDark) Color(0xFF333333) else Color(0xFFF0F0F0),
+                        border = if (isHighContrast) BorderStroke(1.dp, Color.White) else null
+                    ) {
+                        if (selectedImageBitmap != null) {
+                            Image(
+                                bitmap = selectedImageBitmap!!.asImageBitmap(),
+                                contentDescription = "Selected Photo",
+                                modifier = Modifier.fillMaxSize(),
+                                contentScale = ContentScale.Crop
+                            )
+                        } else if (!currentProfileImageUrl.isNullOrEmpty()) {
+                            AsyncImage(
+                                model = UrlHelper.cleanUrl(currentProfileImageUrl),
+                                contentDescription = "Current Photo",
+                                modifier = Modifier.fillMaxSize(),
+                                contentScale = ContentScale.Crop
+                            )
+                        } else {
+                            Box(contentAlignment = Alignment.Center) {
+                                Icon(Icons.Default.Person, contentDescription = null, modifier = Modifier.size(40.dp))
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.width(16.dp))
+
+                    Button(
+                        onClick = { galleryLauncher.launch("image/*") },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (isHighContrast) Color.Yellow else Color(0xFF2196F3),
+                            contentColor = if (isHighContrast) Color.Black else Color.White
+                        )
+                    ) {
+                        Text("Change Photo", fontWeight = FontWeight.Bold)
+                    }
+                }
+            }
+
+            // Input Fields
+            AdminTextField(value = name, onValueChange = { name = it }, label = "Developer Name", isDark = isDark, textColor = textColor)
+            AdminTextField(value = fatherName, onValueChange = { fatherName = it }, label = "Father's Name", isDark = isDark, textColor = textColor)
+            AdminTextField(value = role, onValueChange = { role = it }, label = "Role / Title", isDark = isDark, textColor = textColor)
+            AdminTextField(value = description, onValueChange = { description = it }, label = "Description", isDark = isDark, textColor = textColor, singleLine = false)
+            AdminTextField(value = email, onValueChange = { email = it }, label = "Email", isDark = isDark, textColor = textColor)
+            AdminTextField(value = github, onValueChange = { github = it }, label = "GitHub Link", isDark = isDark, textColor = textColor)
+            AdminTextField(value = linkedin, onValueChange = { linkedin = it }, label = "LinkedIn Link", isDark = isDark, textColor = textColor)
+            AdminTextField(value = portfolio, onValueChange = { portfolio = it }, label = "Portfolio Link", isDark = isDark, textColor = textColor)
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Button(
+                onClick = {
+                    isSaving = true
+                    scope.launch {
+                        val token = SecureStore.getToken(context)
+                        if (token == null) {
+                            Toast.makeText(context, "Unauthorized: No token found", Toast.LENGTH_SHORT).show()
+                            isSaving = false
+                            return@launch
+                        }
+
+                        try {
+                            val namePart = name.trim().toRequestBody("text/plain".toMediaTypeOrNull())
+                            val fatherPart = fatherName.trim().toRequestBody("text/plain".toMediaTypeOrNull())
+                            val rolePart = role.trim().toRequestBody("text/plain".toMediaTypeOrNull())
+                            val descPart = description.trim().toRequestBody("text/plain".toMediaTypeOrNull())
+                            val emailPart = email.trim().toRequestBody("text/plain".toMediaTypeOrNull())
+                            val githubPart = github.trim().toRequestBody("text/plain".toMediaTypeOrNull())
+                            val linkedinPart = linkedin.trim().toRequestBody("text/plain".toMediaTypeOrNull())
+                            val portfolioPart = portfolio.trim().toRequestBody("text/plain".toMediaTypeOrNull())
+
+                            var imagePart: MultipartBody.Part? = null
+                            if (selectedImageBitmap != null) {
+                                val file = File(context.cacheDir, "dev_upload.jpg")
+                                val bos = ByteArrayOutputStream()
+                                selectedImageBitmap!!.compress(Bitmap.CompressFormat.JPEG, 90, bos)
+                                val fos = FileOutputStream(file)
+                                fos.write(bos.toByteArray())
+                                fos.flush()
+                                fos.close()
+
+                                val requestFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+                                imagePart = MultipartBody.Part.createFormData("profile_image", file.name, requestFile)
+                            }
+
+                            val res = adminApiService.updateDeveloperDetails(
+                                authHeader = "Bearer $token",
+                                name = namePart,
+                                fatherName = fatherPart,
+                                role = rolePart,
+                                description = descPart,
+                                email = emailPart,
+                                github = githubPart,
+                                linkedin = linkedinPart,
+                                portfolio = portfolioPart,
+                                profile_image = imagePart
+                            )
+
+                            if (res.isSuccessful) {
+                                Toast.makeText(context, "Developer details updated successfully", Toast.LENGTH_SHORT).show()
+                                // Update current image url if updated
+                                val getRes = RetrofitClient.apiService.getDeveloperDetails()
+                                if (getRes.isSuccessful && getRes.body() != null) {
+                                    currentProfileImageUrl = getRes.body()!!.profileImage
+                                    selectedImageBitmap = null
+                                }
+                            } else {
+                                Toast.makeText(context, "Failed to update: ${res.message()}", Toast.LENGTH_SHORT).show()
+                            }
+                        } catch (e: Exception) {
+                            Toast.makeText(context, "Error: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
+                        } finally {
+                            isSaving = false
+                        }
+                    }
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp),
+                enabled = !isSaving,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = if (isHighContrast) Color.Yellow else Color(0xFF4CAF50),
+                    contentColor = if (isHighContrast) Color.Black else Color.White
+                )
+            ) {
+                if (isSaving) {
+                    CircularProgressIndicator(color = if (isHighContrast) Color.Black else Color.White, modifier = Modifier.size(24.dp))
+                } else {
+                    Text("Save Developer Details", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                }
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
+        }
+    }
+}
+
+@Composable
+fun AdminTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    label: String,
+    isDark: Boolean,
+    textColor: Color,
+    singleLine: Boolean = true
+) {
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Text(text = label, fontSize = 12.sp, color = Color.Gray, fontWeight = FontWeight.Bold)
+        Spacer(modifier = Modifier.height(6.dp))
+        TextField(
+            value = value,
+            onValueChange = onValueChange,
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = singleLine,
+            maxLines = if (singleLine) 1 else 5,
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = if (isDark) Color(0xFF2C2C2C) else Color(0xFFF1F5F9),
+                unfocusedContainerColor = if (isDark) Color(0xFF2C2C2C) else Color(0xFFF1F5F9),
+                focusedTextColor = textColor,
+                unfocusedTextColor = textColor,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent
+            ),
+            shape = RoundedCornerShape(12.dp)
+        )
     }
 }

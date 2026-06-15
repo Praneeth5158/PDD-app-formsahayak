@@ -4,6 +4,8 @@ import android.content.Context
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
 import android.util.Base64
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.security.KeyStore
 import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
@@ -37,7 +39,7 @@ object SecureStore {
         return keyGenerator.generateKey()
     }
 
-    fun saveToken(context: Context, token: String) {
+    suspend fun saveToken(context: Context, token: String) = withContext(Dispatchers.IO) {
         try {
             val key = getSecretKey()
             val cipher = Cipher.getInstance("AES/GCM/NoPadding")
@@ -58,11 +60,11 @@ object SecureStore {
         }
     }
 
-    fun getToken(context: Context): String? {
+    suspend fun getToken(context: Context): String? = withContext(Dispatchers.IO) {
         try {
             val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-            val encryptedString = prefs.getString(TOKEN_KEY, null) ?: return null
-            val ivString = prefs.getString(IV_KEY, null) ?: return null
+            val encryptedString = prefs.getString(TOKEN_KEY, null) ?: return@withContext null
+            val ivString = prefs.getString(IV_KEY, null) ?: return@withContext null
 
             val encryptedBytes = Base64.decode(encryptedString, Base64.DEFAULT)
             val iv = Base64.decode(ivString, Base64.DEFAULT)
@@ -72,10 +74,10 @@ object SecureStore {
             val spec = GCMParameterSpec(128, iv)
             cipher.init(Cipher.DECRYPT_MODE, key, spec)
             val decryptedBytes = cipher.doFinal(encryptedBytes)
-            return String(decryptedBytes, Charsets.UTF_8)
+            return@withContext String(decryptedBytes, Charsets.UTF_8)
         } catch (e: Exception) {
             e.printStackTrace()
-            return null
+            return@withContext null
         }
     }
 

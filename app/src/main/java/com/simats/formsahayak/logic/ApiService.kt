@@ -199,4 +199,19 @@ interface ApiService {
     suspend fun deleteHistory(
         @Path("doc_id") docId: Int
     ): Response<DeleteHistoryResponse>
+
+    @GET("api/developer")
+    suspend fun getDeveloperDetails(): Response<DeveloperDetailsResponse>
 }
+
+data class DeveloperDetailsResponse(
+    val name: String?,
+    @SerializedName("father_name") val fatherName: String?,
+    val role: String?,
+    val description: String?,
+    val email: String?,
+    val github: String?,
+    val linkedin: String?,
+    val portfolio: String?,
+    @SerializedName("profile_image") val profileImage: String?
+)
