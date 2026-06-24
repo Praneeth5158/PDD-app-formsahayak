@@ -27,6 +27,7 @@ import com.simats.formsahayak.ui.screens.*
 import com.simats.formsahayak.ui.theme.FormsahayakTheme
 import com.simats.formsahayak.ui.viewmodel.FormViewModel
 import com.simats.formsahayak.logic.SecureStore
+import com.simats.formsahayak.logic.UserPrefs
 import kotlinx.coroutines.delay
 import java.io.File
 
@@ -35,19 +36,36 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            var isDarkMode by remember { mutableStateOf(false) }
-            var isHighContrast by remember { mutableStateOf(false) }
-            var selectedLanguage by remember { mutableStateOf<Language?>(null) }
+            val context = LocalContext.current
+            var isDarkMode by remember { mutableStateOf(UserPrefs.isDarkMode(context)) }
+            var isHighContrast by remember { mutableStateOf(UserPrefs.isHighContrast(context)) }
+            val languages = listOf(
+                Language("English", "English", "en"),
+                Language("Telugu", "తెలుగు", "te"),
+                Language("Tamil", "தமிழ்", "ta"),
+                Language("Hindi", "हिन्दी", "hi")
+            )
+            var selectedLanguage by remember {
+                mutableStateOf<Language?>(
+                    UserPrefs.getLanguageCode(context)?.let { code ->
+                        languages.find { it.code == code }
+                    }
+                )
+            }
             val viewModel: FormViewModel = viewModel()
+
+            LaunchedEffect(Unit) {
+                if (UserPrefs.isLoggedIn(context)) {
+                    val savedEmail = UserPrefs.getEmail(context)
+                    if (savedEmail.isNotEmpty()) {
+                        viewModel.fetchProfile(savedEmail)
+                        viewModel.fetchHistory(savedEmail)
+                    }
+                }
+            }
 
             LaunchedEffect(viewModel.loggedInUser?.language) {
                 viewModel.loggedInUser?.language?.let { langCode ->
-                    val languages = listOf(
-                        Language("English", "English", "en"),
-                        Language("Telugu", "తెలుగు", "te"),
-                        Language("Tamil", "தமிழ்", "ta"),
-                        Language("Hindi", "हिन्दी", "hi")
-                    )
                     val matched = languages.find { it.code == langCode }
                     if (matched != null) {
                         selectedLanguage = matched
@@ -55,7 +73,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
 
-            val context = LocalContext.current
             val activityResultRegistryOwner = remember(context) { context as ActivityResultRegistryOwner }
             val localizedContext = remember(selectedLanguage) {
                 val localeCode = selectedLanguage?.code ?: "en"
@@ -82,9 +99,18 @@ class MainActivity : ComponentActivity() {
                         isHighContrast = isHighContrast,
                         selectedLanguage = selectedLanguage,
                         viewModel = viewModel,
-                        onThemeChange = { isDarkMode = it },
-                        onHighContrastChange = { isHighContrast = it },
-                        onLanguageChange = { selectedLanguage = it }
+                        onThemeChange = { 
+                            isDarkMode = it
+                            UserPrefs.setDarkMode(context, it)
+                        },
+                        onHighContrastChange = { 
+                            isHighContrast = it
+                            UserPrefs.setHighContrast(context, it)
+                        },
+                        onLanguageChange = { 
+                            selectedLanguage = it
+                            UserPrefs.setLanguageCode(context, it.code)
+                        }
                     )
                 }
             }
@@ -178,7 +204,28 @@ fun MainApp(
     if (currentScreen == "welcome") {
         LaunchedEffect(Unit) {
             delay(3000)
-            currentScreen = "onboarding"
+            if (UserPrefs.isLoggedIn(context)) {
+                val hasLanguage = UserPrefs.getLanguageCode(context) != null
+                val storagePermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    Manifest.permission.READ_MEDIA_IMAGES
+                } else {
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                }
+                val hasCamera = ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+                val hasStorage = ContextCompat.checkSelfPermission(context, storagePermission) == PackageManager.PERMISSION_GRANTED
+                val hasMic = ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED
+                val allPermissionsGranted = hasCamera && hasStorage && hasMic
+
+                if (hasLanguage && allPermissionsGranted) {
+                    currentScreen = "dashboard"
+                } else if (!hasLanguage) {
+                    currentScreen = "language"
+                } else {
+                    currentScreen = "grant_permissions"
+                }
+            } else {
+                currentScreen = "onboarding"
+            }
         }
     }
 
@@ -202,7 +249,30 @@ fun MainApp(
                     isDarkMode = isDarkMode,
                     isHighContrast = isHighContrast,
                     viewModel = viewModel,
-                    onLoginSuccess = { currentScreen = "language" },
+                    onLoginSuccess = { 
+                        val email = viewModel.loggedInUser?.emailOrPhone ?: ""
+                        UserPrefs.setLoggedIn(context, true)
+                        UserPrefs.setEmail(context, email)
+                        
+                        val hasLanguage = UserPrefs.getLanguageCode(context) != null
+                        val storagePermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                            Manifest.permission.READ_MEDIA_IMAGES
+                        } else {
+                            Manifest.permission.READ_EXTERNAL_STORAGE
+                        }
+                        val hasCamera = ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+                        val hasStorage = ContextCompat.checkSelfPermission(context, storagePermission) == PackageManager.PERMISSION_GRANTED
+                        val hasMic = ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED
+                        val allPermissionsGranted = hasCamera && hasStorage && hasMic
+
+                        if (hasLanguage && allPermissionsGranted) {
+                            currentScreen = "dashboard"
+                        } else if (!hasLanguage) {
+                            currentScreen = "language"
+                        } else {
+                            currentScreen = "grant_permissions"
+                        }
+                    },
                     onNavigateToSignup = { currentScreen = "signup" },
                     onForgotPassword = { currentScreen = "forgot_password" },
                     onNavigateToAdminLogin = { currentScreen = "admin_login" }
@@ -562,6 +632,8 @@ fun MainApp(
                     onChangePasswordClick = { currentScreen = "change_password" },
                     onAboutDeveloperClick = { currentScreen = "about_developer" },
                     onLogoutClick = { 
+                        UserPrefs.setLoggedIn(context, false)
+                        UserPrefs.setEmail(context, "")
                         viewModel.logout()
                         currentScreen = "login" 
                     },

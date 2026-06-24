@@ -74,7 +74,7 @@ data class AdminFeedbackItem(
     @SerializedName("app_experience") val appExperience: String,
     @SerializedName("voice_guidance_helpful") val voiceGuidanceHelpful: String,
     @SerializedName("recommend_app") val recommendApp: String,
-    val rating: Int? = 5,
+    val rating: String?,
     @SerializedName("additional_comments") val additionalComments: String?,
     @SerializedName("created_at") val createdAt: String
 )

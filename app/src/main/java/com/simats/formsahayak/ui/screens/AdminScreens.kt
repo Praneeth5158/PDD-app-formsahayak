@@ -1046,7 +1046,7 @@ fun AdminFeedbackTab(isDarkMode: Boolean, isHighContrast: Boolean) {
                                 overflow = TextOverflow.Ellipsis
                             )
                             // Stars Row
-                            val ratingStars = item.rating ?: 5
+                            val ratingStars = item.rating?.toIntOrNull() ?: 5
                             Row {
                                 repeat(5) { starIndex ->
                                     Icon(
